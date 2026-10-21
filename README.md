@@ -20,6 +20,19 @@ npm install
 node app.js --help
 ```
 
+## Quickstart
+
+```bash
+# Add a note
+node app.js add --title "Shopping" --body "Buy milk and bread"
+
+# Try adding the same title again (demonstrates duplicate protection)
+node app.js add --title "Shopping" --body "Buy eggs"
+
+# See available commands and options
+node app.js --help
+```
+
 ## Usage
 
 Currently implemented commands:
@@ -29,6 +42,10 @@ Currently implemented commands:
 ```bash
 node app.js add --title "Shopping" --body "Buy milk and bread"
 ```
+
+Expected output on success: `New Note Added!`
+
+If a note with the same title already exists: `Note Title Taken.`
 
 Other available commands (scaffolds): `list`, `read`, `remove`.
 
@@ -61,6 +78,11 @@ node app.js --help
 # Add a note
 node app.js add --title "Todo" --body "Refactor addNotes function"
 ```
+
+## Behavior
+
+- Notes are uniquely identified by `title`. Adding a note with an existing title will be rejected.
+- Data persists in the local `notes.json` file in the project root.
 
 ## License
 
