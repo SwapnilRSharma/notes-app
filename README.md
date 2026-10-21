@@ -4,7 +4,7 @@ Simple CLI Notes application built with Node.js and yargs. Notes are stored loca
 
 ## Requirements
 
-- Node.js 12+ (LTS recommended)
+- Node.js 14+ (LTS recommended)
 
 ## Setup
 
@@ -22,7 +22,7 @@ node app.js --help
 
 ## Usage
 
-Currently implemented commands:
+Implemented command:
 
 - Add a note:
 
@@ -30,7 +30,7 @@ Currently implemented commands:
 node app.js add --title "Shopping" --body "Buy milk and bread"
 ```
 
-Other available commands (scaffolds): `list`, `read`, `remove`.
+Scaffolded commands (not implemented yet): `list`, `read`, `remove`.
 
 - List notes (placeholder):
 
@@ -50,7 +50,10 @@ node app.js read --title "Shopping"
 node app.js remove --title "Shopping"
 ```
 
-Notes are saved to `notes.json`. If the file does not exist, it will be created on first add.
+## Data & Behavior
+
+- Notes persist in `notes.json`. If the file does not exist, it will be created on first add.
+- Note titles must be unique. Uniqueness is case-sensitive ("todo" and "Todo" are considered different).
 
 ## Examples
 
