@@ -1,6 +1,6 @@
 # notes-app
 
-Simple CLI Notes application built with Node.js and yargs. Notes are stored locally in `notes.json` in the project root.
+Simple CLI notes application built with Node.js and yargs. Notes are stored locally in `notes.json` at the project root.
 
 ## Requirements
 
@@ -22,35 +22,47 @@ node app.js --help
 
 ## Usage
 
-Currently implemented commands:
+Implemented commands:
 
-- Add a note:
+- Add a note
 
 ```bash
 node app.js add --title "Shopping" --body "Buy milk and bread"
 ```
 
-Other available commands (scaffolds): `list`, `read`, `remove`.
+Behavior:
+- Notes are de-duplicated by `title`. Adding a note with an existing title prints "Note Title Taken." and does not modify `notes.json`.
+- On first successful add, `notes.json` is created automatically.
 
-- List notes (placeholder):
+Scaffolded (placeholder) commands:
+
+- List notes
 
 ```bash
 node app.js list
 ```
 
-- Read a note (placeholder):
+- Read a note
 
 ```bash
 node app.js read --title "Shopping"
 ```
 
-- Remove a note (placeholder):
+- Remove a note
 
 ```bash
 node app.js remove --title "Shopping"
 ```
 
-Notes are saved to `notes.json`. If the file does not exist, it will be created on first add.
+## Data File
+
+- Location: `./notes.json`
+- Format: JSON array of `{ title, body }`
+- Reset the store by deleting the file:
+
+```bash
+rm -f notes.json
+```
 
 ## Examples
 
@@ -60,7 +72,14 @@ node app.js --help
 
 # Add a note
 node app.js add --title "Todo" --body "Refactor addNotes function"
+
+# Attempt to add a duplicate title
+node app.js add --title "Todo" --body "This will be rejected"
 ```
+
+## Contributing
+
+Issues and PRs are welcome. If you add functionality for `list`, `read`, or `remove`, please include brief usage notes in this README.
 
 ## License
 
