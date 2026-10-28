@@ -10,9 +10,20 @@ Key decisions: do not introduce code changes, new scripts, or CI; only update `R
 
 Risks are low: the codebase is small and the change is docs‑only. The main risk is overstating functionality; we mitigate by aligning text to current `app.js`/`notes.js` behavior and marking non‑implemented commands as placeholders.
 
+Checklist for README update:
+- Overview stating it's a Node.js CLI using yargs; scope is local JSON notes.
+- Requirements: Node.js LTS (tested locally), npm; OS-agnostic.
+- Installation: `npm install` in repo; no global install or bin.
+- Usage: `node app.js --help`; document `add` with required `--title` and `--body`.
+- Placeholders: `list`, `read`, `remove` noted as placeholders with current console output.
+- Data storage: `notes.json` at repo root; auto-created; JSON format; duplicates prevented by exact title match.
+- Examples: help and add; show resulting file behavior; idempotency of duplicate title.
+- Troubleshooting: Node version mismatch; permissions on `notes.json`; corrupted JSON recovery (delete/restore file).
+- License: ISC.
+
 ## Tasks
 
-- [ ] `t1` Audit current docs and code · queued
+ - [x] `t1` Audit current docs and code · done
   - intent: Review `README.md`, `package.json`, `app.js`, and `notes.js` to enumerate actual capabilities and gaps to cover in the README.
   - files: `README.md`, `package.json`, `app.js`, `notes.js`
   - acceptance: A concrete checklist of sections and facts to include is drafted for the README update.
