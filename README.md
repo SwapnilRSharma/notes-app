@@ -1,28 +1,27 @@
 # notes-app
 
-Simple CLI Notes application built with Node.js and yargs. Notes are stored locally in `notes.json` in the project root.
+Simple CLI Notes application built with Node.js and yargs.
+
+Notes are stored locally in `notes.json` in the project root. The file is created automatically on first add.
 
 ## Requirements
 
 - Node.js 12+ (LTS recommended)
 
-## Setup
-
-1. Install dependencies:
+## Quick Start
 
 ```bash
+# Install dependencies
 npm install
-```
 
-2. Run the CLI using Node:
-
-```bash
+# See available commands and options
 node app.js --help
+
+# Add your first note
+node app.js add --title "Shopping" --body "Buy milk and bread"
 ```
 
-## Usage
-
-Currently implemented commands:
+## Commands
 
 - Add a note:
 
@@ -30,37 +29,35 @@ Currently implemented commands:
 node app.js add --title "Shopping" --body "Buy milk and bread"
 ```
 
-Other available commands (scaffolds): `list`, `read`, `remove`.
-
-- List notes (placeholder):
+- List notes (scaffold placeholder):
 
 ```bash
 node app.js list
+# current output: "Listing notes"
 ```
 
-- Read a note (placeholder):
+- Read a note (scaffold placeholder):
 
 ```bash
 node app.js read --title "Shopping"
+# current output: "Reading notes..."
 ```
 
-- Remove a note (placeholder):
+- Remove a note (scaffold placeholder):
 
 ```bash
 node app.js remove --title "Shopping"
+# current output: "Removing a note"
 ```
 
-Notes are saved to `notes.json`. If the file does not exist, it will be created on first add.
+## Data Storage
 
-## Examples
+Notes persist in `notes.json` at the project root. If it does not exist, it will be created automatically when you add a note.
 
-```bash
-# Show help for all commands
-node app.js --help
+## Development
 
-# Add a note
-node app.js add --title "Todo" --body "Refactor addNotes function"
-```
+- Run help to inspect the CLI shape: `node app.js --help`.
+- Modify command behavior in `app.js`; note persistence logic lives in `notes.js`.
 
 ## License
 
