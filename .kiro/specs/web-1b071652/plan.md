@@ -31,7 +31,7 @@ Checklist for README update:
   - intent: Update `README.md` with Overview, Requirements (Node LTS), Installation, Usage (yargs commands), Data storage (`notes.json`), and License; mark placeholder commands explicitly.
   - files: `README.md`
   - acceptance: README renders cleanly and contains the defined sections with accurate, concise content.
-- [ ] `t3` Add examples and troubleshooting · queued
+ - [x] `t3` Add examples and troubleshooting · done
   - intent: Add copy‑pasteable examples for `--help` and `add`; include tips for common issues (Node version, missing/locked `notes.json`).
   - files: `README.md`
   - acceptance: Examples are minimal and executable; troubleshooting covers at least missing file and permissions cases.

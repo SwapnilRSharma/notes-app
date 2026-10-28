@@ -51,7 +51,22 @@ node app.js remove --title X # prints: "Removing a note"
 
 ## Examples
 
-See examples for `--help` and `add` in the section above.
+```bash
+# Show help for all commands
+node app.js --help
+
+# Add a note
+node app.js add --title "Todo" --body "Refactor addNotes function"
+
+# Duplicate title (will be prevented and print a message)
+node app.js add --title "Todo" --body "Something else"
+```
+
+## Troubleshooting
+
+- Node version errors: ensure you're on a recent LTS (v12+). Check with `node -v`.
+- Permission denied writing `notes.json`: run from a writable directory or adjust permissions on the repo folder.
+- Corrupted `notes.json`: if the file was manually edited and became invalid JSON, delete it (or fix the JSON) and re-run the add command; the app will recreate the file when needed.
 
 ## License
 
