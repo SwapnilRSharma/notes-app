@@ -12,7 +12,7 @@ Risks are minimal and limited to documentation accuracy. We will explicitly call
 
 ## Tasks
 
-- [ ] `t1` Audit current CLI and docs · queued
+ - [x] `t1` Audit current CLI and docs · done
   - intent: Review README and source (`app.js`, `notes.js`, `package.json`) to confirm available commands, flags, and behavior so documentation is accurate.
   - files: `README.md`, `app.js`, `notes.js`, `package.json`
   - acceptance: Scope of README changes confirmed; no undocumented commands or flags.
