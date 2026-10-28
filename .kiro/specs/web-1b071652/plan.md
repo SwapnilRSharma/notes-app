@@ -35,7 +35,7 @@ Checklist for README update:
   - intent: Add copy‑pasteable examples for `--help` and `add`; include tips for common issues (Node version, missing/locked `notes.json`).
   - files: `README.md`
   - acceptance: Examples are minimal and executable; troubleshooting covers at least missing file and permissions cases.
-- [ ] `t4` Verify documented commands locally · queued
+ - [x] `t4` Verify documented commands locally · done
   - intent: Run documented commands (`node app.js --help`, `add`, `list`, `read`, `remove`) to confirm outputs match documentation and placeholders are noted.
   - acceptance: All commands run on Node LTS without runtime errors; output aligns with README descriptions.
 - [ ] `t5` Raise documentation PR · queued
