@@ -22,7 +22,7 @@ Align examples with actual behavior by sanity-checking commands locally (`node a
   - intent: Execute the documented commands locally to verify options and output; adjust wording if needed.
   - files: `README.md`
   - acceptance: All shown commands run successfully or are explicitly marked as placeholders.
-- [ ] `t4` Raise PR · queued
+- [x] `t4` Raise PR · done
   - intent: Create a branch, commit the README changes, push, and open a PR with a summary of updates and verification notes.
   - files: `README.md`
   - acceptance: PR is opened against the default branch and link is available.
