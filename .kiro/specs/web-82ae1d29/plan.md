@@ -14,7 +14,7 @@ Adopt a clear structure: Overview, Requirements (Node 12+), Installation, Usage,
   - intent: Rewrite and expand README to a clear, minimal structure covering overview, setup, usage, commands, examples, and storage, reflecting actual app behavior.
   - files: `README.md`
   - acceptance: README includes Overview, Requirements, Installation, Usage, Commands (add implemented; others marked placeholders), Examples, Data storage, and License; language is concise and accurate.
-- [ ] `t2` Verify documented commands locally · queued
+- [x] `t2` Verify documented commands locally · done
   - intent: Execute the documented commands to confirm they work exactly as written and match current CLI output and behavior.
   - files: `app.js`, `notes.js`, `notes.json`
   - acceptance: `node app.js --help` lists commands; `add` creates/updates `notes.json` without errors; placeholder commands behave as described in README.
