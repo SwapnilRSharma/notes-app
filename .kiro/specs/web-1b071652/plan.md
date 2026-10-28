@@ -27,7 +27,7 @@ Checklist for README update:
   - intent: Review `README.md`, `package.json`, `app.js`, and `notes.js` to enumerate actual capabilities and gaps to cover in the README.
   - files: `README.md`, `package.json`, `app.js`, `notes.js`
   - acceptance: A concrete checklist of sections and facts to include is drafted for the README update.
-- [ ] `t2` Rewrite README with clear structure · queued
+ - [x] `t2` Rewrite README with clear structure · done
   - intent: Update `README.md` with Overview, Requirements (Node LTS), Installation, Usage (yargs commands), Data storage (`notes.json`), and License; mark placeholder commands explicitly.
   - files: `README.md`
   - acceptance: README renders cleanly and contains the defined sections with accurate, concise content.
