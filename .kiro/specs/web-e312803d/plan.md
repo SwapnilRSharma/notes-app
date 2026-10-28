@@ -14,7 +14,7 @@ Align examples with actual behavior by sanity-checking commands locally (`node a
   - intent: Inspect `app.js` and run the CLI to confirm implemented commands and defaults; list specific README adjustments.
   - files: `README.md`, `app.js`
   - acceptance: A concrete list of README edits is identified based on actual behavior.
-- [ ] `t2` Update README sections · queued
+- [x] `t2` Update README sections · done
   - intent: Revise `README.md` with Overview, Prerequisites, Install, Usage/Commands (examples for `add`; note placeholders for `list`, `read`, `remove`), Data storage, and License.
   - files: `README.md`
   - acceptance: README includes the sections above and examples match the CLI.
