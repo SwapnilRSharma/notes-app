@@ -10,7 +10,7 @@ Align examples with actual behavior by sanity-checking commands locally (`node a
 
 ## Tasks
 
-- [ ] `t1` Review current behavior and doc gaps · queued
+- [x] `t1` Review current behavior and doc gaps · done
   - intent: Inspect `app.js` and run the CLI to confirm implemented commands and defaults; list specific README adjustments.
   - files: `README.md`, `app.js`
   - acceptance: A concrete list of README edits is identified based on actual behavior.
