@@ -10,7 +10,7 @@ Replace placeholder language with concrete, verified examples for `add`, `list`,
 
 ## Tasks
 
-- [ ] `t1` Draft updated README content · queued
+ - [x] `t1` Draft updated README content · done
   - intent: Rewrite README to align with current CLI behavior, replace placeholders, and add quick-start, commands, and examples.
   - files: `README.md`
   - acceptance: README includes accurate overview, install, usage with working examples for add/list/read/remove, and notes on data file and Node version.
