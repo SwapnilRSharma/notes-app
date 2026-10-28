@@ -22,6 +22,6 @@ Adopt a clear structure: Overview, Requirements (Node 12+), Installation, Usage,
   - intent: Commit README changes with a conventional, descriptive message.
   - files: `README.md`
   - acceptance: One commit exists containing only the README update with message like "docs(readme): refresh usage and examples".
-- [ ] `t4` Raise a PR · queued
+- [x] `t4` Raise a PR · done
   - intent: Push a branch and open a pull request summarizing the README refresh, linking to motivation and highlights.
   - acceptance: PR exists with suitable title and description; CI (if any) is green.
