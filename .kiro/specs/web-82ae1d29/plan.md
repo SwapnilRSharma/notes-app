@@ -10,7 +10,7 @@ Adopt a clear structure: Overview, Requirements (Node 12+), Installation, Usage,
 
 ## Tasks
 
-- [ ] `t1` Update README content · queued
+- [x] `t1` Update README content · done
   - intent: Rewrite and expand README to a clear, minimal structure covering overview, setup, usage, commands, examples, and storage, reflecting actual app behavior.
   - files: `README.md`
   - acceptance: README includes Overview, Requirements, Installation, Usage, Commands (add implemented; others marked placeholders), Examples, Data storage, and License; language is concise and accurate.
