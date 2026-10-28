@@ -14,7 +14,7 @@ Replace placeholder language with concrete, verified examples for `add`, `list`,
   - intent: Rewrite README to align with current CLI behavior, replace placeholders, and add quick-start, commands, and examples.
   - files: `README.md`
   - acceptance: README includes accurate overview, install, usage with working examples for add/list/read/remove, and notes on data file and Node version.
-- [ ] `t2` Verify commands against CLI help · queued
+ - [x] `t2` Verify commands against CLI help · done
   - intent: Run `node app.js --help` and each example to ensure flags and output match; adjust docs accordingly.
   - acceptance: All documented commands execute successfully locally and mirror help output.
 - [ ] `t3` Open PR with summary · queued
