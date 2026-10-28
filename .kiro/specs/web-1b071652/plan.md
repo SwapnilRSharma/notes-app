@@ -38,6 +38,6 @@ Checklist for README update:
  - [x] `t4` Verify documented commands locally · done
   - intent: Run documented commands (`node app.js --help`, `add`, `list`, `read`, `remove`) to confirm outputs match documentation and placeholders are noted.
   - acceptance: All commands run on Node LTS without runtime errors; output aligns with README descriptions.
-- [ ] `t5` Raise documentation PR · queued
+ - [x] `t5` Raise documentation PR · done
   - intent: Create a branch and open a PR titled "docs: refresh README for notes-app (web-1b071652)" describing scope (docs‑only) and verification performed.
   - acceptance: PR link is available and contains only README changes.
