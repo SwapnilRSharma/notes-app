@@ -12,7 +12,7 @@ Risks are low; the main risk is documenting stale or inferred commands incorrect
 
 ## Tasks
 
-- [ ] `t1` Audit current README and repo context · queued
+ - [x] `t1` Audit current README and repo context · done
   - intent: Review the existing README and repository layout/scripts to identify gaps and confirm accurate commands without changing code.
   - files: `README.md`
   - acceptance: A concise list of gaps and intended updates is prepared to inform the PR description.
