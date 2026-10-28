@@ -18,7 +18,7 @@ Adopt a clear structure: Overview, Requirements (Node 12+), Installation, Usage,
   - intent: Execute the documented commands to confirm they work exactly as written and match current CLI output and behavior.
   - files: `app.js`, `notes.js`, `notes.json`
   - acceptance: `node app.js --help` lists commands; `add` creates/updates `notes.json` without errors; placeholder commands behave as described in README.
-- [ ] `t3` Commit documentation changes · queued
+- [x] `t3` Commit documentation changes · done
   - intent: Commit README changes with a conventional, descriptive message.
   - files: `README.md`
   - acceptance: One commit exists containing only the README update with message like "docs(readme): refresh usage and examples".
