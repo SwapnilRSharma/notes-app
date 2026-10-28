@@ -18,7 +18,7 @@ Align examples with actual behavior by sanity-checking commands locally (`node a
   - intent: Revise `README.md` with Overview, Prerequisites, Install, Usage/Commands (examples for `add`; note placeholders for `list`, `read`, `remove`), Data storage, and License.
   - files: `README.md`
   - acceptance: README includes the sections above and examples match the CLI.
-- [ ] `t3` Sanity-check examples · queued
+- [x] `t3` Sanity-check examples · done
   - intent: Execute the documented commands locally to verify options and output; adjust wording if needed.
   - files: `README.md`
   - acceptance: All shown commands run successfully or are explicitly marked as placeholders.
