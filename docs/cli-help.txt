@@ -1,0 +1,19 @@
+CLI help output (captured):
+
+app.js [command]
+
+Commands:
+  app.js add     Add a note
+  app.js remove  Removing a note
+  app.js read    Read note
+  app.js list    List notes
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+
+Commands to document in README:
+- add: persists a note to notes.json
+- list: placeholder (prints to stdout only)
+- read: placeholder (prints to stdout only)
+- remove: placeholder (prints to stdout only)

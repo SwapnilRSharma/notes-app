@@ -1,66 +1,77 @@
-# notes-app
+# Notes App CLI
 
-Simple CLI Notes application built with Node.js and yargs. Notes are stored locally in `notes.json` in the project root.
+Simple CLI notes application built with Node.js and `yargs`. Notes are stored locally in `notes.json` at the project root.
+
+Status: demo/learning project. Only `add` persists data; other commands are placeholders.
 
 ## Requirements
 
 - Node.js 12+ (LTS recommended)
+- npm (to install dependencies)
 
-## Setup
-
-1. Install dependencies:
-
-```bash
-npm install
-```
-
-2. Run the CLI using Node:
+## Install
 
 ```bash
-node app.js --help
+npm ci   # or: npm install
 ```
 
-## Usage
-
-Currently implemented commands:
-
-- Add a note:
-
-```bash
-node app.js add --title "Shopping" --body "Buy milk and bread"
-```
-
-Other available commands (scaffolds): `list`, `read`, `remove`.
-
-- List notes (placeholder):
-
-```bash
-node app.js list
-```
-
-- Read a note (placeholder):
-
-```bash
-node app.js read --title "Shopping"
-```
-
-- Remove a note (placeholder):
-
-```bash
-node app.js remove --title "Shopping"
-```
-
-Notes are saved to `notes.json`. If the file does not exist, it will be created on first add.
-
-## Examples
+## Quick Start
 
 ```bash
 # Show help for all commands
 node app.js --help
 
-# Add a note
-node app.js add --title "Todo" --body "Refactor addNotes function"
+# Add your first note (creates notes.json if missing)
+node app.js add --title "Shopping" --body "Buy milk and bread"
 ```
+
+## Commands
+
+Help output (captured):
+
+```
+app.js [command]
+
+Commands:
+  app.js add     Add a note
+  app.js remove  Removing a note
+  app.js read    Read note
+  app.js list    List notes
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+```
+
+Status by command:
+
+- add: persists a note to `notes.json`.
+- list: placeholder (prints to stdout only).
+- read: placeholder (prints to stdout only).
+- remove: placeholder (prints to stdout only).
+
+## Examples
+
+```bash
+# Add a todo note
+node app.js add --title "Todo" --body "Refactor addNotes function"
+
+# Placeholder commands (do not modify notes.json yet)
+node app.js list
+node app.js read --title "Todo"
+node app.js remove --title "Todo"
+```
+
+## Data Storage
+
+- File: `notes.json` at the project root
+- Format: JSON array of `{ title, body }`
+- Created automatically on the first successful `add`
+
+## Troubleshooting
+
+- Error: `Cannot find module 'yargs'` → run `npm ci` (or `npm install`) to install dependencies.
+- Using very old Node.js → upgrade to a recent LTS (12+ recommended).
 
 ## License
 
