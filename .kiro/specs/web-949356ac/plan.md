@@ -12,7 +12,7 @@ Open a small, focused PR containing just the README changes with a concise descr
 
 ## Tasks
 
-- [ ] `t1` Capture current CLI usage and behavior · queued
+- [x] `t1` Capture current CLI usage and behavior · done
   - intent: Run `node app.js --help` and note implemented vs placeholder commands to ensure README reflects reality.
   - acceptance: A help snippet and bullet list of commands to include in README are captured.
 - [ ] `t2` Rewrite README.md with clear structure · queued
