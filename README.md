@@ -2,6 +2,8 @@
 
 Simple CLI notes application built with Node.js and `yargs`. Notes are stored locally in `notes.json` at the project root.
 
+Status: demo/learning project. Only `add` persists data; other commands are placeholders.
+
 ## Requirements
 
 - Node.js 12+ (LTS recommended)
