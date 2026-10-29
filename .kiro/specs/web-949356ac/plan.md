@@ -19,7 +19,7 @@ Open a small, focused PR containing just the README changes with a concise descr
   - intent: Update sections for Overview, Requirements, Install, Quick Start, Commands (with help snippet), Examples, Data Storage, Troubleshooting, and License; call out placeholders explicitly.
   - files: `README.md`
   - acceptance: README is accurate, actionable, and mentions that only `add` persists notes while others are placeholders.
-- [ ] `t3` Smoke-test instructions end-to-end · queued
+- [x] `t3` Smoke-test instructions end-to-end · done
   - intent: Follow README steps to add a note and verify `notes.json` is created/updated as documented.
   - acceptance: Commands run without error on a fresh clone; `notes.json` contains the new note.
 - [ ] `t4` Prepare and raise PR · queued
