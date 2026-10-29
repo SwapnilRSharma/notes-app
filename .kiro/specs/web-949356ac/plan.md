@@ -15,7 +15,7 @@ Open a small, focused PR containing just the README changes with a concise descr
 - [x] `t1` Capture current CLI usage and behavior · done
   - intent: Run `node app.js --help` and note implemented vs placeholder commands to ensure README reflects reality.
   - acceptance: A help snippet and bullet list of commands to include in README are captured.
-- [ ] `t2` Rewrite README.md with clear structure · queued
+- [x] `t2` Rewrite README.md with clear structure · done
   - intent: Update sections for Overview, Requirements, Install, Quick Start, Commands (with help snippet), Examples, Data Storage, Troubleshooting, and License; call out placeholders explicitly.
   - files: `README.md`
   - acceptance: README is accurate, actionable, and mentions that only `add` persists notes while others are placeholders.
