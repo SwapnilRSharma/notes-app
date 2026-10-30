@@ -22,7 +22,7 @@ The roadmap will be self-contained: a short product vision and current state, fo
   - intent: Annotate each idea with a suggested priority (P0/P1/P2) and time horizon (Near/Mid/Long) or place them in clearly labeled horizon subsections within each theme.
   - files: `roadmap.md`
   - acceptance: Each idea is either labeled with priority and horizon, or is placed under an explicitly labeled horizon section.
-- [ ] `t4` Define success metrics and constraints
+ - [x] `t4` Define success metrics and constraints
   - intent: Add a short metrics section (e.g., usability, reliability, test coverage, performance) and constraints (e.g., offline-first by default, Node LTS support, cross-platform behavior).
   - files: `roadmap.md`
   - acceptance: Metrics section lists at least 3 measurable KPIs; constraints section lists at least 3 explicit constraints/non-goals.

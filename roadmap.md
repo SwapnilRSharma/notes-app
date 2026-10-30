@@ -112,11 +112,28 @@ Single-command add flow using `yargs`, with scaffolds for `list`, `read`, and `r
 
 ## Success Metrics
 
-<!-- Populated in subsequent tasks -->
+- Unit test coverage for core commands (`add`, `list`, `read`, `remove`, `edit`) at ≥ 80%
+- Cold start time to first command execution ≤ 200ms on typical developer laptops
+- P50 time to add/read a note ≤ 100ms with local JSON store (1000 notes)
+- Zero data-loss incidents across releases; verified backup/restore E2E test
+- CI green rate ≥ 95% on default branch; release cadence at least monthly
 
 ## Risks & Constraints
 
-<!-- Populated in subsequent tasks -->
+### Constraints
+
+- Offline-first by default; no network dependency for core flows
+- Support maintained Node.js LTS versions; no OS-specific assumptions
+- Cross-platform behavior (Linux/macOS/Windows) with consistent flags and paths
+- Backward-compatible CLI where possible; breaking changes gated behind flags and documented
+- Minimal trusted dependencies with regular audits; avoid native modules unless necessary
+
+### Risks (with mitigations)
+
+- Data corruption or loss during writes — Mitigation: write-temp-then-rename, backups, E2E restore test
+- Breaking changes to CLI flags — Mitigation: deprecation warnings, aliases, semver discipline
+- Cross-platform path/encoding quirks — Mitigation: use Node path APIs, add Windows CI, test matrix
+
 
 ## Open Questions
 
