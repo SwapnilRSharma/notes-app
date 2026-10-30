@@ -22,35 +22,37 @@ node app.js --help
 
 ## Usage
 
-Currently implemented commands:
+Implemented command:
 
-- Add a note:
+- Add a note
 
 ```bash
 node app.js add --title "Shopping" --body "Buy milk and bread"
 ```
 
-Other available commands (scaffolds): `list`, `read`, `remove`.
+Notes:
+- Duplicate titles are rejected; the CLI prints `Note Title Taken.` and does not overwrite an existing note.
+- Notes are saved to `notes.json` at the project root and the file is created on first add.
 
-- List notes (placeholder):
+Placeholders (not implemented yet): `list`, `read`, `remove`
+
+- List notes (placeholder)
 
 ```bash
 node app.js list
 ```
 
-- Read a note (placeholder):
+- Read a note (placeholder)
 
 ```bash
 node app.js read --title "Shopping"
 ```
 
-- Remove a note (placeholder):
+- Remove a note (placeholder)
 
 ```bash
 node app.js remove --title "Shopping"
 ```
-
-Notes are saved to `notes.json`. If the file does not exist, it will be created on first add.
 
 ## Examples
 

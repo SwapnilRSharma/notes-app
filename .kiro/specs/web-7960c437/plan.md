@@ -10,7 +10,7 @@ Keep the change minimal and documentation-only: restructure the Usage section, a
 
 ## Tasks
 
-- [ ] `t1` Refresh README usage and features · queued
+- [x] `t1` Refresh README usage and features · done
   - intent: Rewrite the Usage section to document the implemented `add` command with required flags, show help invocation, and explicitly label `list`, `read`, and `remove` as placeholders; note duplicate-title behavior and that `notes.json` is created on first add.
   - files: `README.md`
   - acceptance: README shows accurate commands, includes a working example for `add`, and clearly labels unimplemented commands as placeholders.
