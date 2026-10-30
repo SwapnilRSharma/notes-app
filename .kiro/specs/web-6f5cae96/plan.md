@@ -10,7 +10,7 @@ The roadmap will be self-contained: a short product vision and current state, fo
 
 ## Tasks
 
-- [ ] `t1` Add roadmap skeleton
+ - [x] `t1` Add roadmap skeleton
   - intent: Create `roadmap.md` with sections: Vision, Current State, Principles, Themes, Feature Ideas (grouped), Timeline (Near/Mid/Long), Success Metrics, Risks & Constraints, Open Questions.
   - files: `roadmap.md`
   - acceptance: `roadmap.md` exists at repo root with all listed section headings and a brief intro referencing the CLI notes app context.
