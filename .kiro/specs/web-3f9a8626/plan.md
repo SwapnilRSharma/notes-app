@@ -14,7 +14,7 @@ Add tests with Jest and Supertest. Jest provides the test runner; Supertest driv
   - intent: Create a small server module that serves GET /health with JSON {status:"ok"} and 404 for others.
   - files: `server.js`
   - acceptance: Importing createServer and hitting /health returns 200 and JSON {status:"ok"}.
-- [ ] `t2` Configure test tooling (Jest + Supertest)
+- [x] `t2` Configure test tooling (Jest + Supertest)
   - intent: Enable a test runner and HTTP assertion helper by adding Jest and Supertest and updating the npm test script.
   - files: `package.json`
   - acceptance: Running npm test executes Jest instead of the placeholder script.
