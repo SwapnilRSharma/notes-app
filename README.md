@@ -62,6 +62,12 @@ node app.js --help
 node app.js add --title "Todo" --body "Refactor addNotes function"
 ```
 
+## Data Storage
+
+- File: `notes.json` in the project root (created on first `add`).
+- Schema: each note is an object with `{"title": string, "body": string}`.
+- Duplicates: adding a note with an existing title is rejected with "Note Title Taken." and the file is not modified.
+
 ## License
 
 ISC

@@ -14,7 +14,7 @@ Add concise sections for Project Structure and Data Storage to make the repo sel
   - intent: Update title/intro, prerequisites, setup steps, and Usage to reflect the implemented `add` command and note the other commands are placeholders.
   - files: `README.md`
   - acceptance: README accurately describes current functionality and basic usage without implying unimplemented features.
-- [ ] `t2` Document data location and duplicates behavior
+- [x] `t2` Document data location and duplicates behavior
   - intent: Explain that notes persist to `notes.json` in the repo root, include the note object shape, and call out duplicate-title rejection.
   - files: `README.md`
   - acceptance: A new user understands where data is stored and what happens on duplicate titles.
