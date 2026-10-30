@@ -18,10 +18,10 @@ Add tests with Jest and Supertest. Jest provides the test runner; Supertest driv
   - intent: Enable a test runner and HTTP assertion helper by adding Jest and Supertest and updating the npm test script.
   - files: `package.json`
   - acceptance: Running npm test executes Jest instead of the placeholder script.
-- [ ] `t3` Add test for /health endpoint
+- [x] `t3` Add test for /health endpoint
   - intent: Verify GET /health returns 200 and body {status:"ok"} using Supertest against the server factory.
   - files: `__tests__/health.test.js`
   - acceptance: Test passes locally and fails if the endpoint changes behavior.
-- [ ] `t4` Run test suite to verify
+- [x] `t4` Run test suite to verify
   - intent: Execute the tests to confirm the endpoint and configuration work end-to-end.
   - acceptance: All tests pass with no failures.
