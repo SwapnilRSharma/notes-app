@@ -16,6 +16,6 @@ Risks are minimal and limited to documentation drifting from behavior. We mitiga
   - intent: Restructure and refresh content with accurate sections (Overview, Requirements, Installation, Usage/Commands, Examples, Data storage, Limitations, License) and clearly mark non-implemented commands as placeholders.
   - files: `README.md`
   - acceptance: README contains the listed sections, shows `node app.js --help` and an `add` example, notes that notes are stored in `notes.json`, and labels `list/read/remove` as placeholders.
-- [ ] `t2` Verify README instructions against the app
+- [x] `t2` Verify README instructions against the app
   - intent: Run `npm install`, `node app.js --help`, and a sample `add` to ensure instructions work and create/update `notes.json` as documented.
   - acceptance: Commands run without error and `notes.json` includes the sample note added during verification.
