@@ -1,6 +1,6 @@
 # Project Roadmap — Notes CLI
 
-This document outlines the product vision and a structured set of potential feature directions for the Node.js CLI notes application in this repository.
+This document outlines the product vision and a structured set of potential feature directions for the Node.js CLI notes application (notes-app) in this repository.
 
 ## Vision
 

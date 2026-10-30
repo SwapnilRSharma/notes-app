@@ -30,7 +30,7 @@ The roadmap will be self-contained: a short product vision and current state, fo
   - intent: List key risks (e.g., data loss, breaking changes, platform quirks) with a one-line mitigation each.
   - files: `roadmap.md`
   - acceptance: Risks section enumerates at least 3 risks with corresponding mitigations.
-- [ ] `t6` Editorial and verification pass
+ - [x] `t6` Editorial and verification pass
   - intent: Proofread and ensure headings, annotations, and formatting are consistent and readable; ensure the roadmap is actionable and free of placeholders.
   - files: `roadmap.md`
   - acceptance: Markdown renders cleanly; section ordering matches the skeleton; no TODO/placeholder text remains.
