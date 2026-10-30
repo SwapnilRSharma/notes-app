@@ -10,7 +10,7 @@ Add tests with Jest and Supertest. Jest provides the test runner; Supertest driv
 
 ## Tasks
 
-- [ ] `t1` Add minimal HTTP server with /health
+- [x] `t1` Add minimal HTTP server with /health
   - intent: Create a small server module that serves GET /health with JSON {status:"ok"} and 404 for others.
   - files: `server.js`
   - acceptance: Importing createServer and hitting /health returns 200 and JSON {status:"ok"}.
