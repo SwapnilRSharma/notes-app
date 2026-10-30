@@ -32,75 +32,75 @@ Single-command add flow using `yargs`, with scaffolds for `list`, `read`, and `r
 
 ### Core CLI Capabilities
 
-- Implement `list` command to display all note titles
-- Implement `read` command to display a note by title
-- Implement `remove` command to delete a note by title
-- Add `update/edit` command to modify an existing note
-- Assign stable IDs and generate slugs for notes
-- Track `createdAt`/`updatedAt` timestamps per note
-- Support bulk operations (e.g., remove multiple by query)
-- Allow note body from stdin or file (`--file -`)
+- Implement `list` command to display all note titles [P0][Near]
+- Implement `read` command to display a note by title [P0][Near]
+- Implement `remove` command to delete a note by title [P0][Near]
+- Add `update/edit` command to modify an existing note [P1][Near]
+- Assign stable IDs and generate slugs for notes [P1][Mid]
+- Track `createdAt`/`updatedAt` timestamps per note [P1][Near]
+- Support bulk operations (e.g., remove multiple by query) [P2][Mid]
+- Allow note body from stdin or file (`--file -`) [P1][Near]
 
 ### UX & Ergonomics
 
-- Rich `--help` with examples and common recipes
-- Shell completion scripts (bash/zsh/fish)
-- Colored/pretty output with optional plain mode
-- Interactive prompts when required flags are missing
-- Global config file for defaults and profiles
-- Command/flag aliases for common operations
-- `--dry-run` mode to preview changes
-- `--json` output for scripting pipelines
+- Rich `--help` with examples and common recipes [P0][Near]
+- Shell completion scripts (bash/zsh/fish) [P1][Mid]
+- Colored/pretty output with optional plain mode [P1][Near]
+- Interactive prompts when required flags are missing [P1][Near]
+- Global config file for defaults and profiles [P1][Mid]
+- Command/flag aliases for common operations [P2][Mid]
+- `--dry-run` mode to preview changes [P2][Mid]
+- `--json` output for scripting pipelines [P1][Near]
 
 ### Data & Storage
 
-- Configurable storage path via flag/env/rc
-- Named stores/profiles (work, personal)
-- Data migrations with schema/versioning
-- Optional SQLite backend in addition to JSON
-- Per-note markdown files in a notes directory
-- Automatic backups and restore utilities
+- Configurable storage path via flag/env/rc [P0][Near]
+- Named stores/profiles (work, personal) [P2][Mid]
+- Data migrations with schema/versioning [P1][Mid]
+- Optional SQLite backend in addition to JSON [P2][Long]
+- Per-note markdown files in a notes directory [P2][Mid]
+- Automatic backups and restore utilities [P1][Mid]
 
 ### Search & Organization
 
-- Tagging support on notes
-- Full-text search across titles/bodies
-- Filter/sort by date, tag, and text
-- Pinned/favorite notes surfaced first
-- Archive/unarchive workflow
-- Backlinks or link references between notes
-- Note templates and snippet insertion
+- Tagging support on notes [P1][Mid]
+- Full-text search across titles/bodies [P2][Mid]
+- Filter/sort by date, tag, and text [P1][Mid]
+- Pinned/favorite notes surfaced first [P2][Mid]
+- Archive/unarchive workflow [P2][Mid]
+- Backlinks or link references between notes [P2][Long]
+- Note templates and snippet insertion [P2][Mid]
 
 ### Import/Export & Interop
 
-- Import notes from a Markdown directory
-- Export notes to Markdown files
-- CSV/JSON import/export for interoperability
-- Clipboard integration (copy note to clipboard)
-- Print-friendly rendering to stdout
+- Import notes from a Markdown directory [P2][Mid]
+- Export notes to Markdown files [P1][Mid]
+- CSV/JSON import/export for interoperability [P1][Mid]
+- Clipboard integration (copy note to clipboard) [P2][Mid]
+- Print-friendly rendering to stdout [P1][Near]
 
 ### Integrations & Sync
 
-- Git-backed notes directory with commit hooks
-- Cloud sync adapters (Dropbox/Google Drive)
-- GitHub Gist or repo sync option
-- WebDAV adapter for generic servers
-- Email-to-note capture via stdin processing
+- Git-backed notes directory with commit hooks [P1][Mid]
+- Cloud sync adapters (Dropbox/Google Drive) [P2][Long]
+- GitHub Gist or repo sync option [P2][Long]
+- WebDAV adapter for generic servers [P2][Long]
+- Email-to-note capture via stdin processing [P2][Long]
 
 ### Security & Privacy
 
-- Optional encryption at rest for notes store
-- Per-note protection (hidden/locked)
-- Redaction of secrets in logs/error output
-- Secure delete/shred for removed notes (best-effort)
+- Optional encryption at rest for notes store [P2][Long]
+- Per-note protection (hidden/locked) [P2][Long]
+- Redaction of secrets in logs/error output [P1][Near]
+- Secure delete/shred for removed notes (best-effort) [P2][Long]
 
 ### Quality, Testing & Tooling
 
-- Unit tests for notes CRUD and CLI handlers
-- End-to-end tests for CLI flows
-- Linting/formatting (ESLint/Prettier)
-- Optional TypeScript migration for safety
-- CI workflows for tests and releases
+- Unit tests for notes CRUD and CLI handlers [P0][Near]
+- End-to-end tests for CLI flows [P1][Near]
+- Linting/formatting (ESLint/Prettier) [P0][Near]
+- Optional TypeScript migration for safety [P2][Long]
+- CI workflows for tests and releases [P1][Near]
 
 ## Timeline
 

@@ -18,7 +18,7 @@ The roadmap will be self-contained: a short product vision and current state, fo
   - intent: Under each theme, list concrete feature ideas relevant to a CLI notes tool (e.g., complete list/read/remove, search, edit/update, tagging, import/export, archiving, encryption, sync strategies, integrations, performance, testing).
   - files: `roadmap.md`
   - acceptance: Contains at least 20 distinct feature ideas grouped under 5 or more themes.
-- [ ] `t3` Add prioritization and horizons
+ - [x] `t3` Add prioritization and horizons
   - intent: Annotate each idea with a suggested priority (P0/P1/P2) and time horizon (Near/Mid/Long) or place them in clearly labeled horizon subsections within each theme.
   - files: `roadmap.md`
   - acceptance: Each idea is either labeled with priority and horizon, or is placed under an explicitly labeled horizon section.
