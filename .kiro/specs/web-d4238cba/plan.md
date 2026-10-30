@@ -18,7 +18,7 @@ Add concise sections for Project Structure and Data Storage to make the repo sel
   - intent: Explain that notes persist to `notes.json` in the repo root, include the note object shape, and call out duplicate-title rejection.
   - files: `README.md`
   - acceptance: A new user understands where data is stored and what happens on duplicate titles.
-- [ ] `t3` Add Project Structure and examples
+- [x] `t3` Add Project Structure and examples
   - intent: Add a short Project Structure section listing `app.js`, `notes.js`, and `notes.json`; include copy-pasteable examples for `--help` and `add`.
   - files: `README.md`
   - acceptance: Examples work as written and the structure matches the repository.

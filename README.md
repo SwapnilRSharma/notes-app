@@ -71,3 +71,9 @@ node app.js add --title "Todo" --body "Refactor addNotes function"
 ## License
 
 ISC
+- ## Project Structure
+
+- `app.js` CLI entrypoint defining commands with yargs.
+- `notes.js` library with note helpers (`addNotes`, file I/O).
+- `notes.json` runtime data file created after the first `add`.
+- `package.json` project metadata and dependencies.
