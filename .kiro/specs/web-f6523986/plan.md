@@ -14,7 +14,7 @@ Scope is limited to `README.md` only — no code changes. Verification will run 
   - intent: Inspect `app.js`/`notes.js` and run `node app.js --help` to enumerate commands and flags to reflect in docs.
   - files: `app.js`, `notes.js`
   - acceptance: A concise list of commands and flags is captured to drive README edits.
-- [ ] `t2` Update README Quick Start and Usage · queued
+- [x] `t2` Update README Quick Start and Usage · queued
   - intent: Revise `README.md` to add Quick Start, document all commands, detail `add` options, include runnable examples, and note storage/duplicate-title behavior.
   - files: `README.md`
   - acceptance: README contains Quick Start, Commands/Options, Examples, and Storage notes; content matches the audited CLI.
