@@ -14,7 +14,7 @@ The roadmap will be self-contained: a short product vision and current state, fo
   - intent: Create `roadmap.md` with sections: Vision, Current State, Principles, Themes, Feature Ideas (grouped), Timeline (Near/Mid/Long), Success Metrics, Risks & Constraints, Open Questions.
   - files: `roadmap.md`
   - acceptance: `roadmap.md` exists at repo root with all listed section headings and a brief intro referencing the CLI notes app context.
-- [ ] `t2` Populate brainstormed feature ideas by theme
+ - [x] `t2` Populate brainstormed feature ideas by theme
   - intent: Under each theme, list concrete feature ideas relevant to a CLI notes tool (e.g., complete list/read/remove, search, edit/update, tagging, import/export, archiving, encryption, sync strategies, integrations, performance, testing).
   - files: `roadmap.md`
   - acceptance: Contains at least 20 distinct feature ideas grouped under 5 or more themes.
