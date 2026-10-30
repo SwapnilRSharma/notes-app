@@ -133,6 +133,8 @@ Single-command add flow using `yargs`, with scaffolds for `list`, `read`, and `r
 - Data corruption or loss during writes — Mitigation: write-temp-then-rename, backups, E2E restore test
 - Breaking changes to CLI flags — Mitigation: deprecation warnings, aliases, semver discipline
 - Cross-platform path/encoding quirks — Mitigation: use Node path APIs, add Windows CI, test matrix
+- Unencrypted local data exposure — Mitigation: optional encryption-at-rest and key management guidance
+- Dependency supply-chain issues — Mitigation: lockfile hygiene, `npm audit`, pinning, and minimal deps
 
 
 ## Open Questions

@@ -26,7 +26,7 @@ The roadmap will be self-contained: a short product vision and current state, fo
   - intent: Add a short metrics section (e.g., usability, reliability, test coverage, performance) and constraints (e.g., offline-first by default, Node LTS support, cross-platform behavior).
   - files: `roadmap.md`
   - acceptance: Metrics section lists at least 3 measurable KPIs; constraints section lists at least 3 explicit constraints/non-goals.
-- [ ] `t5` Identify risks and mitigations
+ - [x] `t5` Identify risks and mitigations
   - intent: List key risks (e.g., data loss, breaking changes, platform quirks) with a one-line mitigation each.
   - files: `roadmap.md`
   - acceptance: Risks section enumerates at least 3 risks with corresponding mitigations.
