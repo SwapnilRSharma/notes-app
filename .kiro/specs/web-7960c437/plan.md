@@ -14,7 +14,7 @@ Keep the change minimal and documentation-only: restructure the Usage section, a
   - intent: Rewrite the Usage section to document the implemented `add` command with required flags, show help invocation, and explicitly label `list`, `read`, and `remove` as placeholders; note duplicate-title behavior and that `notes.json` is created on first add.
   - files: `README.md`
   - acceptance: README shows accurate commands, includes a working example for `add`, and clearly labels unimplemented commands as placeholders.
-- [ ] `t2` Add data format and storage notes · queued
+- [x] `t2` Add data format and storage notes · done
   - intent: Add a brief Data Storage/Format subsection describing `notes.json` location and a minimal JSON schema/example for a note object.
   - files: `README.md`
   - acceptance: Section exists with file path and a minimal example object (`{ "title": "...", "body": "..." }`).

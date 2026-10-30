@@ -64,6 +64,19 @@ node app.js --help
 node app.js add --title "Todo" --body "Refactor addNotes function"
 ```
 
+## Data Storage and Format
+
+- File: `notes.json` at the project root
+- Format: JSON array of note objects with `title` and `body` fields
+
+Example:
+
+```json
+[
+  { "title": "Shopping", "body": "Buy milk and bread" }
+]
+```
+
 ## License
 
 ISC
