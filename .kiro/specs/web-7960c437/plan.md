@@ -18,6 +18,6 @@ Keep the change minimal and documentation-only: restructure the Usage section, a
   - intent: Add a brief Data Storage/Format subsection describing `notes.json` location and a minimal JSON schema/example for a note object.
   - files: `README.md`
   - acceptance: Section exists with file path and a minimal example object (`{ "title": "...", "body": "..." }`).
-- [ ] `t3` Sanity-check examples against the CLI · queued
+- [x] `t3` Sanity-check examples against the CLI · done
   - intent: Run `node app.js --help` and an `add` example to ensure the documented commands and examples match actual behavior without modifying code.
   - acceptance: Help output lists the four commands; an `add` example creates/updates `notes.json` with a new note and rejects a duplicate title.
