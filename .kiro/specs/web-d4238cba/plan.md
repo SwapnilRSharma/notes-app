@@ -22,6 +22,6 @@ Add concise sections for Project Structure and Data Storage to make the repo sel
   - intent: Add a short Project Structure section listing `app.js`, `notes.js`, and `notes.json`; include copy-pasteable examples for `--help` and `add`.
   - files: `README.md`
   - acceptance: Examples work as written and the structure matches the repository.
-- [ ] `t4` Verify instructions against the CLI
+- [x] `t4` Verify instructions against the CLI
   - intent: Run `node app.js --help` and perform a sample `add` to ensure the README commands and descriptions are correct; adjust wording if discrepancies are found.
   - acceptance: Help output matches expectations and adding a note creates/updates `notes.json` as documented.
