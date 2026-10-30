@@ -1,6 +1,6 @@
 # notes-app
 
-Simple CLI Notes application built with Node.js and yargs. Notes are stored locally in `notes.json` in the project root.
+Simple CLI notes application built with Node.js and yargs. Notes persist locally to `notes.json` in the project root.
 
 ## Requirements
 
@@ -22,15 +22,15 @@ node app.js --help
 
 ## Usage
 
-Currently implemented commands:
+Implemented command:
 
-- Add a note:
+- Add a note (requires `--title` and `--body`):
 
 ```bash
 node app.js add --title "Shopping" --body "Buy milk and bread"
 ```
 
-Other available commands (scaffolds): `list`, `read`, `remove`.
+Other available commands are present as placeholders only: `list`, `read`, `remove`.
 
 - List notes (placeholder):
 

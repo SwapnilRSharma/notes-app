@@ -10,7 +10,7 @@ Add concise sections for Project Structure and Data Storage to make the repo sel
 
 ## Tasks
 
-- [ ] `t1` Align README overview and usage
+- [x] `t1` Align README overview and usage
   - intent: Update title/intro, prerequisites, setup steps, and Usage to reflect the implemented `add` command and note the other commands are placeholders.
   - files: `README.md`
   - acceptance: README accurately describes current functionality and basic usage without implying unimplemented features.
