@@ -1,58 +1,46 @@
 # notes-app
 
-Simple CLI Notes application built with Node.js and yargs. Notes are stored locally in `notes.json` in the project root.
+Overview
 
-## Requirements
+CLI notes application built with Node.js and yargs. You can add notes from the terminal; notes are stored locally in a `notes.json` file in the project root. The only functional command today is `add`. The `list`, `read`, and `remove` commands are placeholders and do not perform real operations yet.
+
+Requirements
 
 - Node.js 12+ (LTS recommended)
 
-## Setup
+Installation
 
 1. Install dependencies:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
-2. Run the CLI using Node:
+2. See available commands and options:
 
-```bash
-node app.js --help
-```
+   ```bash
+   node app.js --help
+   ```
 
-## Usage
+Usage / Commands
 
-Currently implemented commands:
+- add: Add a note
+  - Options: `--title <string>` (required), `--body <string>` (required)
+  - Example:
+    ```bash
+    node app.js add --title "Shopping" --body "Buy milk and bread"
+    ```
 
-- Add a note:
+- list: List notes (placeholder)
+  - Present in the CLI but only prints a placeholder message.
 
-```bash
-node app.js add --title "Shopping" --body "Buy milk and bread"
-```
+- read: Read a note (placeholder)
+  - Present in the CLI but only prints a placeholder message.
 
-Other available commands (scaffolds): `list`, `read`, `remove`.
+- remove: Remove a note (placeholder)
+  - Present in the CLI but only prints a placeholder message.
 
-- List notes (placeholder):
-
-```bash
-node app.js list
-```
-
-- Read a note (placeholder):
-
-```bash
-node app.js read --title "Shopping"
-```
-
-- Remove a note (placeholder):
-
-```bash
-node app.js remove --title "Shopping"
-```
-
-Notes are saved to `notes.json`. If the file does not exist, it will be created on first add.
-
-## Examples
+Examples
 
 ```bash
 # Show help for all commands
@@ -62,6 +50,17 @@ node app.js --help
 node app.js add --title "Todo" --body "Refactor addNotes function"
 ```
 
-## License
+Data Storage
+
+- Notes are saved to `notes.json` in the project root. If the file does not exist, it will be created when you add your first note.
+- Notes are stored as an array of objects with `title` and `body` fields.
+
+Limitations
+
+- Only `add` is implemented; `list`, `read`, and `remove` are placeholders.
+- Duplicate note titles are rejected.
+- There is no encryption or sync; data is local-only.
+
+License
 
 ISC
