@@ -4,8 +4,8 @@ const { createServer } = require('../server')
 describe('GET /health', () => {
   let server
 
-  beforeAll(() => {
-    server = createServer()
+  beforeAll((done) => {
+    server = createServer().listen(0, done)
   })
 
   afterAll((done) => {
