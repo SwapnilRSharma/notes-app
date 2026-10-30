@@ -12,7 +12,7 @@ Risks are minimal and limited to documentation drifting from behavior. We mitiga
 
 ## Tasks
 
-- [ ] `t1` Rewrite README for clarity and accuracy
+- [x] `t1` Rewrite README for clarity and accuracy
   - intent: Restructure and refresh content with accurate sections (Overview, Requirements, Installation, Usage/Commands, Examples, Data storage, Limitations, License) and clearly mark non-implemented commands as placeholders.
   - files: `README.md`
   - acceptance: README contains the listed sections, shows `node app.js --help` and an `add` example, notes that notes are stored in `notes.json`, and labels `list/read/remove` as placeholders.
