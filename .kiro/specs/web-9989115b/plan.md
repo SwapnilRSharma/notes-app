@@ -10,7 +10,7 @@ Extend the `notes.js` module with the missing CRUD utilities so both the API and
 
 ## Tasks
 
-- [ ] `t1` Add Express server exposing CRUD and serving static UI
+- [x] `t1` Add Express server exposing CRUD and serving static UI
   - intent: Create `server.js` with REST endpoints for list/create/read/update/delete notes and static file hosting from `public/`.
   - files: `server.js`, `package.json`
   - acceptance: Running `npm start` serves UI at http://localhost:3000 and `GET /api/notes` returns JSON list.
