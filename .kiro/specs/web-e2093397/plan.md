@@ -20,7 +20,7 @@ The frontend will be a small static app in `public/` (vanilla HTML/CSS/JS) that 
   - intent: Extend `notes.js` with list, read, add (exists), update, and remove using `notes.json` with title uniqueness and safe file writes.
   - files: `notes.js`
   - acceptance: Data helpers return/throw results enabling the API to detect 404 and 409 cases.
-- [ ] `t3` Implement REST API endpoints
+- [x] `t3` Implement REST API endpoints
   - intent: Add routes: GET `/api/notes`, POST `/api/notes`, PUT `/api/notes/:title`, DELETE `/api/notes/:title` with validation and appropriate status codes.
   - files: `server.js`
   - acceptance: API supports create/list/edit/delete with 200/201/404/409 responses and persists to `notes.json`.
