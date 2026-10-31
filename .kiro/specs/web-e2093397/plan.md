@@ -32,6 +32,6 @@ The frontend will be a small static app in `public/` (vanilla HTML/CSS/JS) that 
   - intent: Add `start` script for the web server and document how to run and use the web UI.
   - files: `package.json`, `README.md`
   - acceptance: `npm start` launches the server; README explains starting and using the UI.
-- [ ] `t6` Verify end-to-end behavior
+- [x] `t6` Verify end-to-end behavior
   - intent: Manually verify CRUD flows via the UI and confirm `notes.json` contents reflect changes.
   - acceptance: All CRUD operations succeed and persist; invalid operations surface clear error messages.
