@@ -20,7 +20,7 @@ Main risks are light: coordinating data migration for legacy notes without ids a
   - intent: In `notes.js`, add functions to list, update, and remove notes; generate `id` (e.g., timestamp + random) on create; on load, assign ids to notes missing them and persist on next write; factor a `saveNotes` helper.
   - files: `notes.js`, `notes.json`
   - acceptance: Programmatic calls can add, list, update, and delete notes by id; data file retains ids.
-- [ ] `t3` Build static web UI
+- [x] `t3` Build static web UI
   - intent: Implement `public/index.html`, `public/app.js`, and `public/styles.css` to render the notes list, provide a create form, and support inline edit/delete with optimistic UI and basic validation.
   - files: `public/index.html`, `public/app.js`, `public/styles.css`
   - acceptance: In a browser, users can create, edit, and delete notes and see changes reflected immediately.
