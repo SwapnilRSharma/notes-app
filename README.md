@@ -1,6 +1,6 @@
 # notes-app
 
-Simple CLI Notes application built with Node.js and yargs. Notes are stored locally in `notes.json` in the project root.
+Simple Notes application with a CLI and a small web UI. Notes are stored locally in `notes.json` in the project root.
 
 ## Requirements
 
@@ -20,7 +20,18 @@ npm install
 node app.js --help
 ```
 
-## Usage
+## Web UI
+
+Run the web server and open the UI in your browser:
+
+```bash
+npm start
+# then visit http://localhost:3000/
+```
+
+You can create, list, edit, and delete notes from the browser. The UI calls the JSON API under `/api/notes`.
+
+## CLI Usage
 
 Currently implemented commands:
 
