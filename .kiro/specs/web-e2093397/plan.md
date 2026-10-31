@@ -28,7 +28,7 @@ The frontend will be a small static app in `public/` (vanilla HTML/CSS/JS) that 
   - intent: Create a simple SPA in `public/` with a form to add/edit and a list with edit/delete actions using Fetch to the API.
   - files: `public/index.html`, `public/app.js`, `public/styles.css`
   - acceptance: From a browser, a user can create, list, edit, and delete notes without reloading the page.
-- [ ] `t5` Wire npm script and update README
+- [x] `t5` Wire npm script and update README
   - intent: Add `start` script for the web server and document how to run and use the web UI.
   - files: `package.json`, `README.md`
   - acceptance: `npm start` launches the server; README explains starting and using the UI.
