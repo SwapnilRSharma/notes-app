@@ -24,7 +24,7 @@ The frontend will be a small static app in `public/` (vanilla HTML/CSS/JS) that 
   - intent: Add routes: GET `/api/notes`, POST `/api/notes`, PUT `/api/notes/:title`, DELETE `/api/notes/:title` with validation and appropriate status codes.
   - files: `server.js`
   - acceptance: API supports create/list/edit/delete with 200/201/404/409 responses and persists to `notes.json`.
-- [ ] `t4` Build minimal web UI
+- [x] `t4` Build minimal web UI
   - intent: Create a simple SPA in `public/` with a form to add/edit and a list with edit/delete actions using Fetch to the API.
   - files: `public/index.html`, `public/app.js`, `public/styles.css`
   - acceptance: From a browser, a user can create, list, edit, and delete notes without reloading the page.
