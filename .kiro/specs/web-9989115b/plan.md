@@ -26,6 +26,6 @@ Extend the `notes.js` module with the missing CRUD utilities so both the API and
   - intent: Document how to run the web UI (install, `npm start`, endpoints overview) and note CLI remains available.
   - files: `README.md`
   - acceptance: README includes a Web UI section with start instructions and a brief API summary.
-- [ ] `t5` Verify API and UI behavior
+- [x] `t5` Verify API and UI behavior
   - intent: Smoke-test endpoints with curl (list, create, update, delete) and verify the UI mirrors changes and persists.
   - acceptance: curl calls succeed with expected payloads and the UI reflects the same state after reload.
