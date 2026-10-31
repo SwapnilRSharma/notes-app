@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notes Web UI</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Notes</h1>
+      <section class="panel">
+        <h2>Create Note</h2>
+        <form id="create-form">
+          <div class="field">
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" required />
+          </div>
+          <div class="field">
+            <label for="body">Body</label>
+            <textarea id="body" name="body" rows="3" required></textarea>
+          </div>
+          <button type="submit">Add Note</button>
+          <span id="create-error" class="error" aria-live="polite"></span>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>All Notes</h2>
+        <ul id="notes-list" class="notes"></ul>
+        <span id="list-error" class="error" aria-live="polite"></span>
+      </section>
+    </main>
+
+    <script src="/app.js" defer></script>
+  </body>
+  </html>
