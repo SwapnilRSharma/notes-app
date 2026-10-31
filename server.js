@@ -66,11 +66,6 @@ app.delete('/api/notes/:id', (req, res) => {
 // Static UI
 app.use(express.static(path.join(__dirname, 'public')))
 
-// Fallback to index.html for root
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
-
 const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`Notes web UI listening on http://localhost:${port}`)

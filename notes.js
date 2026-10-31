@@ -83,7 +83,7 @@ const loadNotes = function () {
     const dataBuffer = fs.readFileSync('notes.json')
     const dataJSON = dataBuffer.toString()
     const loaded = JSON.parse(dataJSON)
-    // Assign ids to notes missing them; persisted on next write operation
+    // Assign ids to notes missing them; persist immediately so ids are stable across requests
     let mutated = false
     for (const n of loaded) {
       if (!n.id) {
@@ -91,7 +91,10 @@ const loadNotes = function () {
         mutated = true
       }
     }
-    // We intentionally do not save here; next mutating op will persist ids
+    if (mutated) {
+      // Persist generated ids right away to avoid transient ids breaking PUT/DELETE
+      saveNotes(loaded)
+    }
     return loaded
   } catch (e) {
     return []
