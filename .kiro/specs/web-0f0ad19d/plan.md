@@ -28,7 +28,7 @@ Main risks are light: coordinating data migration for legacy notes without ids a
   - intent: Add `start` script to `package.json` (e.g., `node server.js`) and update `README.md` with web UI instructions.
   - files: `package.json`, `README.md`
   - acceptance: `npm start` is documented and launches the server with usage notes.
-- [ ] `t5` Verification: API and UI flows
+- [x] `t5` Verification: API and UI flows
   - intent: Manually verify endpoints with curl (create, list, update, delete) and confirm `notes.json` updates; then run the UI to perform the same flows and confirm persistence.
   - files: `notes.json`
   - acceptance: All CRUD operations work via API and UI with correct persistence and error handling for missing ids.
