@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notes</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Notes</h1>
+      <section class="create">
+        <h2>Create Note</h2>
+        <form id="create-form">
+          <label>
+            Title
+            <input type="text" id="title" required />
+          </label>
+          <label>
+            Body
+            <textarea id="body" required></textarea>
+          </label>
+          <button type="submit">Add</button>
+          <span id="create-error" class="error" aria-live="polite"></span>
+        </form>
+      </section>
+
+      <section>
+        <h2>All Notes</h2>
+        <ul id="notes-list" class="notes"></ul>
+      </section>
+    </main>
+
+    <script src="/app.js" defer></script>
+  </body>
+  </html>
