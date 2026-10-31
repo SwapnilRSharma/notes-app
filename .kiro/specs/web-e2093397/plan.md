@@ -12,7 +12,7 @@ The frontend will be a small static app in `public/` (vanilla HTML/CSS/JS) that 
 
 ## Tasks
 
-- [ ] `t1` Add Express server scaffold
+- [x] `t1` Add Express server scaffold
   - intent: Introduce an Express app to serve static files and expose a JSON API under `/api/notes`.
   - files: `package.json`, `server.js`
   - acceptance: Running `npm start` serves a homepage at `http://localhost:3000/`.
