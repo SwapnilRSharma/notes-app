@@ -62,6 +62,33 @@ node app.js --help
 node app.js add --title "Todo" --body "Refactor addNotes function"
 ```
 
+## Web UI
+
+This project also includes a minimal web UI served by an Express server.
+
+### Run the web UI
+
+```bash
+npm start
+# then open http://localhost:3000
+```
+
+The UI lets you create, edit, and delete notes. Notes are persisted in `notes.json` (same as the CLI).
+
+### API overview
+
+All endpoints are JSON over HTTP under `/api`.
+
+```http
+GET    /api/notes                 # list notes -> 200 [{ title, body }]
+GET    /api/notes/:title          # read one   -> 200 { title, body } | 404
+POST   /api/notes                 # create     -> 201 { ok: true } | 400 (duplicate/title missing)
+PUT    /api/notes/:title          # update     -> 200 { title, body } | 404 | 400 (duplicate)
+DELETE /api/notes/:title          # delete     -> 200 { ok: true } | 404
+```
+
+Notes are keyed by `title` and must be unique.
+
 ## License
 
 ISC
