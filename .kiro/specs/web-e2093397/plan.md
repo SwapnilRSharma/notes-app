@@ -16,7 +16,7 @@ The frontend will be a small static app in `public/` (vanilla HTML/CSS/JS) that 
   - intent: Introduce an Express app to serve static files and expose a JSON API under `/api/notes`.
   - files: `package.json`, `server.js`
   - acceptance: Running `npm start` serves a homepage at `http://localhost:3000/`.
-- [ ] `t2` Implement CRUD utilities in notes module
+- [x] `t2` Implement CRUD utilities in notes module
   - intent: Extend `notes.js` with list, read, add (exists), update, and remove using `notes.json` with title uniqueness and safe file writes.
   - files: `notes.js`
   - acceptance: Data helpers return/throw results enabling the API to detect 404 and 409 cases.
