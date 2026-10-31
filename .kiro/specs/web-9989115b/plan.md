@@ -18,7 +18,7 @@ Extend the `notes.js` module with the missing CRUD utilities so both the API and
   - intent: Add and export list/read/update/remove and save helpers in `notes.js` to back the API with `notes.json` persistence.
   - files: `notes.js`
   - acceptance: API operations mutate `notes.json` and reflect on subsequent reads/refreshes.
-- [ ] `t3` Build minimal frontend (vanilla JS)
+- [x] `t3` Build minimal frontend (vanilla JS)
   - intent: Create `public/index.html`, `public/main.js`, and optional `public/styles.css` to list notes and support create, edit, delete, and view flows via `fetch` calls to the API.
   - files: `public/index.html`, `public/main.js`, `public/styles.css`
   - acceptance: From the browser, a user can create, edit, delete, and view notes; page refresh shows persisted changes.

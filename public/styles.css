@@ -1,0 +1,81 @@
+:root {
+  --bg: #0e0f12;
+  --panel: #151821;
+  --muted: #aeb3bd;
+  --text: #e8ecf1;
+  --accent: #4da3ff;
+  --danger: #ff5861;
+  --border: #232736;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+h1 { margin: 0; font-size: 20px; }
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+@media (max-width: 900px) {
+  main { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+label { display: block; margin-bottom: 12px; }
+input[type="text"], textarea, input[type="search"] {
+  width: 100%;
+  background: #0f1117;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.actions { display: flex; gap: 8px; margin-top: 8px; }
+button {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: #10131a;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+button:hover { border-color: var(--accent); }
+button.secondary { color: var(--muted); }
+button.danger { border-color: var(--danger); color: var(--danger); }
+
+.message { color: var(--muted); min-height: 1.2em; }
+
+.list-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.notes { list-style: none; padding: 0; margin: 0; }
+.note-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.note-item .select { width: 32px; height: 32px; border-radius: 50%; }
+.note-item .title { margin: 0; font-size: 16px; }
+.note-item .snippet { margin: 4px 0 0; color: var(--muted); }
