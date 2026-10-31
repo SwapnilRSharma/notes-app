@@ -14,7 +14,7 @@ Extend the `notes.js` module with the missing CRUD utilities so both the API and
   - intent: Create `server.js` with REST endpoints for list/create/read/update/delete notes and static file hosting from `public/`.
   - files: `server.js`, `package.json`
   - acceptance: Running `npm start` serves UI at http://localhost:3000 and `GET /api/notes` returns JSON list.
-- [ ] `t2` Extend notes module with CRUD helpers
+- [x] `t2` Extend notes module with CRUD helpers
   - intent: Add and export list/read/update/remove and save helpers in `notes.js` to back the API with `notes.json` persistence.
   - files: `notes.js`
   - acceptance: API operations mutate `notes.json` and reflect on subsequent reads/refreshes.
