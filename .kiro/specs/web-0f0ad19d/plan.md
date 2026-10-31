@@ -24,7 +24,7 @@ Main risks are light: coordinating data migration for legacy notes without ids a
   - intent: Implement `public/index.html`, `public/app.js`, and `public/styles.css` to render the notes list, provide a create form, and support inline edit/delete with optimistic UI and basic validation.
   - files: `public/index.html`, `public/app.js`, `public/styles.css`
   - acceptance: In a browser, users can create, edit, and delete notes and see changes reflected immediately.
-- [ ] `t4` Wire npm scripts and minimal docs
+- [x] `t4` Wire npm scripts and minimal docs
   - intent: Add `start` script to `package.json` (e.g., `node server.js`) and update `README.md` with web UI instructions.
   - files: `package.json`, `README.md`
   - acceptance: `npm start` is documented and launches the server with usage notes.
