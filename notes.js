@@ -27,8 +27,20 @@ const addNote = function (title, body) {
     return note
 }
 
-// Back-compat alias for existing CLI usage
-const addNotes = addNote
+// Back-compat wrapper for existing CLI usage: prints messages instead of throwing
+const addNotes = function (title, body) {
+    try {
+        addNote(title, body)
+        console.log('New Note Added!')
+    } catch (err) {
+        if (err && err.code === 'E_CONFLICT') {
+            console.log('Note Title Taken.')
+            return
+        }
+        // Unexpected error — surface a generic message
+        console.log('Failed to add note.')
+    }
+}
 
 const listNotes = function () {
     return loadNotes()

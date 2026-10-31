@@ -40,7 +40,9 @@ app.get('/api/notes', (req, res) => {
 
 // Create note
 app.post('/api/notes', (req, res) => {
-  const { title, body } = req.body || {};
+  let { title, body } = req.body || {};
+  if (typeof title === 'string') title = title.trim();
+  if (typeof body !== 'string') body = undefined;
   if (!title || typeof title !== 'string' || !body || typeof body !== 'string') {
     return res.status(400).json({ error: 'title and body are required strings' });
   }
@@ -57,8 +59,11 @@ app.post('/api/notes', (req, res) => {
 
 // Update note (by current title)
 app.put('/api/notes/:title', (req, res) => {
-  const currentTitle = req.params.title;
-  const { title: nextTitle, body } = req.body || {};
+  const currentTitle = String(req.params.title || '').trim();
+  let { title: nextTitle, body } = req.body || {};
+  if (typeof nextTitle === 'string') nextTitle = nextTitle.trim();
+  if (nextTitle === '') nextTitle = undefined; // treat empty as not provided
+  if (body !== undefined && typeof body !== 'string') body = undefined;
   if (nextTitle === undefined && body === undefined) {
     return res.status(400).json({ error: 'Provide at least one of title or body to update' });
   }
