@@ -16,7 +16,7 @@ Main risks are light: coordinating data migration for legacy notes without ids a
   - intent: Create `server.js` with Express and JSON body parsing; implement `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:id`, `DELETE /api/notes/:id` delegating to the notes module; serve static files from `public/`.
   - files: `server.js`, `package.json`
   - acceptance: Starting the app with `npm start` serves the UI at `/` and responds to `/api/notes*` routes.
-- [ ] `t2` Extend notes module for full CRUD with ids
+- [x] `t2` Extend notes module for full CRUD with ids
   - intent: In `notes.js`, add functions to list, update, and remove notes; generate `id` (e.g., timestamp + random) on create; on load, assign ids to notes missing them and persist on next write; factor a `saveNotes` helper.
   - files: `notes.js`, `notes.json`
   - acceptance: Programmatic calls can add, list, update, and delete notes by id; data file retains ids.

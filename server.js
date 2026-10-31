@@ -21,7 +21,9 @@ app.post('/api/notes', (req, res) => {
     return res.status(400).json({ error: 'title and body are required strings' })
   }
   try {
-    const created = notes.addNotes(title.trim(), body)
+    const created = (typeof notes.createNote === 'function')
+      ? notes.createNote(title.trim(), body)
+      : notes.addNotes(title.trim(), body)
     // If legacy addNotes returns undefined, load list and send last item
     if (!created && typeof notes.listNotes === 'function') {
       const all = notes.listNotes()
