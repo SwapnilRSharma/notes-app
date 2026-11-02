@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notes</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; }
+      h1 { font-size: 1.25rem; margin-bottom: 1rem; }
+      #addRow { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+      input[type="text"] { flex: 1; padding: 0.5rem; }
+      button { padding: 0.5rem 0.75rem; }
+      ul { padding-left: 1rem; }
+      li { margin: 0.25rem 0; }
+      .muted { color: #666; font-size: 0.9em; }
+    </style>
+  </head>
+  <body>
+    <h1>Notes</h1>
+    <div id="addRow">
+      <input id="noteInput" type="text" placeholder="New note title" aria-label="New note title" />
+      <button id="addBtn" type="button">Add</button>
+    </div>
+    <div id="status" class="muted"></div>
+    <ul id="notesList"></ul>
+
+    <script>
+      const list = document.getElementById('notesList');
+      const input = document.getElementById('noteInput');
+      const addBtn = document.getElementById('addBtn');
+      const status = document.getElementById('status');
+
+      function setStatus(text) {
+        status.textContent = text || '';
+      }
+
+      async function loadNotes() {
+        setStatus('Loading…');
+        try {
+          const res = await fetch('/notes');
+          if (!res.ok) throw new Error('Failed to load notes');
+          const notes = await res.json();
+          renderNotes(notes);
+          setStatus('');
+        } catch (e) {
+          setStatus('Failed to load notes');
+        }
+      }
+
+      function renderNotes(notes) {
+        list.innerHTML = '';
+        if (!Array.isArray(notes) || notes.length === 0) {
+          const li = document.createElement('li');
+          li.className = 'muted';
+          li.textContent = 'No notes yet';
+          list.appendChild(li);
+          return;
+        }
+        for (const n of notes) {
+          const li = document.createElement('li');
+          const title = n && typeof n.title === 'string' ? n.title : '(untitled)';
+          const body = n && typeof n.body === 'string' && n.body ? ` — ${n.body}` : '';
+          li.textContent = title + body;
+          list.appendChild(li);
+        }
+      }
+
+      addBtn.addEventListener('click', async () => {
+        const title = input.value.trim();
+        if (!title) { input.focus(); return; }
+        // Wire the Add button to POST /add; actual handling is not implemented server-side yet.
+        try {
+          const res = await fetch('/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title, body: '' })
+          });
+          if (!res.ok) {
+            setStatus('Add not available yet (server will implement later).');
+          } else {
+            setStatus('Added (pending server implementation).');
+          }
+        } catch (e) {
+          setStatus('Add not available yet (server will implement later).');
+        }
+        input.value = '';
+        input.focus();
+      });
+
+      loadNotes();
+    </script>
+  </body>
+  </html>
