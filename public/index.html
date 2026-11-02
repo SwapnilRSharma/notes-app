@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
+    h1 { font-size: 20px; margin: 0 0 12px; }
+    #add { display: flex; gap: 8px; margin-bottom: 16px; }
+    input[type=text] { flex: 1; padding: 8px; font-size: 14px; }
+    button { padding: 8px 12px; font-size: 14px; cursor: pointer; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { padding: 6px 0; border-bottom: 1px solid #eee; }
+    .empty { color: #666; }
+  </style>
+  </head>
+<body>
+  <h1>Notes</h1>
+  <div id="add">
+    <input id="title" type="text" placeholder="New note title" />
+    <button id="btn">Add</button>
+  </div>
+  <ul id="list"></ul>
+
+  <script>
+    async function fetchNotes() {
+      const res = await fetch('/notes')
+      if (!res.ok) throw new Error('Failed to load notes')
+      return res.json()
+    }
+
+    function render(list) {
+      const ul = document.getElementById('list')
+      ul.innerHTML = ''
+      if (!list.length) {
+        const li = document.createElement('li')
+        li.className = 'empty'
+        li.textContent = 'No notes yet.'
+        ul.appendChild(li)
+        return
+      }
+      for (const n of list) {
+        const li = document.createElement('li')
+        li.textContent = n.title + (n.body ? ' — ' + n.body : '')
+        ul.appendChild(li)
+      }
+    }
+
+    async function addNote(title) {
+      const res = await fetch('/notes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title })
+      })
+      if (!res.ok) throw new Error('Failed to add note')
+    }
+
+    document.getElementById('btn').addEventListener('click', async () => {
+      const input = document.getElementById('title')
+      const title = input.value.trim()
+      if (!title) return
+      try {
+        await addNote(title)
+        input.value = ''
+        render(await fetchNotes())
+      } catch (e) {
+        alert(e.message)
+      }
+    })
+
+    // init
+    fetchNotes().then(render).catch(err => {
+      document.getElementById('list').innerHTML = '<li class="empty">' + err.message + '</li>'
+    })
+  </script>
+</body>
+</html>
