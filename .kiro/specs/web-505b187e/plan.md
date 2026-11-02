@@ -12,7 +12,7 @@ Risks are limited to file write contention and lack of authentication; both are 
 
 ## Tasks
 
-- [ ] `t1` Add Express REST API server
+- [x] `t1` Add Express REST API server
   - intent: Create an Express server exposing CRUD endpoints for notes and serving the static frontend.
   - files: `server.js`, `package.json`
   - acceptance: Starting the server and GET `/api/notes` returns a JSON array; POST/PUT/DELETE operate on `notes.json` with appropriate status codes.
