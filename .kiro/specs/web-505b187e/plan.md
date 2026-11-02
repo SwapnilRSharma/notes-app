@@ -24,7 +24,7 @@ Risks are limited to file write contention and lack of authentication; both are 
   - intent: Build a static page with a search input, notes list, and a reusable modal component; wire fetch calls to the API.
   - files: `public/index.html`, `public/app.js`, `public/styles.css`
   - acceptance: Visiting `/` shows notes and a search bar; typing filters client-side; no JS errors in console.
-- [ ] `t4` Implement Create Note dialog
+- [x] `t4` Implement Create Note dialog
   - intent: Add "Create a note" button opening a modal with form; submit via POST to `/api/notes`; refresh list and handle errors.
   - files: `public/app.js`, `public/index.html`
   - acceptance: Creating a note via UI persists to `notes.json` and appears immediately in the list.
