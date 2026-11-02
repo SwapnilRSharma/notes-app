@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notes</title>
+    <style>
+      body { font-family: sans-serif; margin: 2rem; }
+      h1 { margin-top: 0; }
+      #controls { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+      input[type=text] { flex: 1; padding: 0.5rem; }
+      button { padding: 0.5rem 0.75rem; }
+      ul { padding-left: 1.25rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Notes</h1>
+    <div id="controls">
+      <input id="title" type="text" placeholder="New note title" />
+      <button id="add">Add</button>
+    </div>
+    <ul id="notes"></ul>
+
+    <script>
+      async function loadNotes() {
+        const res = await fetch('/notes')
+        const notes = await res.json()
+        const list = document.getElementById('notes')
+        list.innerHTML = ''
+        for (const n of notes) {
+          const li = document.createElement('li')
+          li.textContent = n.title || '(untitled)'
+          list.appendChild(li)
+        }
+      }
+
+      async function addNote() {
+        const input = document.getElementById('title')
+        const title = input.value.trim()
+        if (!title) return
+        const res = await fetch('/notes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title })
+        })
+        if (res.ok) {
+          input.value = ''
+          await loadNotes()
+        } else {
+          let msg = 'Failed to add note'
+          try { const data = await res.json(); if (data.error) msg = data.error } catch {}
+          alert(msg)
+        }
+      }
+
+      document.getElementById('add').addEventListener('click', addNote)
+      document.getElementById('title').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') addNote()
+      })
+
+      loadNotes()
+    </script>
+  </body>
+  </html>
