@@ -20,7 +20,7 @@ Risks are limited to file write contention and lack of authentication; both are 
   - intent: Add `listNotes`, `readNote`, `updateNote`, `removeNote`, and `saveNotes`; keep `addNotes`; validate inputs and enforce unique titles.
   - files: `notes.js`
   - acceptance: API uses these functions; duplicate titles are rejected; updates and deletes persist in `notes.json`.
-- [ ] `t3` Frontend scaffold (HTML + Tailwind + JS)
+- [x] `t3` Frontend scaffold (HTML + Tailwind + JS)
   - intent: Build a static page with a search input, notes list, and a reusable modal component; wire fetch calls to the API.
   - files: `public/index.html`, `public/app.js`, `public/styles.css`
   - acceptance: Visiting `/` shows notes and a search bar; typing filters client-side; no JS errors in console.
