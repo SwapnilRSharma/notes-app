@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notes</title>
+    <style>
+      body{font-family:system-ui,Arial,sans-serif;max-width:640px;margin:40px auto;padding:0 16px}
+      h1{font-size:22px}
+      #list{margin:16px 0;padding:0;list-style:none}
+      #list li{padding:8px 0;border-bottom:1px solid #eee}
+      .row{display:flex;gap:8px;margin:8px 0}
+      input,button{font-size:14px;padding:8px}
+      input{flex:1}
+    </style>
+  </head>
+  <body>
+    <h1>Notes</h1>
+    <div class="row">
+      <input id="title" type="text" placeholder="New note title" />
+      <button id="add">Add</button>
+    </div>
+    <ul id="list"></ul>
+    <script>
+      async function fetchNotes(){
+        const res = await fetch('/notes');
+        const notes = await res.json();
+        const ul = document.getElementById('list');
+        ul.innerHTML = '';
+        notes.forEach(n => {
+          const li = document.createElement('li');
+          li.textContent = n.title;
+          ul.appendChild(li);
+        });
+      }
+      async function addNote(){
+        const input = document.getElementById('title');
+        const title = input.value.trim();
+        if(!title) return;
+        const res = await fetch('/notes', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({title, body:''})});
+        if(res.ok){ input.value=''; fetchNotes(); }
+        else { const err = await res.json().catch(()=>({error:'Error'})); alert(err.error||'Error'); }
+      }
+      document.getElementById('add').addEventListener('click', addNote);
+      document.getElementById('title').addEventListener('keydown', e=>{ if(e.key==='Enter') addNote(); });
+      fetchNotes();
+    </script>
+  </body>
+  </html>
