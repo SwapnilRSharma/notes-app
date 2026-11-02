@@ -36,7 +36,7 @@ Risks are limited to file write contention and lack of authentication; both are 
   - intent: Validate required fields on server; map errors to HTTP 400/409; surface messages in the modal UI.
   - files: `server.js`, `notes.js`, `public/app.js`
   - acceptance: Empty title/body is blocked with message; duplicate title shows a clear error.
-- [ ] `t7` Verify API and UI flows
+- [x] `t7` Verify API and UI flows
   - intent: Manually verify CRUD via curl and exercise UI flows end-to-end; add a short run section to README for the web server.
   - files: `README.md`
   - acceptance: README includes start instructions and curl examples; all UI flows (list/search/create/view/edit/delete) work locally.

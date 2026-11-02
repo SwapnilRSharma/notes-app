@@ -62,6 +62,59 @@ node app.js --help
 node app.js add --title "Todo" --body "Refactor addNotes function"
 ```
 
+## Web Server (Frontend + API)
+
+1. Install dependencies (adds Express if not already installed):
+
+```bash
+npm install
+```
+
+2. Start the web server:
+
+```bash
+npm start
+# Server listens on http://localhost:3000
+```
+
+3. Open the frontend in your browser: http://localhost:3000
+
+### API Endpoints
+
+- List notes
+
+```bash
+curl http://localhost:3000/api/notes
+```
+
+- Create note
+
+```bash
+curl -X POST http://localhost:3000/api/notes \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"Shopping","body":"Buy milk and bread"}'
+```
+
+- Read note
+
+```bash
+curl http://localhost:3000/api/notes/Shopping
+```
+
+- Update note (rename and/or edit body)
+
+```bash
+curl -X PUT http://localhost:3000/api/notes/Shopping \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"Groceries","body":"Milk, bread, eggs"}'
+```
+
+- Delete note
+
+```bash
+curl -X DELETE http://localhost:3000/api/notes/Groceries -i
+```
+
 ## License
 
 ISC
