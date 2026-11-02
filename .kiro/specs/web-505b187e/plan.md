@@ -32,7 +32,7 @@ Risks are limited to file write contention and lack of authentication; both are 
   - intent: Open a note in a modal view; toggle to edit within the same modal; submit via PUT; support Delete with confirmation.
   - files: `public/app.js`, `public/index.html`
   - acceptance: Editing updates the note and list without reload; deleting removes it after confirm.
-- [ ] `t6` Basic validation and error surfacing
+- [x] `t6` Basic validation and error surfacing
   - intent: Validate required fields on server; map errors to HTTP 400/409; surface messages in the modal UI.
   - files: `server.js`, `notes.js`, `public/app.js`
   - acceptance: Empty title/body is blocked with message; duplicate title shows a clear error.
