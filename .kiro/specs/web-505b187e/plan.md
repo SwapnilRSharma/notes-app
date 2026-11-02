@@ -28,7 +28,7 @@ Risks are limited to file write contention and lack of authentication; both are 
   - intent: Add "Create a note" button opening a modal with form; submit via POST to `/api/notes`; refresh list and handle errors.
   - files: `public/app.js`, `public/index.html`
   - acceptance: Creating a note via UI persists to `notes.json` and appears immediately in the list.
-- [ ] `t5` View, Edit (inline), and Delete in modal
+- [x] `t5` View, Edit (inline), and Delete in modal
   - intent: Open a note in a modal view; toggle to edit within the same modal; submit via PUT; support Delete with confirmation.
   - files: `public/app.js`, `public/index.html`
   - acceptance: Editing updates the note and list without reload; deleting removes it after confirm.
