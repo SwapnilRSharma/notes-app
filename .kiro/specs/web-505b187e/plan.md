@@ -16,7 +16,7 @@ Risks are limited to file write contention and lack of authentication; both are 
   - intent: Create an Express server exposing CRUD endpoints for notes and serving the static frontend.
   - files: `server.js`, `package.json`
   - acceptance: Starting the server and GET `/api/notes` returns a JSON array; POST/PUT/DELETE operate on `notes.json` with appropriate status codes.
-- [ ] `t2` Extend notes module with CRUD helpers
+- [x] `t2` Extend notes module with CRUD helpers
   - intent: Add `listNotes`, `readNote`, `updateNote`, `removeNote`, and `saveNotes`; keep `addNotes`; validate inputs and enforce unique titles.
   - files: `notes.js`
   - acceptance: API uses these functions; duplicate titles are rejected; updates and deletes persist in `notes.json`.
