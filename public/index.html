@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notes</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    #notes { margin-top: 1rem; padding-left: 1rem; }
+    input[type=text] { padding: 0.4rem; width: 16rem; }
+    button { padding: 0.45rem 0.8rem; margin-left: 0.4rem; }
+    .error { color: #b00020; }
+  </style>
+  </head>
+<body>
+  <h1>Notes</h1>
+  <div>
+    <input id="title" type="text" placeholder="Note title" />
+    <button id="addBtn">Add</button>
+    <span id="msg" class="error"></span>
+  </div>
+  <ul id="notes"></ul>
+
+  <script>
+    async function fetchNotes() {
+      const res = await fetch('/notes')
+      if (!res.ok) throw new Error('Failed to load notes')
+      return res.json()
+    }
+
+    function renderNotes(items) {
+      const ul = document.getElementById('notes')
+      ul.innerHTML = ''
+      items.forEach(n => {
+        const li = document.createElement('li')
+        li.textContent = n && n.title ? n.title : JSON.stringify(n)
+        ul.appendChild(li)
+      })
+    }
+
+    async function load() {
+      try {
+        const notes = await fetchNotes()
+        renderNotes(notes)
+      } catch (e) {
+        document.getElementById('msg').textContent = e.message
+      }
+    }
+
+    async function addNote() {
+      const input = document.getElementById('title')
+      const title = input.value.trim()
+      const msg = document.getElementById('msg')
+      msg.textContent = ''
+      if (!title) { msg.textContent = 'Enter a title'; return }
+      const res = await fetch('/notes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, body: '' })
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        msg.textContent = data.error || 'Failed to add note'
+        return
+      }
+      input.value = ''
+      load()
+    }
+
+    document.getElementById('addBtn').addEventListener('click', addNote)
+    document.getElementById('title').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addNote()
+    })
+    load()
+  </script>
+</body>
+</html>
