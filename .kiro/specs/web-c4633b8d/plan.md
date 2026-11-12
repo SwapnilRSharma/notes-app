@@ -42,6 +42,6 @@ The API will be REST-ish: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:
   - intent: Update `README.md` with instructions to start the web server and describe available endpoints and UI features.
   - files: `README.md`
   - acceptance: README includes a Web UI section with start command and brief feature list.
-- [ ] `t9` Verify API and UI behavior
+- [x] `t9` Verify API and UI behavior
   - intent: Manually verify endpoints with cURL and exercise the UI flow (list/create/edit/delete) end-to-end on localhost.
   - acceptance: All CRUD operations work via API and UI; `notes.json` reflects changes with stable ids.
