@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notes</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
+      h1 { margin: 0 0 16px; }
+      .app { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+      ul { list-style: none; padding: 0; margin: 0; }
+      li { padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+      button { cursor: pointer; }
+      form { display: grid; gap: 8px; }
+      input, textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; font: inherit; }
+      .row { display: flex; gap: 8px; }
+      .muted { color: #666; }
+    </style>
+  </head>
+  <body>
+    <h1>Notes</h1>
+    <div class="app">
+      <section>
+        <h2 class="muted">All Notes</h2>
+        <ul id="notes"></ul>
+      </section>
+      <section>
+        <h2 class="muted" id="form-title">Create / Edit</h2>
+        <form id="note-form">
+          <input id="title" placeholder="Title" required />
+          <textarea id="body" placeholder="Body" rows="8"></textarea>
+          <div class="row">
+            <button type="submit">Save</button>
+            <button type="button" id="reset">Reset</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <script>
+      const $ = (sel) => document.querySelector(sel)
+      const listEl = $('#notes')
+      const form = $('#note-form')
+      const titleEl = $('#title')
+      const bodyEl = $('#body')
+      const formTitle = $('#form-title')
+      const resetBtn = $('#reset')
+
+      let editingOriginalTitle = null
+
+      async function fetchJSON(url, opts) {
+        const res = await fetch(url, Object.assign({ headers: { 'Content-Type': 'application/json' } }, opts))
+        if (!res.ok) throw new Error(await res.text())
+        return res.json()
+      }
+
+      async function load() {
+        const notes = await fetchJSON('/api/notes')
+        listEl.innerHTML = ''
+        if (!notes.length) {
+          listEl.innerHTML = '<li class="muted">No notes yet</li>'
+          return
+        }
+        for (const n of notes) {
+          const li = document.createElement('li')
+          const left = document.createElement('div')
+          left.textContent = n.title
+          const row = document.createElement('div')
+          const editBtn = document.createElement('button')
+          editBtn.textContent = 'Edit'
+          editBtn.onclick = () => {
+            editingOriginalTitle = n.title
+            formTitle.textContent = 'Edit Note'
+            titleEl.value = n.title
+            bodyEl.value = n.body || ''
+          }
+          const delBtn = document.createElement('button')
+          delBtn.textContent = 'Delete'
+          delBtn.onclick = async () => {
+            await fetchJSON('/api/notes/' + encodeURIComponent(n.title), { method: 'DELETE' })
+            await load()
+          }
+          row.append(editBtn, delBtn)
+          li.append(left, row)
+          listEl.append(li)
+        }
+      }
+
+      form.onsubmit = async (e) => {
+        e.preventDefault()
+        const payload = { title: titleEl.value.trim(), body: bodyEl.value }
+        try {
+          if (editingOriginalTitle && editingOriginalTitle !== payload.title) {
+            await fetchJSON('/api/notes/' + encodeURIComponent(editingOriginalTitle), {
+              method: 'PUT',
+              body: JSON.stringify(payload),
+            })
+          } else if (editingOriginalTitle) {
+            await fetchJSON('/api/notes/' + encodeURIComponent(editingOriginalTitle), {
+              method: 'PUT',
+              body: JSON.stringify({ body: payload.body }),
+            })
+          } else {
+            await fetchJSON('/api/notes', { method: 'POST', body: JSON.stringify(payload) })
+          }
+          resetForm()
+          await load()
+        } catch (e) {
+          alert('Error: ' + e.message)
+        }
+      }
+
+      function resetForm() {
+        editingOriginalTitle = null
+        formTitle.textContent = 'Create / Edit'
+        form.reset()
+      }
+      resetBtn.onclick = resetForm
+
+      load()
+    </script>
+  </body>
+  </html>
