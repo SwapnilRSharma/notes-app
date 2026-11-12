@@ -30,7 +30,7 @@ The API will be REST-ish: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:
   - intent: Write `public/app.js` to fetch and render notes, and submit new notes via `POST /api/notes` with optimistic refresh.
   - files: `public/app.js`
   - acceptance: Creating a note updates the list without page reload.
-- [ ] `t6` Implement edit and delete in frontend
+- [x] `t6` Implement edit and delete in frontend
   - intent: Add inline edit UI (toggle to edit fields, save via `PUT /api/notes/:id`) and delete buttons with confirmation calling `DELETE /api/notes/:id`.
   - files: `public/app.js`
   - acceptance: Editing updates a note and deleting removes it from the list after confirmation.
