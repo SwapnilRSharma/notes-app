@@ -44,6 +44,7 @@ input[type="text"], textarea{
   background: #0b1220;
   color: var(--text);
 }
+input[type="text"]:focus, textarea:focus{ outline: 2px solid #1f3a8a; border-color: #1f3a8a; }
 button{
   appearance: none;
   background: var(--accent);
@@ -56,6 +57,9 @@ button{
 button.secondary{ background: #374151; }
 button.danger{ background: var(--danger); }
 
+#create-form{ display: grid; gap: 10px; }
+.muted{ color: var(--muted); }
+
 .notes-list{ display: grid; gap: 12px; }
 .note{
   border: 1px solid #273142;
@@ -66,6 +70,7 @@ button.danger{ background: var(--danger); }
 .note header{ display: flex; align-items: center; justify-content: space-between; border: none; padding: 0; }
 .note-title{ font-weight: 600; }
 .note-actions{ display: flex; gap: 8px; }
+.note .field{ margin-bottom: 8px; }
 
 @media (min-width: 800px){
   main{ grid-template-columns: 360px 1fr; }
