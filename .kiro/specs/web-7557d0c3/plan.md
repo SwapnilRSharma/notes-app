@@ -28,7 +28,7 @@ Keep the current CLI intact. Titles remain the unique identifier to minimize cha
   - intent: Add Express dependency and scripts to the root `package.json` for the backend (`start`: `node server.js`), and use the `client/package.json` Vite scripts (`dev`, `build`, `preview`); optionally serve `client/dist` in production from Express.
   - files: `package.json`, `client/package.json`, `server.js`
   - acceptance: `npm start` launches the backend on port 3000; in `client/`, `npm run dev` launches the Vite dev server with `/api` proxy; `npm run build` creates `client/dist` which the backend can serve.
-- [ ] `t5` Update README with web usage
+- [x] `t5` Update README with web usage
   - intent: Document how to run the web UI, available API endpoints, and note on title uniqueness and rename behavior.
   - files: `README.md`
   - acceptance: README includes clear instructions for starting the backend and the Vite dev server, building the SPA, and using the UI/API.
