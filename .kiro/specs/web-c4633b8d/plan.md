@@ -22,7 +22,7 @@ The API will be REST-ish: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:
   - intent: Wire Express routes `GET/POST/PUT/DELETE` under `/api/notes` to the storage functions with minimal validation and proper status codes.
   - files: `server.js`
   - acceptance: cURLing endpoints performs CRUD and returns JSON payloads with 2xx/4xx codes as appropriate.
-- [ ] `t4` Build static UI shell
+- [x] `t4` Build static UI shell
   - intent: Add `public/index.html` and `public/styles.css` with a simple layout for list, create form, and edit panel/modal placeholders.
   - files: `public/index.html`, `public/styles.css`
   - acceptance: Visiting `/` renders the shell with empty list and form elements.
