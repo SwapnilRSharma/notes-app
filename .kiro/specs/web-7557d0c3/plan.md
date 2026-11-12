@@ -20,7 +20,7 @@ Keep the current CLI intact. Titles remain the unique identifier to minimize cha
   - intent: Create `server.js` exposing `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:title`, and `DELETE /api/notes/:title`, wiring to `notes.js`, validating inputs, and returning proper HTTP codes.
   - files: `server.js`
   - acceptance: Hitting the endpoints with curl or a REST client lists, creates, updates (including optional rename), and deletes notes with correct status codes.
-- [ ] `t3` Scaffold React + Vite SPA
+- [x] `t3` Scaffold React + Vite SPA
   - intent: Initialize a Vite React app under `client/` to implement the notes UI as a SPA that consumes the backend API; include a proxy for `/api` during development.
   - files: `client/index.html`, `client/src/main.jsx`, `client/src/App.jsx`, `client/package.json`, `client/vite.config.js`
   - acceptance: Running the Vite dev server shows the app shell and loads the notes list via `/api` through the proxy without CORS issues.
