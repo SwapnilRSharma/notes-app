@@ -12,7 +12,7 @@ Keep the current CLI intact. Titles remain the unique identifier to minimize cha
 
 ## Tasks
 
-- [ ] `t1` Extend notes module with list/read/remove/update
+- [x] `t1` Extend notes module with list/read/remove/update
   - intent: Add `listNotes()`, `readNote(title)`, `removeNote(title)`, and `updateNote(origTitle, { title, body })` using the existing JSON file storage, with duplicate-title checks and basic validation.
   - files: `notes.js`
   - acceptance: Helpers are exported and operate against `notes.json`, preventing duplicate titles and returning clear results for not-found cases.
