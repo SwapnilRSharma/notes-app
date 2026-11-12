@@ -10,7 +10,7 @@ The API will be REST-ish: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:
 
 ## Tasks
 
-- [ ] `t1` Add Express server scaffold and static hosting
+- [x] `t1` Add Express server scaffold and static hosting
   - intent: Create `server.js` with Express, JSON body parsing, and static file serving from `public/`.
   - files: `package.json`, `server.js`
   - acceptance: Running `node server.js` starts a server serving `public/index.html` at `/`.
