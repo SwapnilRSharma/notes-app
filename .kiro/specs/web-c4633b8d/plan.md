@@ -14,7 +14,7 @@ The API will be REST-ish: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:
   - intent: Create `server.js` with Express, JSON body parsing, and static file serving from `public/`.
   - files: `package.json`, `server.js`
   - acceptance: Running `node server.js` starts a server serving `public/index.html` at `/`.
-- [ ] `t2` Extend storage module with IDs and full CRUD
+- [x] `t2` Extend storage module with IDs and full CRUD
   - intent: Update `notes.js` to support list, get-by-id, add (with unique id), update, and remove; on load, assign ids to legacy notes and persist.
   - files: `notes.js`, `notes.json`
   - acceptance: Requiring the module exposes functions that operate on `notes.json` and preserve data with new `id` fields.
