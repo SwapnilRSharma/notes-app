@@ -1,1 +1,3 @@
 node_modules/
+# Do not commit local notes data
+notes.json
