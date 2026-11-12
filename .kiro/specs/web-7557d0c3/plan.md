@@ -16,7 +16,7 @@ Keep the current CLI intact. Titles remain the unique identifier to minimize cha
   - intent: Add `listNotes()`, `readNote(title)`, `removeNote(title)`, and `updateNote(origTitle, { title, body })` using the existing JSON file storage, with duplicate-title checks and basic validation.
   - files: `notes.js`
   - acceptance: Helpers are exported and operate against `notes.json`, preventing duplicate titles and returning clear results for not-found cases.
-- [ ] `t2` Add Express server and REST API
+- [x] `t2` Add Express server and REST API
   - intent: Create `server.js` exposing `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:title`, and `DELETE /api/notes/:title`, wiring to `notes.js`, validating inputs, and returning proper HTTP codes.
   - files: `server.js`
   - acceptance: Hitting the endpoints with curl or a REST client lists, creates, updates (including optional rename), and deletes notes with correct status codes.
