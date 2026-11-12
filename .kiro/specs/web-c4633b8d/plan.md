@@ -18,7 +18,7 @@ The API will be REST-ish: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:
   - intent: Update `notes.js` to support list, get-by-id, add (with unique id), update, and remove; on load, assign ids to legacy notes and persist.
   - files: `notes.js`, `notes.json`
   - acceptance: Requiring the module exposes functions that operate on `notes.json` and preserve data with new `id` fields.
-- [ ] `t3` Implement REST API endpoints
+- [x] `t3` Implement REST API endpoints
   - intent: Wire Express routes `GET/POST/PUT/DELETE` under `/api/notes` to the storage functions with minimal validation and proper status codes.
   - files: `server.js`
   - acceptance: cURLing endpoints performs CRUD and returns JSON payloads with 2xx/4xx codes as appropriate.
