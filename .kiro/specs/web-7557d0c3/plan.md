@@ -32,6 +32,6 @@ Keep the current CLI intact. Titles remain the unique identifier to minimize cha
   - intent: Document how to run the web UI, available API endpoints, and note on title uniqueness and rename behavior.
   - files: `README.md`
   - acceptance: README includes clear instructions for starting the backend and the Vite dev server, building the SPA, and using the UI/API.
-- [ ] `t6` Manual verification
+- [x] `t6` Manual verification
   - intent: Verify end-to-end with the React app: start backend and Vite dev server, ensure list loads; create a note; edit its body; rename the title; attempt duplicate-title create/edit and observe error; delete the note; confirm persistence across reload and after a production build served by Express.
   - acceptance: All flows succeed or return expected errors, and `notes.json` reflects changes; production build also works when served by the backend.
