@@ -38,7 +38,7 @@ The API will be REST-ish: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:
   - intent: Apply minimal CSS for readability; ensure mobile-friendly layout with basic responsive styles.
   - files: `public/styles.css`
   - acceptance: UI is readable on desktop and mobile widths; buttons and inputs are spaced.
-- [ ] `t8` Document web usage
+- [x] `t8` Document web usage
   - intent: Update `README.md` with instructions to start the web server and describe available endpoints and UI features.
   - files: `README.md`
   - acceptance: README includes a Web UI section with start command and brief feature list.
