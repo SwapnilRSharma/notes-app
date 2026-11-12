@@ -34,7 +34,7 @@ The API will be REST-ish: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:
   - intent: Add inline edit UI (toggle to edit fields, save via `PUT /api/notes/:id`) and delete buttons with confirmation calling `DELETE /api/notes/:id`.
   - files: `public/app.js`
   - acceptance: Editing updates a note and deleting removes it from the list after confirmation.
-- [ ] `t7` Light styling and UX polish
+- [x] `t7` Light styling and UX polish
   - intent: Apply minimal CSS for readability; ensure mobile-friendly layout with basic responsive styles.
   - files: `public/styles.css`
   - acceptance: UI is readable on desktop and mobile widths; buttons and inputs are spaced.
