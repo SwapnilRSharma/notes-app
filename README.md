@@ -1,12 +1,12 @@
 # notes-app
 
-Simple CLI Notes application built with Node.js and yargs. Notes are stored locally in `notes.json` in the project root.
+Simple Notes application with a CLI and a web UI. Notes are stored locally in `notes.json` in the project root.
 
 ## Requirements
 
 - Node.js 12+ (LTS recommended)
 
-## Setup
+## Setup (CLI)
 
 1. Install dependencies:
 
@@ -20,7 +20,67 @@ npm install
 node app.js --help
 ```
 
-## Usage
+## Web UI
+
+The web UI consists of an Express backend (port 3000 by default) and a React + Vite frontend (port 5173 in dev).
+
+### Install
+
+At the repo root (backend):
+
+```bash
+npm install
+```
+
+In the client (frontend):
+
+```bash
+cd client
+npm install
+```
+
+### Run (development)
+
+Terminal 1 — start the backend (Express API on http://localhost:3000):
+
+```bash
+npm start
+```
+
+Terminal 2 — start the frontend (Vite dev server on http://localhost:5173 with `/api` proxy):
+
+```bash
+cd client
+npm run dev
+```
+
+Open the UI at http://localhost:5173.
+
+### Build (production)
+
+```bash
+cd client
+npm run build
+```
+
+Then start the backend; it will serve the built UI from `client/dist`:
+
+```bash
+npm start
+```
+
+Open http://localhost:3000.
+
+### API Endpoints
+
+- `GET /api/notes` — list notes
+- `POST /api/notes` — create note `{ title, body }`
+- `PUT /api/notes/:title` — update or rename note; body may include `{ title, body }`
+- `DELETE /api/notes/:title` — remove a note
+
+Constraints: titles are unique identifiers. Attempts to create or rename to an existing title will return HTTP 409.
+
+## Usage (CLI)
 
 Currently implemented commands:
 
