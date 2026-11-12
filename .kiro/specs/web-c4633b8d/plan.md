@@ -26,7 +26,7 @@ The API will be REST-ish: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:
   - intent: Add `public/index.html` and `public/styles.css` with a simple layout for list, create form, and edit panel/modal placeholders.
   - files: `public/index.html`, `public/styles.css`
   - acceptance: Visiting `/` renders the shell with empty list and form elements.
-- [ ] `t5` Implement list and create in frontend
+- [x] `t5` Implement list and create in frontend
   - intent: Write `public/app.js` to fetch and render notes, and submit new notes via `POST /api/notes` with optimistic refresh.
   - files: `public/app.js`
   - acceptance: Creating a note updates the list without page reload.
