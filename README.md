@@ -1,6 +1,6 @@
 # notes-app
 
-Simple CLI Notes application built with Node.js and yargs. Notes are stored locally in `notes.json` in the project root.
+Simple Notes application. Originally a CLI built with Node.js and yargs; now includes a minimal Web UI. Notes are stored locally in `notes.json` in the project root.
 
 ## Requirements
 
@@ -65,3 +65,25 @@ node app.js add --title "Todo" --body "Refactor addNotes function"
 ## License
 
 ISC
+## Web UI
+
+Start the web server and open the UI at http://localhost:3000
+
+```bash
+npm install
+node server.js
+```
+
+Features:
+
+- List notes
+- Create a new note (title + body)
+- Edit an existing note inline
+- Delete a note with confirmation
+
+API Endpoints (JSON):
+
+- `GET /api/notes` → list notes
+- `POST /api/notes` → create; body: `{ "title": string, "body": string }`
+- `PUT /api/notes/:id` → update; body: `{ "title"?: string, "body"?: string }`
+- `DELETE /api/notes/:id` → remove
