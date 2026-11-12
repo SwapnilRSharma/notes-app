@@ -24,7 +24,7 @@ Keep the current CLI intact. Titles remain the unique identifier to minimize cha
   - intent: Initialize a Vite React app under `client/` to implement the notes UI as a SPA that consumes the backend API; include a proxy for `/api` during development.
   - files: `client/index.html`, `client/src/main.jsx`, `client/src/App.jsx`, `client/package.json`, `client/vite.config.js`
   - acceptance: Running the Vite dev server shows the app shell and loads the notes list via `/api` through the proxy without CORS issues.
-- [ ] `t4` Wire package scripts and dependencies
+- [x] `t4` Wire package scripts and dependencies
   - intent: Add Express dependency and scripts to the root `package.json` for the backend (`start`: `node server.js`), and use the `client/package.json` Vite scripts (`dev`, `build`, `preview`); optionally serve `client/dist` in production from Express.
   - files: `package.json`, `client/package.json`, `server.js`
   - acceptance: `npm start` launches the backend on port 3000; in `client/`, `npm run dev` launches the Vite dev server with `/api` proxy; `npm run build` creates `client/dist` which the backend can serve.
