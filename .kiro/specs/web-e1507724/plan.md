@@ -28,7 +28,7 @@ Risks are limited to concurrent file writes to `notes.json` and path/working-dir
   - intent: Build components and API client to list notes, create new notes, edit existing notes (including changing title), and delete with confirmation.
   - files: `web/client/src/components/NotesList.tsx`, `web/client/src/components/NoteForm.tsx`, `web/client/src/components/NoteEditor.tsx`, `web/client/src/api.ts`, `web/client/src/App.tsx`
   - acceptance: From the browser, users can perform all CRUD actions and see the list update without a manual reload.
-- [ ] `t5` Add validation and UX states
+- [x] `t5` Add validation and UX states
   - intent: Enforce required fields, detect duplicate titles from API responses, and display loading/empty/error states.
   - files: `web/client/src/components/NotesList.tsx`, `web/client/src/components/NoteForm.tsx`, `web/client/src/components/NoteEditor.tsx`, `web/client/src/App.tsx`
   - acceptance: Duplicate-title attempts show a visible error; empty state is informative; network/API errors surface a clear message.

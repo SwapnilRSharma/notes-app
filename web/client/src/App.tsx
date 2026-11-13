@@ -42,6 +42,9 @@ function App() {
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', padding: 16, display: 'grid', gap: 16, maxWidth: 900, margin: '0 auto' }}>
       <h1>Notes</h1>
+      {error && !loading && (
+        <p role="alert" style={{ color: 'crimson' }}>Error: {error}</p>
+      )}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
         <div>
           <h2>All Notes</h2>
