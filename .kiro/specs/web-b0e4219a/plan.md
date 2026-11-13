@@ -30,6 +30,6 @@ On the frontend, we will scaffold a small React app (Vite) under `web/` that tal
   - intent: Document how to run the web UI and API locally, ports used, and basic API overview.
   - files: `README.md`
   - acceptance: README includes a Web UI section with start commands and brief API notes.
-- [ ] `t6` End-to-end verification
+- [x] `t6` End-to-end verification
   - intent: Manually verify flows: list existing notes from `notes.json`, create, edit (including renaming), delete, and confirm file contents updated; check duplicate-title errors are surfaced in UI.
   - acceptance: All flows succeed and `notes.json` reflects the changes after a refresh.
