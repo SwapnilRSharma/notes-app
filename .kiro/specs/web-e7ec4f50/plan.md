@@ -28,7 +28,7 @@ Risks are minimal: shadcn/ui requires correct Tailwind setup and content paths; 
   - intent: Add a small storage module to read/write notes to `localStorage` with basic schema and uniqueness by generated id.
   - files: `web/src/lib/storage.ts`
   - acceptance: Calling `getNotes()` and `addNote({title, body})` persists and returns notes across page reloads.
-- [ ] `t5` Build app layout with header, search, and list shell
+ - [x] `t5` Build app layout with header, search, and list shell
   - intent: Create app header with title, a search `Input`, and a `Button` to open the create dialog; add `NoteList` component that renders from props with empty-state message.
   - files: `web/src/App.tsx`, `web/src/components/note-list.tsx`
   - acceptance: App renders header, search box, and an empty-state list area with no runtime errors.
