@@ -10,7 +10,7 @@ On the frontend, we will scaffold a small React app (Vite) under `web/` that tal
 
 ## Tasks
 
-- [ ] `t1` Extend notes module to full CRUD
+- [x] `t1` Extend notes module to full CRUD
   - intent: Add `listNotes`, `getNote(title)`, `updateNote(oldTitle, { title, body })`, and `removeNote(title)` on top of existing add; centralize load/save helpers and enforce unique title on create/update.
   - files: `notes.js`
   - acceptance: Module exposes CRUD used by API; duplicate titles are rejected with clear errors; updates persist to `notes.json`.
