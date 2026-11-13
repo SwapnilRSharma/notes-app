@@ -20,7 +20,7 @@ Risks are minimal: shadcn/ui requires correct Tailwind setup and content paths; 
   - intent: Install Tailwind, PostCSS, and Autoprefixer; create Tailwind config and base stylesheet; wire content globs to `index.html` and `src/**/*.{ts,tsx}`.
   - files: `web/tailwind.config.js`, `web/postcss.config.js`, `web/src/index.css`, `web/index.html`
   - acceptance: Tailwind utility classes apply (e.g., replace default styles with Tailwind-styled container in `App.tsx`).
-- [ ] `t3` Initialize shadcn/ui and add required components
+ - [x] `t3` Initialize shadcn/ui and add required components
   - intent: Initialize shadcn in the project and generate minimal components: `button`, `input`, `label`, `textarea`, `dialog`, `card`; include `tailwindcss-animate` if required by components.
   - files: `web/components.json`, `web/src/components/ui/button.tsx`, `web/src/components/ui/input.tsx`, `web/src/components/ui/label.tsx`, `web/src/components/ui/textarea.tsx`, `web/src/components/ui/dialog.tsx`, `web/src/components/ui/card.tsx`
   - acceptance: Importing `Button` and `Dialog` in `App.tsx` renders without build errors.
