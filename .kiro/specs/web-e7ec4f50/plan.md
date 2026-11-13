@@ -32,7 +32,7 @@ Risks are minimal: shadcn/ui requires correct Tailwind setup and content paths; 
   - intent: Create app header with title, a search `Input`, and a `Button` to open the create dialog; add `NoteList` component that renders from props with empty-state message.
   - files: `web/src/App.tsx`, `web/src/components/note-list.tsx`
   - acceptance: App renders header, search box, and an empty-state list area with no runtime errors.
-- [ ] `t6` Implement Create Note dialog and form
+ - [x] `t6` Implement Create Note dialog and form
   - intent: Add a `CreateNoteDialog` using shadcn `Dialog`, `Label`, `Input`, and `Textarea`; validate non-empty title/body; on save, persist via storage and refresh state.
   - files: `web/src/components/create-note-dialog.tsx`, `web/src/App.tsx`
   - acceptance: Clicking "Create Note" opens a modal; saving a valid note adds it to the list and it remains after reload.
