@@ -24,7 +24,7 @@ Key risks: normalizing legacy notes without `id` (handled by assigning ids on lo
   - intent: Build components for listing notes, a reusable form for create/edit, and wire buttons to call the API with basic validation and error handling.
   - files: `web/src/components/NotesList.jsx`, `web/src/components/NoteForm.jsx`, `web/src/api/client.js`
   - acceptance: From the browser, users can list existing notes, add a new note, edit a note, and delete a note with visible updates.
-- [ ] `t4` Serve SPA in production from Express
+- [x] `t4` Serve SPA in production from Express
   - intent: Configure Express to serve `web/dist` and fall back to `index.html` for client routing; add scripts to build and start the combined app.
   - files: `server.js`, `web/vite.config.js`, `package.json`, `README.md`
   - acceptance: `npm run build` then `npm start` serves both the API and the SPA on one port.

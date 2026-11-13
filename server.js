@@ -43,7 +43,17 @@ app.delete('/api/notes/:id', (req, res) => {
   res.json({ success: true })
 })
 
-// In dev we only run the API; in prod t4 will add static serving
+// Serve SPA in production
+if (process.env.NODE_ENV === 'production') {
+  const distDir = path.join(__dirname, 'web', 'dist')
+  // Serve built static assets
+  app.use(express.static(distDir))
+  // Fallback to index.html for client-side routing, but let /api/* 404 properly
+  app.get('*', (req, res) => {
+    if (req.path.startsWith('/api/')) return res.status(404).end()
+    res.sendFile(path.join(distDir, 'index.html'))
+  })
+}
 
 const PORT = process.env.PORT || 5174
 app.listen(PORT, () => {
