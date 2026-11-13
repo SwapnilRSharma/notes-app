@@ -22,7 +22,7 @@ On the frontend, we will scaffold a small React app (Vite) under `web/` that tal
   - intent: Create a Vite React app under `web/`, configure dev proxy from `/api` to backend, and add npm scripts to run `server`, `client`, and combined `dev` concurrently.
   - files: `web/**`, `package.json`
   - acceptance: Running `npm run dev` starts both backend and frontend; the app loads and can hit `/api/notes`.
-- [ ] `t4` Implement notes UI (list/create/edit/delete)
+- [x] `t4` Implement notes UI (list/create/edit/delete)
   - intent: Build components for listing notes, creating a note, editing an existing note (including title changes with collision handling), and deleting with confirmation; include loading/error states.
   - files: `web/src/App.jsx`, `web/src/components/NotesList.jsx`, `web/src/components/NoteForm.jsx`, `web/src/components/NoteEditor.jsx`
   - acceptance: From the browser, a user can list notes, add, edit, and delete; changes persist and reflect on reload.
