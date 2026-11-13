@@ -4,7 +4,7 @@ Simple CLI Notes application built with Node.js and yargs. Notes are stored loca
 
 ## Requirements
 
-- Node.js 12+ (LTS recommended)
+- Node.js 18+ (LTS recommended)
 
 ## Setup
 
