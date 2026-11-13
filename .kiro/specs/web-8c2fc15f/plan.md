@@ -26,7 +26,7 @@ Refactor `notes.js` to provide clear CRUD helpers that read/write `notes.json` s
   - intent: Render a list of notes (title + body snippet) and a form to create notes (title, body) that posts to the API and refreshes the list; handle duplicate-title error messaging.
   - files: `client/src/App.jsx`
   - acceptance: Creating a note via the UI shows it immediately in the list; duplicates surface a visible error.
-- [ ] `t5` Implement edit and delete flows
+- [x] `t5` Implement edit and delete flows
   - intent: Allow selecting a note to edit title/body (PUT to `/api/notes/:title` with optional `newTitle`) and delete a note with confirmation (DELETE), updating the list.
   - files: `client/src/App.jsx`
   - acceptance: Editing updates the rendered note; deleting removes it from the list without reload.
