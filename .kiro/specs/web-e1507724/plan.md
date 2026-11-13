@@ -20,7 +20,7 @@ Risks are limited to concurrent file writes to `notes.json` and path/working-dir
   - intent: Expose HTTP endpoints for notes CRUD and serve JSON responses with appropriate status codes.
   - files: `web/server.js`, `package.json`
   - acceptance: Starting the server exposes `GET /api/notes`, `GET /api/notes/:title`, `POST /api/notes`, `PUT /api/notes/:title`, and `DELETE /api/notes/:title` returning 2xx/4xx codes as appropriate.
-- [ ] `t3` Scaffold React app with Vite
+- [x] `t3` Scaffold React app with Vite
   - intent: Create the frontend skeleton and build pipeline to render the UI and consume the API.
   - files: `web/client/index.html`, `web/client/vite.config.ts`, `web/client/src/main.tsx`, `web/client/src/App.tsx`
   - acceptance: `npm run build:web` completes successfully and outputs a `dist` directory.
