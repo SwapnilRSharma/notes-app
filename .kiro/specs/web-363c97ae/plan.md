@@ -20,7 +20,7 @@ Key risks: normalizing legacy notes without `id` (handled by assigning ids on lo
   - intent: Create `web/` Vite + React SPA with a dev proxy mapping `/api` to the Express port and add npm scripts for dev/build.
   - files: `web/index.html`, `web/src/main.jsx`, `web/src/App.jsx`, `web/vite.config.js`, `package.json`
   - acceptance: Running the dev script serves the SPA and API together via the proxy without CORS errors.
-- [ ] `t3` Implement notes UI (list/create/edit/delete)
+- [x] `t3` Implement notes UI (list/create/edit/delete)
   - intent: Build components for listing notes, a reusable form for create/edit, and wire buttons to call the API with basic validation and error handling.
   - files: `web/src/components/NotesList.jsx`, `web/src/components/NoteForm.jsx`, `web/src/api/client.js`
   - acceptance: From the browser, users can list existing notes, add a new note, edit a note, and delete a note with visible updates.
