@@ -16,7 +16,7 @@ End-to-end tests with Playwright will cover the key flows: listing initial state
   - intent: Add `listNotes`, `readNote(title)`, `updateNote(oldTitle, { title?, body? })`, and `removeNote(title)` to operate on `notes.json` with duplicate-title checks.
   - files: `notes.js`
   - acceptance: Module exports support all CRUD operations and pass basic manual calls from a Node REPL.
-- [ ] `t2` Add Express REST API with CORS
+- [x] `t2` Add Express REST API with CORS
   - intent: Create a lightweight API exposing CRUD over notes with JSON bodies, 4xx on conflicts/not-found, and enable CORS for the web app in dev.
   - files: `api/server.js`, `package.json`
   - acceptance: Running `npm run api` serves `GET/POST/PUT/DELETE /api/notes` endpoints backed by `notes.json`.
