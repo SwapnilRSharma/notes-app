@@ -6,7 +6,6 @@ import CreateNoteDialog from './components/create-note-dialog'
 import { getNotes, type Note } from './lib/storage'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [query, setQuery] = useState('')
   const [notes, setNotes] = useState<Note[]>(() => getNotes())
   const filtered = query
@@ -36,7 +35,6 @@ function App() {
             <CreateNoteDialog onCreated={(n) => setNotes((prev) => [n, ...prev])}>
               <Button className="bg-indigo-600 hover:bg-indigo-700">Create Note</Button>
             </CreateNoteDialog>
-            <Button onClick={() => setCount((c) => c + 1)}>Count is {count}</Button>
           </div>
         </div>
         <NoteList notes={filtered} />

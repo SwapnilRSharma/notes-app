@@ -22,7 +22,7 @@ export function NoteList({ notes }: { notes: Note[] }) {
             </p>
           </CardHeader>
           <CardContent>
-            <p className="line-clamp-3 whitespace-pre-wrap text-slate-700">{n.body}</p>
+            <p className="whitespace-pre-wrap text-slate-700 overflow-hidden">{n.body}</p>
           </CardContent>
         </Card>
       ))}

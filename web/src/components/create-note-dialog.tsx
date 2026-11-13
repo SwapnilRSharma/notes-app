@@ -51,7 +51,7 @@ export function CreateNoteDialog({
           {error && <p className="text-sm text-red-600">{error}</p>}
         </div>
         <DialogFooter>
-          <DialogClose>
+          <DialogClose asChild>
             <Button className="bg-slate-700 hover:bg-slate-700/90" type="button">Cancel</Button>
           </DialogClose>
           <DialogClose asChild>

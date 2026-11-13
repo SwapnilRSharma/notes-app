@@ -31,9 +31,34 @@ export function Dialog({ open: controlledOpen, onOpenChange, children }: DialogP
 export function DialogTrigger({ asChild, children }: { asChild?: boolean; children: React.ReactNode }) {
   const ctx = React.useContext(DialogContext)
   if (!ctx) return <>{children}</>
-  const Comp: any = asChild ? React.Fragment : 'button'
-  const props = asChild ? { onClick: () => ctx.setOpen(true) } : { onClick: () => ctx.setOpen(true), className: cn('inline-flex items-center rounded-md border px-3 py-2 text-sm') }
-  return <Comp {...props}>{children}</Comp>
+
+  const handleOpen = () => {
+    ctx.setOpen(true)
+  }
+
+  if (asChild && React.isValidElement(children)) {
+    const child = children as React.ReactElement<any>
+    const userOnClick = (child.props as any)?.onClick as ((e: React.MouseEvent) => void) | undefined
+    return React.cloneElement(child, {
+      onClick: (e: React.MouseEvent) => {
+        userOnClick?.(e)
+        // Honor consumer intent: if they stopped propagation, don't open.
+        // This lets callers cancel the open by calling e.stopPropagation().
+        // We intentionally ignore defaultPrevented here.
+        const stopped = (e as any)?.isPropagationStopped?.() === true
+        if (!stopped) handleOpen()
+      },
+    })
+  }
+
+  return (
+    <button
+      onClick={handleOpen}
+      className={cn('inline-flex items-center rounded-md border px-3 py-2 text-sm')}
+    >
+      {children}
+    </button>
+  )
 }
 
 export function DialogContent({ className, children }: React.HTMLAttributes<HTMLDivElement>) {
@@ -82,9 +107,32 @@ export function DialogDescription({ className, ...props }: React.HTMLAttributes<
 export function DialogClose({ asChild, children }: { asChild?: boolean; children: React.ReactNode }) {
   const ctx = React.useContext(DialogContext)
   if (!ctx) return <>{children}</>
-  const Comp: any = asChild ? React.Fragment : 'button'
-  const props = asChild ? { onClick: () => ctx.setOpen(false) } : { onClick: () => ctx.setOpen(false), className: cn('inline-flex items-center rounded-md border px-3 py-2 text-sm') }
-  return <Comp {...props}>{children}</Comp>
+
+  const handleClose = () => {
+    ctx.setOpen(false)
+  }
+
+  if (asChild && React.isValidElement(children)) {
+    const child = children as React.ReactElement<any>
+    const userOnClick = (child.props as any)?.onClick as ((e: React.MouseEvent) => void) | undefined
+    return React.cloneElement(child, {
+      onClick: (e: React.MouseEvent) => {
+        userOnClick?.(e)
+        // Respect consumer cancellation: if they called stopPropagation(), don't close.
+        const stopped = (e as any)?.isPropagationStopped?.() === true
+        if (!stopped) handleClose()
+      },
+    })
+  }
+
+  return (
+    <button
+      onClick={handleClose}
+      className={cn('inline-flex items-center rounded-md border px-3 py-2 text-sm')}
+    >
+      {children}
+    </button>
+  )
 }
 
 export default Dialog
