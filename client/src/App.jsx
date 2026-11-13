@@ -69,6 +69,40 @@ export default function App() {
         />
         <button type="submit">Create Note</button>
       </form>
+      {editing && (
+        <form id="edit-form"
+          onSubmit={async e => {
+            e.preventDefault()
+            setError('')
+            const payload = { body: editBody }
+            if (editTitle.trim() && editTitle.trim() !== editing) payload.newTitle = editTitle.trim()
+            const res = await fetch(`/api/notes/${encodeURIComponent(editing)}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            })
+            if (res.ok) {
+              setEditing(null)
+              await load()
+            } else if (res.status === 409) {
+              setError('A note with that title already exists')
+            } else if (res.status === 404) {
+              setError('Note not found')
+            } else {
+              setError('Failed to update note')
+            }
+          }}
+          style={{ display: 'grid', gap: '0.5rem', marginBottom: '1rem', border: '1px solid #ddd', borderRadius: 6, padding: '0.5rem' }}
+        >
+          <div style={{ fontWeight: 600 }}>Edit Note</div>
+          <input id="edit-title" value={editTitle} onChange={e => setEditTitle(e.target.value)} />
+          <textarea id="edit-body" rows={3} value={editBody} onChange={e => setEditBody(e.target.value)} />
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button type="submit">Save</button>
+            <button type="button" onClick={() => setEditing(null)}>Cancel</button>
+          </div>
+        </form>
+      )}
       {error && <div style={{ color: 'crimson', marginBottom: '0.5rem' }}>{error}</div>}
       {loading ? (
         <div>Loading…</div>
