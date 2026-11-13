@@ -32,7 +32,7 @@ End-to-end tests with Playwright will cover the key flows: listing initial state
   - intent: Build components to fetch and render notes, create new notes, edit existing (title/body with validation), and delete, all via the API with optimistic UI or simple refetch.
   - files: `web/src/App.jsx`, `web/src/components/NotesList.jsx`, `web/src/components/NoteForm.jsx`, `web/src/api.js`
   - acceptance: From the browser, user can list, add, edit, and remove notes with visible updates and error toasts/messages on conflicts.
-- [ ] `t6` Playwright E2E tests for key flows
+- [x] `t6` Playwright E2E tests for key flows
   - intent: Add Playwright config to boot API and web concurrently, and tests that cover list, create, edit, and delete flows against a clean `notes.json` state.
   - files: `playwright.config.ts`, `tests/notes.e2e.spec.ts`, `package.json`
   - acceptance: `npx playwright test` runs green locally with deterministic assertions of DOM changes across CRUD flows.
