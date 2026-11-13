@@ -12,7 +12,7 @@ Key risks: normalizing legacy notes without `id` (handled by assigning ids on lo
 
 ## Tasks
 
-- [ ] `t1` Add REST API server and storage helpers
+- [x] `t1` Add REST API server and storage helpers
   - intent: Introduce Express with `/api/notes` CRUD and extend `notes.js` with `list/add/update/remove` utilities that ensure each note has a unique `id` persisted in `notes.json`.
   - files: `server.js`, `notes.js`, `package.json`
   - acceptance: API responds with JSON for list/create/update/delete and changes persist to `notes.json`.
