@@ -12,7 +12,7 @@ Risks are minimal: shadcn/ui requires correct Tailwind setup and content paths; 
 
 ## Tasks
 
-- [ ] `t1` Scaffold Vite React (TypeScript) app under `web/`
+ - [x] `t1` Scaffold Vite React (TypeScript) app under `web/`
   - intent: Initialize a fresh Vite + React + TS project in `web/` with default entry points.
   - files: `web/package.json`, `web/index.html`, `web/tsconfig.json`, `web/vite.config.ts`, `web/src/main.tsx`, `web/src/App.tsx`
   - acceptance: `npm run dev` inside `web/` serves the default Vite React page without errors.
