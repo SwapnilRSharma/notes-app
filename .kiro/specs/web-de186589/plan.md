@@ -36,7 +36,7 @@ End-to-end tests with Playwright will cover the key flows: listing initial state
   - intent: Add Playwright config to boot API and web concurrently, and tests that cover list, create, edit, and delete flows against a clean `notes.json` state.
   - files: `playwright.config.ts`, `tests/notes.e2e.spec.ts`, `package.json`
   - acceptance: `npx playwright test` runs green locally with deterministic assertions of DOM changes across CRUD flows.
-- [ ] `t7` Developer docs
+- [x] `t7` Developer docs
   - intent: Update README with how to run API, web, and E2E tests, including ports and environment notes.
   - files: `README.md`
   - acceptance: README includes concise setup/run/test instructions that work on a fresh clone.
