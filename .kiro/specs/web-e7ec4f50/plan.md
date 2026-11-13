@@ -24,7 +24,7 @@ Risks are minimal: shadcn/ui requires correct Tailwind setup and content paths; 
   - intent: Initialize shadcn in the project and generate minimal components: `button`, `input`, `label`, `textarea`, `dialog`, `card`; include `tailwindcss-animate` if required by components.
   - files: `web/components.json`, `web/src/components/ui/button.tsx`, `web/src/components/ui/input.tsx`, `web/src/components/ui/label.tsx`, `web/src/components/ui/textarea.tsx`, `web/src/components/ui/dialog.tsx`, `web/src/components/ui/card.tsx`
   - acceptance: Importing `Button` and `Dialog` in `App.tsx` renders without build errors.
-- [ ] `t4` Implement localStorage-backed notes storage utility
+ - [x] `t4` Implement localStorage-backed notes storage utility
   - intent: Add a small storage module to read/write notes to `localStorage` with basic schema and uniqueness by generated id.
   - files: `web/src/lib/storage.ts`
   - acceptance: Calling `getNotes()` and `addNote({title, body})` persists and returns notes across page reloads.
