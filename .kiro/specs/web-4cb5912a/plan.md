@@ -20,7 +20,7 @@ Risks are low: concurrency on `notes.json` is out of scope for this toy app; we 
   - intent: Expose REST endpoints for notes CRUD and JSON error handling; mount static serving for built frontend in production.
   - files: `server.js`, `package.json`, `notes.js`
   - acceptance: Server starts on a port env `PORT` or 3000 and serves GET `/api/notes`, POST `/api/notes`, PUT `/api/notes/:title`, DELETE `/api/notes/:title`.
-- [ ] `t3` Dev ergonomics (proxy/CORS and scripts)
+- [x] `t3` Dev ergonomics (proxy/CORS and scripts)
   - intent: Configure dev-time proxy from Vite to Express to avoid CORS and add npm scripts to run API and web together.
   - files: `package.json`, `web/vite.config.js`
   - acceptance: Running a single dev script starts both servers and the web app can call `/api/*` without CORS errors.
