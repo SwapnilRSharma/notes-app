@@ -24,7 +24,7 @@ Risks are limited to concurrent file writes to `notes.json` and path/working-dir
   - intent: Create the frontend skeleton and build pipeline to render the UI and consume the API.
   - files: `web/client/index.html`, `web/client/vite.config.ts`, `web/client/src/main.tsx`, `web/client/src/App.tsx`
   - acceptance: `npm run build:web` completes successfully and outputs a `dist` directory.
-- [ ] `t4` Implement Notes UI (list/create/edit/delete)
+- [x] `t4` Implement Notes UI (list/create/edit/delete)
   - intent: Build components and API client to list notes, create new notes, edit existing notes (including changing title), and delete with confirmation.
   - files: `web/client/src/components/NotesList.tsx`, `web/client/src/components/NoteForm.tsx`, `web/client/src/components/NoteEditor.tsx`, `web/client/src/api.ts`, `web/client/src/App.tsx`
   - acceptance: From the browser, users can perform all CRUD actions and see the list update without a manual reload.
