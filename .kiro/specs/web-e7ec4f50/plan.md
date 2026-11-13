@@ -36,7 +36,7 @@ Risks are minimal: shadcn/ui requires correct Tailwind setup and content paths; 
   - intent: Add a `CreateNoteDialog` using shadcn `Dialog`, `Label`, `Input`, and `Textarea`; validate non-empty title/body; on save, persist via storage and refresh state.
   - files: `web/src/components/create-note-dialog.tsx`, `web/src/App.tsx`
   - acceptance: Clicking "Create Note" opens a modal; saving a valid note adds it to the list and it remains after reload.
-- [ ] `t7` Implement client-side search filtering
+ - [x] `t7` Implement client-side search filtering
   - intent: Wire the search `Input` to filter notes in-memory by title/body (case-insensitive) and update the rendered list as the user types.
   - files: `web/src/App.tsx`, `web/src/components/note-list.tsx`
   - acceptance: Typing in search narrows visible notes to matches in title or body.
