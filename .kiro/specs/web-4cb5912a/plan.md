@@ -12,7 +12,7 @@ Risks are low: concurrency on `notes.json` is out of scope for this toy app; we 
 
 ## Tasks
 
-- [ ] `t1` Extend notes module with full CRUD
+ - [x] `t1` Extend notes module with full CRUD
   - intent: Add list/read/update/remove helpers around the in-file array and centralize save/load so API and CLI share logic.
   - files: `notes.js`
   - acceptance: Functions exist for list, read by title, update by title, and remove by title with persistence to `notes.json`.
