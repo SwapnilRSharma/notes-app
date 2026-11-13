@@ -26,7 +26,7 @@ On the frontend, we will scaffold a small React app (Vite) under `web/` that tal
   - intent: Build components for listing notes, creating a note, editing an existing note (including title changes with collision handling), and deleting with confirmation; include loading/error states.
   - files: `web/src/App.jsx`, `web/src/components/NotesList.jsx`, `web/src/components/NoteForm.jsx`, `web/src/components/NoteEditor.jsx`
   - acceptance: From the browser, a user can list notes, add, edit, and delete; changes persist and reflect on reload.
-- [ ] `t5` Update documentation
+- [x] `t5` Update documentation
   - intent: Document how to run the web UI and API locally, ports used, and basic API overview.
   - files: `README.md`
   - acceptance: README includes a Web UI section with start commands and brief API notes.
