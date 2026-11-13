@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "api": "nodemon api/server.js",
     "web": "npm --prefix web run dev",
-    "dev": "concurrently -k -p '[{name}]' -n API,WEB -c blue,magenta \"npm:api\" \"npm:web\""
+    "dev": "concurrently -k -p '[{name}]' -n API,WEB -c blue,magenta \"npm:api\" \"npm:web\"",
+    "e2e": "playwright test"
   },
   "author": "",
   "license": "ISC",
@@ -19,7 +20,8 @@
   },
   "devDependencies": {
     "concurrently": "^9.0.1",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "@playwright/test": "^1.48.2"
   },
   "description": ""
 }
