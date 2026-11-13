@@ -18,7 +18,8 @@ yargs.command({
         }
     },
     handler: function(argv) {
-        notes.addNotes(argv.title, argv.body)
+        // notes.js exports addNote (singular); use it to match README CLI path
+        notes.addNote(argv.title, argv.body)
     }
 })
 
