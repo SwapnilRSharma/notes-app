@@ -112,74 +112,40 @@ export default function App() {
         <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gap: '0.5rem' }}>
           {notes.map(n => (
             <li key={n.title} style={{ border: '1px solid #ddd', borderRadius: 6, padding: '0.5rem' }}>
-              {editing === n.title ? (
-                <form
-                  onSubmit={async e => {
-                    e.preventDefault()
-                    setError('')
-                    const payload = { body: editBody }
-                    if (editTitle.trim() && editTitle.trim() !== n.title) payload.newTitle = editTitle.trim()
-                    const res = await fetch(`/api/notes/${encodeURIComponent(n.title)}`, {
-                      method: 'PUT',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(payload),
-                    })
-                    if (res.ok) {
-                      setEditing(null)
-                      await load()
-                    } else if (res.status === 409) {
-                      setError('A note with that title already exists')
-                    } else if (res.status === 404) {
-                      setError('Note not found')
-                    } else {
-                      setError('Failed to update note')
-                    }
-                  }}
-                  style={{ display: 'grid', gap: '0.5rem' }}
-                >
-                  <input value={editTitle} onChange={e => setEditTitle(e.target.value)} />
-                  <textarea rows={3} value={editBody} onChange={e => setEditBody(e.target.value)} />
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <button type="submit">Save</button>
-                    <button type="button" onClick={() => setEditing(null)}>Cancel</button>
-                  </div>
-                </form>
-              ) : (
-                <div style={{ display: 'grid', gap: '0.25rem' }}>
-                  <div>
-                    <strong>{n.title}</strong>: {n.body?.slice(0, 100) || ''}
-                  </div>
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setEditing(n.title)
-                        setEditTitle(n.title)
-                        setEditBody(n.body || '')
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      onClick={async () => {
-                        if (!confirm(`Delete note "${n.title}"?`)) return
-                        setError('')
-                        const res = await fetch(`/api/notes/${encodeURIComponent(n.title)}`, { method: 'DELETE' })
-                        if (res.status === 204) {
-                          await load()
-                        } else if (res.status === 404) {
-                          setError('Note not found')
-                        } else {
-                          setError('Failed to delete note')
-                        }
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </div>
+              <div style={{ display: 'grid', gap: '0.25rem' }}>
+                <div>
+                  <strong>{n.title}</strong>: {n.body?.slice(0, 100) || ''}
                 </div>
-              )}
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEditing(n.title)
+                      setEditTitle(n.title)
+                      setEditBody(n.body || '')
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      if (!confirm(`Delete note "${n.title}"?`)) return
+                      setError('')
+                      const res = await fetch(`/api/notes/${encodeURIComponent(n.title)}`, { method: 'DELETE' })
+                      if (res.status === 204) {
+                        await load()
+                      } else if (res.status === 404) {
+                        setError('Note not found')
+                      } else {
+                        setError('Failed to delete note')
+                      }
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </li>
           ))}
         </ul>
