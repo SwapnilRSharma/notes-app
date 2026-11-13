@@ -32,7 +32,7 @@ Key risks: normalizing legacy notes without `id` (handled by assigning ids on lo
   - intent: Add Playwright with a `webServer` that builds and serves the app; write tests covering list, create, edit, and delete flows, resetting `notes.json` between tests.
   - files: `playwright.config.ts`, `tests/e2e/notes.spec.ts`, `package.json`
   - acceptance: `npx playwright test` runs to green locally, verifying all core user flows.
-- [ ] `t6` Update documentation
+- [x] `t6` Update documentation
   - intent: Document dev, build, start, and test commands plus API overview and data shape.
   - files: `README.md`
   - acceptance: README includes clear steps to run the app and the tests end-to-end.
