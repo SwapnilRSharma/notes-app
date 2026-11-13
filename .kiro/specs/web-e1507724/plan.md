@@ -12,7 +12,7 @@ Risks are limited to concurrent file writes to `notes.json` and path/working-dir
 
 ## Tasks
 
-- [ ] `t1` Extend notes module with full CRUD helpers
+- [x] `t1` Extend notes module with full CRUD helpers
   - intent: Provide `listNotes`, `readNote`, `updateNote`, and `removeNote` alongside existing `addNotes`, with duplicate-title checks and graceful not-found handling so the API/UI can rely on consistent behavior.
   - files: `notes.js`
   - acceptance: The module exports the five helpers; duplicate titles are rejected, and missing notes return a falsy value without throwing.
