@@ -14,7 +14,7 @@ On the frontend, we will scaffold a small React app (Vite) under `web/` that tal
   - intent: Add `listNotes`, `getNote(title)`, `updateNote(oldTitle, { title, body })`, and `removeNote(title)` on top of existing add; centralize load/save helpers and enforce unique title on create/update.
   - files: `notes.js`
   - acceptance: Module exposes CRUD used by API; duplicate titles are rejected with clear errors; updates persist to `notes.json`.
-- [ ] `t2` Add Express API server
+- [x] `t2` Add Express API server
   - intent: Implement a thin REST API using Express with JSON body parsing and CORS: `GET /api/notes`, `GET /api/notes/:title`, `POST /api/notes`, `PUT /api/notes/:title`, `DELETE /api/notes/:title`; map to `notes.js` and return proper 2xx/4xx.
   - files: `server.js`, `package.json`
   - acceptance: Server starts on `PORT` (default 3001) and endpoints perform CRUD against `notes.json`.
