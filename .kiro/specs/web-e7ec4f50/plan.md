@@ -16,7 +16,7 @@ Risks are minimal: shadcn/ui requires correct Tailwind setup and content paths; 
   - intent: Initialize a fresh Vite + React + TS project in `web/` with default entry points.
   - files: `web/package.json`, `web/index.html`, `web/tsconfig.json`, `web/vite.config.ts`, `web/src/main.tsx`, `web/src/App.tsx`
   - acceptance: `npm run dev` inside `web/` serves the default Vite React page without errors.
-- [ ] `t2` Add and configure Tailwind CSS
+ - [x] `t2` Add and configure Tailwind CSS
   - intent: Install Tailwind, PostCSS, and Autoprefixer; create Tailwind config and base stylesheet; wire content globs to `index.html` and `src/**/*.{ts,tsx}`.
   - files: `web/tailwind.config.js`, `web/postcss.config.js`, `web/src/index.css`, `web/index.html`
   - acceptance: Tailwind utility classes apply (e.g., replace default styles with Tailwind-styled container in `App.tsx`).
