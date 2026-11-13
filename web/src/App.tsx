@@ -9,6 +9,11 @@ function App() {
   const [count, setCount] = useState(0)
   const [query, setQuery] = useState('')
   const [notes, setNotes] = useState<Note[]>(() => getNotes())
+  const filtered = query
+    ? notes.filter((n) =>
+        (n.title + ' ' + n.body).toLowerCase().includes(query.toLowerCase()),
+      )
+    : notes
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
@@ -34,7 +39,7 @@ function App() {
             <Button onClick={() => setCount((c) => c + 1)}>Count is {count}</Button>
           </div>
         </div>
-        <NoteList notes={notes} />
+        <NoteList notes={filtered} />
       </main>
     </div>
   )
