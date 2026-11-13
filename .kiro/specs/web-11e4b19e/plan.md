@@ -40,6 +40,6 @@ Create a React app (Vite) under `web/` with a compact UI: a notes list with inli
   - intent: Add CORS middleware in `server.js` for dev, and static file serving for `web/dist` in production; add a build script to produce assets and wire Express to serve them.
   - files: `server.js`, `web/package.json`
   - acceptance: `npm run build` in `web/` then starting `server.js` serves the SPA and API on the same origin.
-- [ ] `t8` Verification
+- [x] `t8` Verification
   - intent: Verify end-to-end flows: list existing notes, create, edit (title/body), delete; test both dev (separate ports with CORS) and production (built SPA served by Express).
   - acceptance: All CRUD operations function via the UI without page reloads; no duplicate titles allowed; production serve works.
