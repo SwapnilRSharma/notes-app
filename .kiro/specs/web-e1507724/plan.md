@@ -40,7 +40,7 @@ Risks are limited to concurrent file writes to `notes.json` and path/working-dir
   - intent: Configure Playwright with a `webServer` that builds the UI and starts the Express server; write tests covering list, create, edit, delete, duplicate-title error, and persistence across reloads.
   - files: `playwright.config.ts`, `tests/e2e/notes.spec.ts`, `package.json`
   - acceptance: `npm run test:e2e` runs all tests to green locally, driving the real browser against the running app.
-- [ ] `t8` Update README with Web UI instructions
+- [x] `t8` Update README with Web UI instructions
   - intent: Document how to build, start, and test the web UI.
   - files: `README.md`
   - acceptance: README has a "Web UI" and "E2E tests" section with working commands.
