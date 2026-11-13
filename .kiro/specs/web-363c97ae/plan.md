@@ -28,7 +28,7 @@ Key risks: normalizing legacy notes without `id` (handled by assigning ids on lo
   - intent: Configure Express to serve `web/dist` and fall back to `index.html` for client routing; add scripts to build and start the combined app.
   - files: `server.js`, `web/vite.config.js`, `package.json`, `README.md`
   - acceptance: `npm run build` then `npm start` serves both the API and the SPA on one port.
-- [ ] `t5` Playwright E2E tests for key flows
+- [x] `t5` Playwright E2E tests for key flows
   - intent: Add Playwright with a `webServer` that builds and serves the app; write tests covering list, create, edit, and delete flows, resetting `notes.json` between tests.
   - files: `playwright.config.ts`, `tests/e2e/notes.spec.ts`, `package.json`
   - acceptance: `npx playwright test` runs to green locally, verifying all core user flows.
