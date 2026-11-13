@@ -16,7 +16,7 @@ Key risks: normalizing legacy notes without `id` (handled by assigning ids on lo
   - intent: Introduce Express with `/api/notes` CRUD and extend `notes.js` with `list/add/update/remove` utilities that ensure each note has a unique `id` persisted in `notes.json`.
   - files: `server.js`, `notes.js`, `package.json`
   - acceptance: API responds with JSON for list/create/update/delete and changes persist to `notes.json`.
-- [ ] `t2` Scaffold React app with Vite and dev proxy
+- [x] `t2` Scaffold React app with Vite and dev proxy
   - intent: Create `web/` Vite + React SPA with a dev proxy mapping `/api` to the Express port and add npm scripts for dev/build.
   - files: `web/index.html`, `web/src/main.jsx`, `web/src/App.jsx`, `web/vite.config.js`, `package.json`
   - acceptance: Running the dev script serves the SPA and API together via the proxy without CORS errors.
