@@ -14,7 +14,7 @@ Refactor `notes.js` to provide clear CRUD helpers that read/write `notes.json` s
   - intent: Provide list/add/update/remove functions on top of `notes.json`, keeping title as identifier and supporting optional title change via `newTitle`.
   - files: `notes.js`
   - acceptance: Module exports `listNotes`, `addNote`, `updateNote`, `removeNote` and they operate correctly on `notes.json`.
-- [ ] `t2` Add Express REST API
+- [x] `t2` Add Express REST API
   - intent: Expose `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:title`, `DELETE /api/notes/:title` returning/accepting JSON.
   - files: `server.js`, `package.json`
   - acceptance: Hitting the endpoints with curl/Postman performs CRUD and returns appropriate status codes.
