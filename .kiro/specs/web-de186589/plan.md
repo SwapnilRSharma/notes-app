@@ -20,7 +20,7 @@ End-to-end tests with Playwright will cover the key flows: listing initial state
   - intent: Create a lightweight API exposing CRUD over notes with JSON bodies, 4xx on conflicts/not-found, and enable CORS for the web app in dev.
   - files: `api/server.js`, `package.json`
   - acceptance: Running `npm run api` serves `GET/POST/PUT/DELETE /api/notes` endpoints backed by `notes.json`.
-- [ ] `t3` Project scripts and dependencies
+- [x] `t3` Project scripts and dependencies
   - intent: Add dependencies (`express`, `cors`, `concurrently`, `nodemon`) and npm scripts for `api`, `web`, and `dev` (concurrent) to streamline local run and tests.
   - files: `package.json`
   - acceptance: `npm run dev` starts both API and web; `npm run api` starts API alone.
