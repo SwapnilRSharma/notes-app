@@ -24,7 +24,7 @@ End-to-end tests with Playwright will cover the key flows: listing initial state
   - intent: Add dependencies (`express`, `cors`, `concurrently`, `nodemon`) and npm scripts for `api`, `web`, and `dev` (concurrent) to streamline local run and tests.
   - files: `package.json`
   - acceptance: `npm run dev` starts both API and web; `npm run api` starts API alone.
-- [ ] `t4` Scaffold React app with Vite
+- [x] `t4` Scaffold React app with Vite
   - intent: Create a Vite React app under `web/` with a simple layout and routing-less SPA structure.
   - files: `web/package.json`, `web/index.html`, `web/src/main.jsx`, `web/src/App.jsx`, `web/vite.config.ts`
   - acceptance: `npm run web` serves the React app at a dev port and renders a placeholder.
