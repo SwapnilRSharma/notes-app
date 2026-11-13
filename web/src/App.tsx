@@ -3,11 +3,13 @@ import type { Note } from './types'
 import { api } from './api/client'
 import { NoteForm } from './components/NoteForm'
 import { NotesList } from './components/NotesList'
+import { EditNoteModal } from './components/EditNoteModal'
 
 export default function App() {
   const [notes, setNotes] = useState<Note[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [editing, setEditing] = useState<Note | null>(null)
 
   async function load() {
     setError(null)
@@ -36,6 +38,14 @@ export default function App() {
     await load()
   }
 
+  async function handleSaveEdit(updated: Note) {
+    if (!editing) return
+    // Attempt update; allow title change
+    await api.updateNote(editing.title, updated)
+    setEditing(null)
+    await load()
+  }
+
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', padding: 24, maxWidth: 900, margin: '0 auto' }}>
       <h1>Notes</h1>
@@ -47,8 +57,11 @@ export default function App() {
         <h2>List</h2>
         {loading && <p>Loading…</p>}
         {error && <p style={{ color: '#d33' }}>{error}</p>}
-        {!loading && !error && <NotesList notes={notes} onDelete={handleDelete} />}
+        {!loading && !error && <NotesList notes={notes} onDelete={handleDelete} onEdit={setEditing} />}
       </section>
+      {editing && (
+        <EditNoteModal note={editing} onClose={() => setEditing(null)} onSave={handleSaveEdit} />
+      )}
     </div>
   )
 }
