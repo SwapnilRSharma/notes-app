@@ -117,6 +117,7 @@ export default function App() {
                   </div>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
                     <button
+                      type="button"
                       onClick={() => {
                         setEditing(n.title)
                         setEditTitle(n.title)
@@ -126,6 +127,7 @@ export default function App() {
                       Edit
                     </button>
                     <button
+                      type="button"
                       onClick={async () => {
                         if (!confirm(`Delete note "${n.title}"?`)) return
                         setError('')
