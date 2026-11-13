@@ -44,7 +44,7 @@ Risks are minimal: shadcn/ui requires correct Tailwind setup and content paths; 
   - intent: Add created date display, basic spacing, and an empty-state card; ensure focus management for the dialog.
   - files: `web/src/components/note-list.tsx`, `web/src/components/create-note-dialog.tsx`, `web/src/App.tsx`
   - acceptance: Empty state is clear, newly created notes show created date, and dialog focuses first input when opened.
-- [ ] `t9` Manual verification checklist
+ - [x] `t9` Manual verification checklist
   - intent: Run the dev server and verify core flows: create note, persistence across reload, and search filtering.
   - files: `web/README.md`
   - acceptance: Documented steps reproduce expected behavior with no console errors.
