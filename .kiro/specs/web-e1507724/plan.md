@@ -32,7 +32,7 @@ Risks are limited to concurrent file writes to `notes.json` and path/working-dir
   - intent: Enforce required fields, detect duplicate titles from API responses, and display loading/empty/error states.
   - files: `web/client/src/components/NotesList.tsx`, `web/client/src/components/NoteForm.tsx`, `web/client/src/components/NoteEditor.tsx`, `web/client/src/App.tsx`
   - acceptance: Duplicate-title attempts show a visible error; empty state is informative; network/API errors surface a clear message.
-- [ ] `t6` Wire build and serve scripts
+- [x] `t6` Wire build and serve scripts
   - intent: Add npm scripts to build the frontend and start the Express server that also serves the built assets.
   - files: `package.json`, `web/server.js`
   - acceptance: `npm run build:web` builds the UI and `npm start` serves both the API and static UI at a known port.
