@@ -24,7 +24,7 @@ Risks are low: concurrency on `notes.json` is out of scope for this toy app; we 
   - intent: Configure dev-time proxy from Vite to Express to avoid CORS and add npm scripts to run API and web together.
   - files: `package.json`, `web/vite.config.js`
   - acceptance: Running a single dev script starts both servers and the web app can call `/api/*` without CORS errors.
-- [ ] `t4` Scaffold React app
+- [x] `t4` Scaffold React app
   - intent: Initialize a Vite React app in `web/` with a basic layout and routing-less single page.
   - files: `web/`, `web/index.html`, `web/src/main.jsx`, `web/src/App.jsx`
   - acceptance: `npm run dev` (or documented equivalent) opens the app shell in the browser.
