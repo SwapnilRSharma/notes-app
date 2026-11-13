@@ -70,7 +70,7 @@ export default function App() {
 
       <section style={{ marginBottom: 24 }}>
         <h2 style={{ fontSize: 18 }}>Create Note</h2>
-        <NoteForm submitLabel="Add" onSubmit={handleCreate} />
+        <NoteForm key={`create-${notes.length}`} submitLabel="Add" onSubmit={handleCreate} />
       </section>
 
       <section>
