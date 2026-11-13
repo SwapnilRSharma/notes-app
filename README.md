@@ -1,26 +1,35 @@
-# notes-app
+# Notes App (CLI + Web UI)
 
-Simple CLI Notes application built with Node.js and yargs. Notes are stored locally in `notes.json` in the project root.
+Node.js notes application with:
+- CLI built with yargs
+- REST API (Express) that persists to `notes.json`
+- React single-page web UI (Vite) consuming the API
 
 ## Requirements
 
-- Node.js 12+ (LTS recommended)
+- Node.js 18+ (LTS recommended)
 
 ## Setup
 
-1. Install dependencies:
+1. Install root dependencies (server + tests):
 
 ```bash
 npm install
 ```
 
-2. Run the CLI using Node:
+2. Install client dependencies (Vite React app):
+
+```bash
+npm --prefix client install
+```
+
+3. Run the CLI using Node (optional):
 
 ```bash
 node app.js --help
 ```
 
-## Usage
+## CLI Usage
 
 Currently implemented commands:
 
@@ -51,6 +60,55 @@ node app.js remove --title "Shopping"
 ```
 
 Notes are saved to `notes.json`. If the file does not exist, it will be created on first add.
+
+## REST API
+
+Start the API-only server:
+
+```bash
+npm start
+```
+
+Default port is `3000` (configurable via `PORT`). Endpoints:
+
+- `GET /api/notes` → list notes
+- `POST /api/notes` → create note `{ title, body }` (409 on duplicate title)
+- `PUT /api/notes/:title` → update note with optional `{ newTitle, body }` (404 if missing, 409 on duplicate `newTitle`)
+- `DELETE /api/notes/:title` → delete note (204 on success, 404 if missing)
+
+## Web UI
+
+Build the client and serve the production build via Express:
+
+```bash
+# Builds client (Vite) and starts Express server
+npm run serve:web
+```
+
+Open http://localhost:3000 to view the app. The UI lets you:
+- Create notes (title + body)
+- Edit a note’s title and body
+- Delete a note with confirmation
+
+Notes load from and save to the same `notes.json` used by the CLI.
+
+## End-to-End Tests (Playwright)
+
+This repo includes Playwright E2E tests exercising the web UI (create → list, edit, delete).
+
+First-time only, ensure browsers are installed:
+
+```bash
+npx playwright install --with-deps
+```
+
+Run the tests:
+
+```bash
+npx playwright test
+```
+
+The test runner will build the client and start the web server automatically on an uncommon port (configured via `playwright.config.ts`), recording video and trace for each run.
 
 ## Examples
 

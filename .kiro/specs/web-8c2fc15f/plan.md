@@ -38,7 +38,7 @@ Refactor `notes.js` to provide clear CRUD helpers that read/write `notes.json` s
   - intent: Add Playwright config with `webServer` running `npm run serve:web` and tests that cover create → list, edit, and delete flows end-to-end.
   - files: `playwright.config.ts`, `tests/notes.e2e.spec.ts`, `package.json`
   - acceptance: `npx playwright test` runs against the served app and all tests pass.
-- [ ] `t8` Update README for web UI
+- [x] `t8` Update README for web UI
   - intent: Document how to build/serve the web UI and run the Playwright tests.
   - files: `README.md`
   - acceptance: README includes accurate run/build/test instructions that work as written.
