@@ -36,7 +36,7 @@ Create a React app (Vite) under `web/` with a compact UI: a notes list with inli
   - intent: Reuse the form for editing an existing note; allow changing title if non-conflicting and updating body; reflect errors from the API.
   - files: `web/src/components/EditNoteModal.tsx`, `web/src/components/NoteForm.tsx`, `web/src/App.tsx`
   - acceptance: Users can edit a note (title and body) and see changes persisted and reflected in the list.
-- [ ] `t7` Serve SPA in production and configure dev CORS
+- [x] `t7` Serve SPA in production and configure dev CORS
   - intent: Add CORS middleware in `server.js` for dev, and static file serving for `web/dist` in production; add a build script to produce assets and wire Express to serve them.
   - files: `server.js`, `web/package.json`
   - acceptance: `npm run build` in `web/` then starting `server.js` serves the SPA and API on the same origin.
