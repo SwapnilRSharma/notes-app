@@ -30,7 +30,7 @@ Refactor `notes.js` to provide clear CRUD helpers that read/write `notes.json` s
   - intent: Allow selecting a note to edit title/body (PUT to `/api/notes/:title` with optional `newTitle`) and delete a note with confirmation (DELETE), updating the list.
   - files: `client/src/App.jsx`
   - acceptance: Editing updates the rendered note; deleting removes it from the list without reload.
-- [ ] `t6` Serve React build via Express and scripts
+- [x] `t6` Serve React build via Express and scripts
   - intent: Serve `client/dist` from Express and add npm scripts to build the client then start the server (`serve:web`); use relative API paths.
   - files: `server.js`, `package.json`
   - acceptance: `npm run serve:web` builds the client and serves the app with working API at `http://localhost:3000`.

@@ -4,7 +4,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build:web": "npm --prefix client run build",
+    "serve:web": "npm run build:web && node server.js"
   },
   "author": "",
   "license": "ISC",

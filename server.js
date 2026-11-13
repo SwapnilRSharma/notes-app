@@ -57,7 +57,18 @@ app.delete('/api/notes/:title', (req, res) => {
   }
 })
 
-// Start server (static serving added in a later task)
+// Serve built client (added per task t6). This must come after API routes otherwise
+// API stays reachable when client is present.
+const clientDist = path.join(__dirname, 'client', 'dist')
+app.use(express.static(clientDist))
+
+// Single Page App fallback: let the client handle routing for non-API GETs
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/')) return next()
+  res.sendFile(path.join(clientDist, 'index.html'))
+})
+
+// Start server
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`)
