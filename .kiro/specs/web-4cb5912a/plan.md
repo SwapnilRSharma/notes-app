@@ -16,7 +16,7 @@ Risks are low: concurrency on `notes.json` is out of scope for this toy app; we 
   - intent: Add list/read/update/remove helpers around the in-file array and centralize save/load so API and CLI share logic.
   - files: `notes.js`
   - acceptance: Functions exist for list, read by title, update by title, and remove by title with persistence to `notes.json`.
-- [ ] `t2` Add Express API server
+- [x] `t2` Add Express API server
   - intent: Expose REST endpoints for notes CRUD and JSON error handling; mount static serving for built frontend in production.
   - files: `server.js`, `package.json`, `notes.js`
   - acceptance: Server starts on a port env `PORT` or 3000 and serves GET `/api/notes`, POST `/api/notes`, PUT `/api/notes/:title`, DELETE `/api/notes/:title`.
