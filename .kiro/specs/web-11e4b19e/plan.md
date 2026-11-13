@@ -28,7 +28,7 @@ Create a React app (Vite) under `web/` with a compact UI: a notes list with inli
   - intent: Add a small API client for the notes endpoints and shared `Note` type; configure base URL via env (default to `http://localhost:3000`).
   - files: `web/src/api/client.ts`, `web/src/types.ts`, `web/.env.example`
   - acceptance: API client methods perform successful requests against the running API server in dev.
-- [ ] `t5` Build Notes UI (list, create, delete)
+- [x] `t5` Build Notes UI (list, create, delete)
   - intent: Implement notes listing with loading/error states and a create form that posts to the API and refreshes the list; add delete actions per row.
   - files: `web/src/components/NotesList.tsx`, `web/src/components/NoteForm.tsx`, `web/src/App.tsx`
   - acceptance: From the UI, users can list existing notes, add a new note, and delete a note with the list updating accordingly.
