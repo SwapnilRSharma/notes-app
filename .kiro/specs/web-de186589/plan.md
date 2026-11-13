@@ -28,7 +28,7 @@ End-to-end tests with Playwright will cover the key flows: listing initial state
   - intent: Create a Vite React app under `web/` with a simple layout and routing-less SPA structure.
   - files: `web/package.json`, `web/index.html`, `web/src/main.jsx`, `web/src/App.jsx`, `web/vite.config.ts`
   - acceptance: `npm run web` serves the React app at a dev port and renders a placeholder.
-- [ ] `t5` Implement notes UI (list/create/edit/delete)
+- [x] `t5` Implement notes UI (list/create/edit/delete)
   - intent: Build components to fetch and render notes, create new notes, edit existing (title/body with validation), and delete, all via the API with optimistic UI or simple refetch.
   - files: `web/src/App.jsx`, `web/src/components/NotesList.jsx`, `web/src/components/NoteForm.jsx`, `web/src/api.js`
   - acceptance: From the browser, user can list, add, edit, and remove notes with visible updates and error toasts/messages on conflicts.
