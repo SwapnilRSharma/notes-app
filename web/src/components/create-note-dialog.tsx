@@ -18,22 +18,6 @@ export function CreateNoteDialog({
   const [error, setError] = React.useState<string | null>(null)
   const titleRef = React.useRef<HTMLInputElement>(null)
 
-  function handleSave(close: () => void) {
-    const t = title.trim()
-    const b = body.trim()
-    if (!t || !b) {
-      setError('Title and body are required.')
-      titleRef.current?.focus()
-      return
-    }
-    const note = addNote({ title: t, body: b })
-    onCreated?.(note)
-    setTitle('')
-    setBody('')
-    setError(null)
-    close()
-  }
-
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>

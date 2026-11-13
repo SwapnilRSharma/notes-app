@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import type { Note } from '../lib/storage'
 
