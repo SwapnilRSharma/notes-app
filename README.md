@@ -2,6 +2,26 @@
 
 Simple CLI Notes application built with Node.js and yargs. Notes are stored locally in `notes.json` in the project root.
 
+## Web UI
+
+A simple React web UI is included under `web/`.
+
+Dev (API + Web with proxy):
+
+```bash
+npm install
+npm run dev
+# API: http://localhost:3000  Web: http://localhost:5173 (calls API via /api proxy)
+```
+
+Production build and serve (single port):
+
+```bash
+npm install
+npm run build   # builds web/ into web/dist
+npm start       # serves API and built web UI at http://localhost:3000
+```
+
 ## Requirements
 
 - Node.js 12+ (LTS recommended)
