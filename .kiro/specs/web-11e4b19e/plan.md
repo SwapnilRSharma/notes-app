@@ -16,7 +16,7 @@ Create a React app (Vite) under `web/` with a compact UI: a notes list with inli
   - intent: Create `server.js` exposing REST endpoints to list, create, update (including optional title change), and delete notes using `notes.js` helpers; enable CORS for dev.
   - files: `server.js`, `package.json`
   - acceptance: Starting `node server.js` exposes GET/POST/PUT/DELETE under `/api/notes` and returns JSON per operation.
-- [ ] `t2` Extend notes module for full CRUD
+- [x] `t2` Extend notes module for full CRUD
   - intent: Add `listNotes`, `readNote`, `removeNote`, `updateNote(title, { title?, body? })`, and `saveNotes` to `notes.js`, preserving existing `addNotes` behavior and using title as the unique key with guarded rename.
   - files: `notes.js`, `notes.json`
   - acceptance: Calling the new functions manipulates `notes.json` correctly; duplicates by title are rejected and updates persist.
