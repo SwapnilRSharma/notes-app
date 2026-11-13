@@ -12,7 +12,7 @@ Create a React app (Vite) under `web/` with a compact UI: a notes list with inli
 
 ## Tasks
 
-- [ ] `t1` Add HTTP API server (Express)
+- [x] `t1` Add HTTP API server (Express)
   - intent: Create `server.js` exposing REST endpoints to list, create, update (including optional title change), and delete notes using `notes.js` helpers; enable CORS for dev.
   - files: `server.js`, `package.json`
   - acceptance: Starting `node server.js` exposes GET/POST/PUT/DELETE under `/api/notes` and returns JSON per operation.
