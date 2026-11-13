@@ -24,7 +24,7 @@ Create a React app (Vite) under `web/` with a compact UI: a notes list with inli
   - intent: Scaffold a Vite React app under `web/` with npm scripts; add basic routes or views without heavy state management.
   - files: `web/package.json`, `web/index.html`, `web/vite.config.ts`, `web/src/main.tsx`, `web/src/App.tsx`
   - acceptance: `npm run dev` in `web/` starts the app and shows a placeholder page.
-- [ ] `t4` Implement API client and types
+- [x] `t4` Implement API client and types
   - intent: Add a small API client for the notes endpoints and shared `Note` type; configure base URL via env (default to `http://localhost:3000`).
   - files: `web/src/api/client.ts`, `web/src/types.ts`, `web/.env.example`
   - acceptance: API client methods perform successful requests against the running API server in dev.
