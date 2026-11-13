@@ -32,7 +32,7 @@ Create a React app (Vite) under `web/` with a compact UI: a notes list with inli
   - intent: Implement notes listing with loading/error states and a create form that posts to the API and refreshes the list; add delete actions per row.
   - files: `web/src/components/NotesList.tsx`, `web/src/components/NoteForm.tsx`, `web/src/App.tsx`
   - acceptance: From the UI, users can list existing notes, add a new note, and delete a note with the list updating accordingly.
-- [ ] `t6` Add Edit flow (title/body)
+- [x] `t6` Add Edit flow (title/body)
   - intent: Reuse the form for editing an existing note; allow changing title if non-conflicting and updating body; reflect errors from the API.
   - files: `web/src/components/EditNoteModal.tsx`, `web/src/components/NoteForm.tsx`, `web/src/App.tsx`
   - acceptance: Users can edit a note (title and body) and see changes persisted and reflected in the list.
