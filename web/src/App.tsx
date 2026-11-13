@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Button } from './components/ui/button'
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from './components/ui/dialog'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,13 +18,26 @@ function App() {
           <p className="mb-4">
             Tailwind is configured. Edit <code className="font-mono">src/App.tsx</code> and save to test HMR.
           </p>
-          <button
-            type="button"
-            className="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            onClick={() => setCount((c) => c + 1)}
-          >
-            Count is {count}
-          </button>
+          <div className="flex gap-3">
+            <Button onClick={() => setCount((c) => c + 1)}>Count is {count}</Button>
+            <Dialog>
+              <DialogTrigger>
+                <Button className="bg-slate-700 hover:bg-slate-700/90">Open Dialog</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Example Dialog</DialogTitle>
+                  <DialogDescription>Shadcn-like dialog without external deps.</DialogDescription>
+                </DialogHeader>
+                <p className="text-sm text-slate-700">Hello from dialog.</p>
+                <DialogFooter>
+                  <DialogClose>
+                    <Button className="bg-slate-700 hover:bg-slate-700/90">Close</Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </main>
     </div>
