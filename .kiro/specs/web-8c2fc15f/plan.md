@@ -22,7 +22,7 @@ Refactor `notes.js` to provide clear CRUD helpers that read/write `notes.json` s
   - intent: Create a Vite React app in `client/` with an `App.jsx` that fetches notes from `/api/notes` and renders an empty state.
   - files: `client/vite.config.js`, `client/index.html`, `client/src/main.jsx`, `client/src/App.jsx`, `package.json`
   - acceptance: The app builds successfully and initial render loads without errors against the API.
-- [ ] `t4` Implement list and create flows
+- [x] `t4` Implement list and create flows
   - intent: Render a list of notes (title + body snippet) and a form to create notes (title, body) that posts to the API and refreshes the list; handle duplicate-title error messaging.
   - files: `client/src/App.jsx`
   - acceptance: Creating a note via the UI shows it immediately in the list; duplicates surface a visible error.
