@@ -39,8 +39,8 @@ export default function NoteEditor({ note, onUpdate, onClose }: Props) {
   return (
     <form onSubmit={submit} style={{ display: 'grid', gap: 8, borderTop: '1px solid #ddd', paddingTop: 12 }}>
       <h2>Edit Note</h2>
-      <input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-      <textarea placeholder="Body" value={body} onChange={(e) => setBody(e.target.value)} rows={4} />
+      <input data-testid="editor-title" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <textarea data-testid="editor-body" placeholder="Body" value={body} onChange={(e) => setBody(e.target.value)} rows={4} />
       {error && <p style={{ color: 'crimson' }}>{error}</p>}
       <div style={{ display: 'flex', gap: 8 }}>
         <button disabled={loading}>{loading ? 'Saving…' : 'Save'}</button>

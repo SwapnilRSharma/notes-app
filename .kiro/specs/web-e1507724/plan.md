@@ -36,7 +36,7 @@ Risks are limited to concurrent file writes to `notes.json` and path/working-dir
   - intent: Add npm scripts to build the frontend and start the Express server that also serves the built assets.
   - files: `package.json`, `web/server.js`
   - acceptance: `npm run build:web` builds the UI and `npm start` serves both the API and static UI at a known port.
-- [ ] `t7` Playwright E2E tests for key flows
+- [x] `t7` Playwright E2E tests for key flows
   - intent: Configure Playwright with a `webServer` that builds the UI and starts the Express server; write tests covering list, create, edit, delete, duplicate-title error, and persistence across reloads.
   - files: `playwright.config.ts`, `tests/e2e/notes.spec.ts`, `package.json`
   - acceptance: `npm run test:e2e` runs all tests to green locally, driving the real browser against the running app.
