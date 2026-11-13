@@ -12,7 +12,7 @@ End-to-end tests with Playwright will cover the key flows: listing initial state
 
 ## Tasks
 
-- [ ] `t1` Extend notes module with list/read/update/remove
+- [x] `t1` Extend notes module with list/read/update/remove
   - intent: Add `listNotes`, `readNote(title)`, `updateNote(oldTitle, { title?, body? })`, and `removeNote(title)` to operate on `notes.json` with duplicate-title checks.
   - files: `notes.js`
   - acceptance: Module exports support all CRUD operations and pass basic manual calls from a Node REPL.
