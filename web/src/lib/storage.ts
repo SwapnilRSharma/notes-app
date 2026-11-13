@@ -18,8 +18,13 @@ function readRaw(): unknown {
 }
 
 function writeRaw(notes: Note[]) {
+  // Tolerate storage being unavailable or throwing (e.g. Safari Private mode, quota, blockers)
   if (typeof localStorage === 'undefined') return
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
+  } catch {
+    // Best-effort persistence only; ignore write failures so UI can still function
+  }
 }
 
 export function getNotes(): Note[] {
