@@ -35,8 +35,14 @@ function App() {
   }
 
   async function handleDelete(title: string) {
-    await deleteNote(title)
-    await refresh()
+    try {
+      // Clear any previous error and attempt delete; surface API failures clearly
+      setError(null)
+      await deleteNote(title)
+      await refresh()
+    } catch (err: any) {
+      setError(err?.message || 'Failed to delete note')
+    }
   }
 
   return (
