@@ -18,6 +18,9 @@ export function NoteList({ notes }: { notes: Note[] }) {
         <Card key={n.id}>
           <CardHeader>
             <CardTitle className="truncate">{n.title}</CardTitle>
+            <p className="mt-1 text-xs text-slate-500">
+              {new Date(n.createdAt).toLocaleString()}
+            </p>
           </CardHeader>
           <CardContent>
             <p className="line-clamp-3 whitespace-pre-wrap text-slate-700">{n.body}</p>
