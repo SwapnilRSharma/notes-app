@@ -40,7 +40,7 @@ Risks are minimal: shadcn/ui requires correct Tailwind setup and content paths; 
   - intent: Wire the search `Input` to filter notes in-memory by title/body (case-insensitive) and update the rendered list as the user types.
   - files: `web/src/App.tsx`, `web/src/components/note-list.tsx`
   - acceptance: Typing in search narrows visible notes to matches in title or body.
-- [ ] `t8` UX polish and empty states
+ - [x] `t8` UX polish and empty states
   - intent: Add created date display, basic spacing, and an empty-state card; ensure focus management for the dialog.
   - files: `web/src/components/note-list.tsx`, `web/src/components/create-note-dialog.tsx`, `web/src/App.tsx`
   - acceptance: Empty state is clear, newly created notes show created date, and dialog focuses first input when opened.
