@@ -1,39 +1,79 @@
 const fs = require('fs')
 
-const getNotes = function () {
-    return 'Your Notes...'
+// Internal helpers kept small and synchronous for simplicity.
+function readNotesFile() {
+  try {
+    const buf = fs.readFileSync('notes.json')
+    const json = buf.toString()
+    const data = JSON.parse(json)
+    return Array.isArray(data) ? data : []
+  } catch (e) {
+    // On first run the file may not exist.
+    return []
+  }
 }
 
-const addNotes = function (title, body) {
-    const notes = loadNotes()
-    const duplicateNotes = notes.filter( function (note) {
-        return note.title === title
-    })
-
-    if(duplicateNotes.length === 0){
-        notes.push({
-            title : title,
-            body : body
-        })
-        const notesJSON = JSON.stringify(notes)
-        fs.writeFileSync('notes.json', notesJSON)
-        console.log('New Note Added!')
-    } else {
-        console.log('Note Title Taken.')
-    }
+function writeNotesFile(notes) {
+  // Write compact JSON; no need for pretty here
+  fs.writeFileSync('notes.json', JSON.stringify(notes))
 }
 
-const loadNotes = function () {
-    try{
-        const dataBuffer = fs.readFileSync('notes.json')
-        const dataJSON = dataBuffer.toString()
-        return JSON.parse(dataJSON)
-    } catch (e) {
-        return []
-    }
+function listNotes() {
+  return readNotesFile()
+}
+
+function addNote(title, body) {
+  const notes = readNotesFile()
+  if (notes.some(n => n.title === title)) {
+    const err = new Error('Duplicate title')
+    err.code = 'DUPLICATE'
+    throw err
+  }
+  const note = { title, body }
+  notes.push(note)
+  writeNotesFile(notes)
+  return note
+}
+
+function updateNote(title, { newTitle, body }) {
+  const notes = readNotesFile()
+  const idx = notes.findIndex(n => n.title === title)
+  if (idx === -1) {
+    const err = new Error('Note not found')
+    err.code = 'NOT_FOUND'
+    throw err
+  }
+  const nextTitle = newTitle && newTitle !== title ? newTitle : title
+  if (nextTitle !== title && notes.some(n => n.title === nextTitle)) {
+    const err = new Error('Duplicate title')
+    err.code = 'DUPLICATE'
+    throw err
+  }
+  const updated = {
+    title: nextTitle,
+    body: typeof body === 'string' ? body : notes[idx].body,
+  }
+  notes[idx] = updated
+  writeNotesFile(notes)
+  return updated
+}
+
+function removeNote(title) {
+  const notes = readNotesFile()
+  const idx = notes.findIndex(n => n.title === title)
+  if (idx === -1) {
+    const err = new Error('Note not found')
+    err.code = 'NOT_FOUND'
+    throw err
+  }
+  const [removed] = notes.splice(idx, 1)
+  writeNotesFile(notes)
+  return removed
 }
 
 module.exports = {
-    getNotes : getNotes,
-    addNotes : addNotes
+  listNotes,
+  addNote,
+  updateNote,
+  removeNote,
 }

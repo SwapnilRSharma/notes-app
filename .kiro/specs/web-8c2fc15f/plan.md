@@ -10,7 +10,7 @@ Refactor `notes.js` to provide clear CRUD helpers that read/write `notes.json` s
 
 ## Tasks
 
-- [ ] `t1` Refactor notes module for CRUD
+- [x] `t1` Refactor notes module for CRUD
   - intent: Provide list/add/update/remove functions on top of `notes.json`, keeping title as identifier and supporting optional title change via `newTitle`.
   - files: `notes.js`
   - acceptance: Module exports `listNotes`, `addNote`, `updateNote`, `removeNote` and they operate correctly on `notes.json`.
