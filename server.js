@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000
 // JSON parser
 app.use(express.json())
 
-// CORS for development (refined in t7 for prod/static serve)
+// CORS for development only
 if (process.env.NODE_ENV !== 'production') {
   app.use(cors())
 }
@@ -114,6 +114,17 @@ app.delete('/api/notes/:title', (req, res) => {
     return error(res, 500, 'failed_to_delete')
   }
 })
+
+// In production, serve the built SPA from web/dist
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path')
+  const staticDir = path.join(__dirname, 'web', 'dist')
+  app.use(express.static(staticDir))
+  app.get('*', (req, res) => {
+    if (req.path.startsWith('/api/')) return error(res, 404, 'not_found')
+    res.sendFile(path.join(staticDir, 'index.html'))
+  })
+}
 
 app.listen(PORT, () => {
   console.log(`API listening on http://localhost:${PORT}`)
