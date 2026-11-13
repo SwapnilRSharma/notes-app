@@ -20,7 +20,7 @@ Create a React app (Vite) under `web/` with a compact UI: a notes list with inli
   - intent: Add `listNotes`, `readNote`, `removeNote`, `updateNote(title, { title?, body? })`, and `saveNotes` to `notes.js`, preserving existing `addNotes` behavior and using title as the unique key with guarded rename.
   - files: `notes.js`, `notes.json`
   - acceptance: Calling the new functions manipulates `notes.json` correctly; duplicates by title are rejected and updates persist.
-- [ ] `t3` Initialize React app (Vite) under web/
+- [x] `t3` Initialize React app (Vite) under web/
   - intent: Scaffold a Vite React app under `web/` with npm scripts; add basic routes or views without heavy state management.
   - files: `web/package.json`, `web/index.html`, `web/vite.config.ts`, `web/src/main.tsx`, `web/src/App.tsx`
   - acceptance: `npm run dev` in `web/` starts the app and shows a placeholder page.
