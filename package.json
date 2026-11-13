@@ -16,6 +16,8 @@
     "validator": "^12.1.0",
     "yargs": "^15.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@playwright/test": "^1.48.2"
+  },
   "description": ""
 }
