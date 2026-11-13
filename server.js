@@ -15,6 +15,8 @@ app.use(express.json())
 // CORS for development only
 if (process.env.NODE_ENV !== 'production') {
   app.use(cors())
+  // Explicitly handle preflight for all routes to avoid failures in some environments
+  app.options('*', cors())
 }
 
 // Helpers to standardize JSON responses
