@@ -16,7 +16,7 @@ Risks are limited to concurrent file writes to `notes.json` and path/working-dir
   - intent: Provide `listNotes`, `readNote`, `updateNote`, and `removeNote` alongside existing `addNotes`, with duplicate-title checks and graceful not-found handling so the API/UI can rely on consistent behavior.
   - files: `notes.js`
   - acceptance: The module exports the five helpers; duplicate titles are rejected, and missing notes return a falsy value without throwing.
-- [ ] `t2` Add Express REST API server
+- [x] `t2` Add Express REST API server
   - intent: Expose HTTP endpoints for notes CRUD and serve JSON responses with appropriate status codes.
   - files: `web/server.js`, `package.json`
   - acceptance: Starting the server exposes `GET /api/notes`, `GET /api/notes/:title`, `POST /api/notes`, `PUT /api/notes/:title`, and `DELETE /api/notes/:title` returning 2xx/4xx codes as appropriate.
