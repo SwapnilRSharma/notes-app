@@ -18,7 +18,7 @@ Refactor `notes.js` to provide clear CRUD helpers that read/write `notes.json` s
   - intent: Expose `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:title`, `DELETE /api/notes/:title` returning/accepting JSON.
   - files: `server.js`, `package.json`
   - acceptance: Hitting the endpoints with curl/Postman performs CRUD and returns appropriate status codes.
-- [ ] `t3` Scaffold React app (Vite)
+- [x] `t3` Scaffold React app (Vite)
   - intent: Create a Vite React app in `client/` with an `App.jsx` that fetches notes from `/api/notes` and renders an empty state.
   - files: `client/vite.config.js`, `client/index.html`, `client/src/main.jsx`, `client/src/App.jsx`, `package.json`
   - acceptance: The app builds successfully and initial render loads without errors against the API.
