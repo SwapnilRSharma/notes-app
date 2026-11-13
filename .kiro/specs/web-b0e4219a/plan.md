@@ -18,7 +18,7 @@ On the frontend, we will scaffold a small React app (Vite) under `web/` that tal
   - intent: Implement a thin REST API using Express with JSON body parsing and CORS: `GET /api/notes`, `GET /api/notes/:title`, `POST /api/notes`, `PUT /api/notes/:title`, `DELETE /api/notes/:title`; map to `notes.js` and return proper 2xx/4xx.
   - files: `server.js`, `package.json`
   - acceptance: Server starts on `PORT` (default 3001) and endpoints perform CRUD against `notes.json`.
-- [ ] `t3` Scaffold React app and dev wiring
+- [x] `t3` Scaffold React app and dev wiring
   - intent: Create a Vite React app under `web/`, configure dev proxy from `/api` to backend, and add npm scripts to run `server`, `client`, and combined `dev` concurrently.
   - files: `web/**`, `package.json`
   - acceptance: Running `npm run dev` starts both backend and frontend; the app loads and can hit `/api/notes`.
