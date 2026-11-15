@@ -30,7 +30,7 @@ Risks/tradeoffs: using `title` as the identifier complicates “rename” (edit 
   - intent: Implement editing a note (title and body) via inline form or modal calling `PUT /api/notes/:title`, with conflict handling when renaming to an existing title.
   - files: `web/src/components/EditNote.jsx`, `web/src/App.jsx`
   - acceptance: Editing updates the note in `notes.json`; attempting to rename to an existing title shows an error and leaves data unchanged.
-- [ ] `t6` Delete note UI
+- [x] `t6` Delete note UI
   - intent: Add delete action per note calling `DELETE /api/notes/:title` with a confirm step.
   - files: `web/src/components/NotesList.jsx`
   - acceptance: Confirming delete removes the note from `notes.json` and it disappears from the list.
