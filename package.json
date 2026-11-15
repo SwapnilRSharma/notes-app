@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node server/index.js",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "dev": "concurrently -k -n api,web -c blue,green \"npm run server\" \"npm --prefix web run dev\""
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,8 @@
     "validator": "^12.1.0",
     "yargs": "^15.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
   "description": ""
 }
