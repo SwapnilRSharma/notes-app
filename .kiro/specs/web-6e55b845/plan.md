@@ -26,7 +26,7 @@ Risks/tradeoffs: using `title` as the identifier complicates “rename” (edit 
   - intent: Add a form to create a note (title, body) calling `POST /api/notes`, handle duplicate-title validation and optimistic refresh of the list.
   - files: `web/src/components/NoteForm.jsx`, `web/src/App.jsx`
   - acceptance: Submitting a valid note adds it to the list; duplicate titles show an inline error and do not create a note.
-- [ ] `t5` Edit note UI
+- [x] `t5` Edit note UI
   - intent: Implement editing a note (title and body) via inline form or modal calling `PUT /api/notes/:title`, with conflict handling when renaming to an existing title.
   - files: `web/src/components/EditNote.jsx`, `web/src/App.jsx`
   - acceptance: Editing updates the note in `notes.json`; attempting to rename to an existing title shows an error and leaves data unchanged.
