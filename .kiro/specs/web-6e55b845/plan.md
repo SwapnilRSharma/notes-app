@@ -34,7 +34,7 @@ Risks/tradeoffs: using `title` as the identifier complicates “rename” (edit 
   - intent: Add delete action per note calling `DELETE /api/notes/:title` with a confirm step.
   - files: `web/src/components/NotesList.jsx`
   - acceptance: Confirming delete removes the note from `notes.json` and it disappears from the list.
-- [ ] `t7` Playwright E2E tests
+- [x] `t7` Playwright E2E tests
   - intent: Add Playwright config to start the API and web app, then write tests that cover create → list, edit (including rename and validation), and delete flows, asserting UI feedback and persisted state via subsequent list.
   - files: `playwright.config.js`, `e2e/notes.spec.js`, `package.json`
   - acceptance: Running the E2E suite boots the app and all user flows pass green on CI/local.
