@@ -22,7 +22,7 @@ Risks/tradeoffs: using `title` as the identifier complicates “rename” (edit 
   - intent: Build a notes list view that fetches from `GET /api/notes` and renders titles with actions to edit and delete; show bodies collapsed/expanded or in-row.
   - files: `web/src/App.jsx`, `web/src/components/NotesList.jsx`
   - acceptance: Visiting the app shows existing notes from `notes.json` and reflects changes after CRUD operations without reload.
-- [ ] `t4` Create note UI
+- [x] `t4` Create note UI
   - intent: Add a form to create a note (title, body) calling `POST /api/notes`, handle duplicate-title validation and optimistic refresh of the list.
   - files: `web/src/components/NoteForm.jsx`, `web/src/App.jsx`
   - acceptance: Submitting a valid note adds it to the list; duplicate titles show an inline error and do not create a note.
