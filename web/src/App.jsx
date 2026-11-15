@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import NotesList from './components/NotesList.jsx'
+import NoteForm from './components/NoteForm.jsx'
 
 export default function App() {
   const [notes, setNotes] = useState([])
@@ -18,6 +19,7 @@ export default function App() {
     <div style={{ fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif', padding: 20 }}>
       <h1>Notes</h1>
       {error && <p style={{ color: 'crimson' }}>{error}</p>}
+      <NoteForm onCreated={load} />
       <NotesList notes={notes} onEdit={() => { /* wired in t5 */ }} onDelete={() => { /* wired in t6 */ }} />
     </div>
   )
