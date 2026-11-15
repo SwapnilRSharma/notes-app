@@ -10,7 +10,7 @@ Risks/tradeoffs: using `title` as the identifier complicates “rename” (edit 
 
 ## Tasks
 
-- [ ] `t1` Expose Notes HTTP API (Express)
+- [x] `t1` Expose Notes HTTP API (Express)
   - intent: Create an Express server exposing CRUD endpoints over the existing notes store: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:title`, `DELETE /api/notes/:title`, reusing and extending `notes.js` to include list, update, and remove helpers.
   - files: `server/index.js`, `notes.js`, `package.json`
   - acceptance: Starting the server enables all endpoints to read/write `notes.json` with proper 4xx on conflicts/missing.
