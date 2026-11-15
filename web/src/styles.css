@@ -49,6 +49,57 @@
   --toast-error-text: #ffd6d6;
 }
 
+/* Light theme overrides */
+[data-theme="light"] {
+  /* Surfaces */
+  --bg: #f5f7fb;
+  --bg-gradient-top: #f7faff;
+  --bg-gradient-bottom: #eef3fb;
+  --panel: #ffffff;
+
+  /* Content */
+  --text: #0b1533;
+  --subtext: #3b4460;
+  --muted: #5d6a7f;
+
+  /* Brand & state keep same blues/reds but adjust rings for light */
+  --accent: #4f8cff;
+  --accent-2: #3b78ee;
+  --danger: #d92d20;
+
+  /* Controls */
+  --border: #d6deef;
+  --input-bg: #ffffff;
+  --input-border: #c7d3ea;
+  --focus-ring: rgba(79,140,255,0.25);
+
+  --btn-bg: #f2f6ff;
+  --btn-border: #c7d3ea;
+  --btn-hover-bg: #e3ecff;
+
+  --btn-primary-bg: #4f8cff;
+  --btn-primary-border: #3b78ee;
+  --btn-primary-hover-bg: #3b78ee;
+  --btn-primary-text: #ffffff;
+
+  --btn-danger-bg: #ffecec;
+  --btn-danger-border: #ffbaba;
+  --btn-danger-hover-bg: #ffdede;
+  --btn-danger-text: #7a1f1f;
+
+  /* Toasts */
+  --toast-info-bg: #e8f0ff;
+  --toast-info-text: #0b1533;
+
+  --toast-success-bg: #e6f7ee;
+  --toast-success-border: #bfe7cf;
+  --toast-success-text: #194d33;
+
+  --toast-error-bg: #ffecec;
+  --toast-error-border: #ffbaba;
+  --toast-error-text: #6b1f1f;
+}
+
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
 body { margin: 0; background: linear-gradient(180deg, var(--bg-gradient-top) 0%, var(--bg-gradient-bottom) 100%); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
