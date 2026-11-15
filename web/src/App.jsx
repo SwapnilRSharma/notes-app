@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import NotesList from './components/NotesList.jsx'
 import NoteForm from './components/NoteForm.jsx'
+import EditNote from './components/EditNote.jsx'
 
 export default function App() {
   const [notes, setNotes] = useState([])
@@ -13,6 +14,8 @@ export default function App() {
       .catch(e => setError(e.message))
   }
 
+  const [editing, setEditing] = useState(null) // currently editing note object
+
   useEffect(() => { load() }, [])
 
   return (
@@ -20,7 +23,18 @@ export default function App() {
       <h1>Notes</h1>
       {error && <p style={{ color: 'crimson' }}>{error}</p>}
       <NoteForm onCreated={load} />
-      <NotesList notes={notes} onEdit={() => { /* wired in t5 */ }} onDelete={() => { /* wired in t6 */ }} />
+      <NotesList
+        notes={notes}
+        onEdit={(note) => setEditing(note)}
+        onDelete={() => { /* wired in t6 */ }}
+      />
+      {editing && (
+        <EditNote
+          note={editing}
+          onSaved={() => { setEditing(null); load() }}
+          onCancel={() => setEditing(null)}
+        />
+      )}
     </div>
   )
 }
