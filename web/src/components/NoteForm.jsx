@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function NoteForm({ onCreated }) {
+export default function NoteForm({ onCreated, onNotify }) {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
   const [error, setError] = useState('')
@@ -10,6 +10,7 @@ export default function NoteForm({ onCreated }) {
     setError('')
     if (!title.trim()) {
       setError('Title is required')
+      onNotify?.('Title is required', 'error')
       return
     }
     const res = await fetch('/api/notes', {
@@ -20,21 +21,25 @@ export default function NoteForm({ onCreated }) {
     if (res.status === 409) {
       const j = await res.json().catch(() => ({}))
       setError(j.error || 'Duplicate title')
+      onNotify?.(j.error || 'Duplicate title', 'error')
       return
     }
     if (!res.ok) {
-      setError('Failed to create note')
+      const msg = 'Failed to create note'
+      setError(msg)
+      onNotify?.(msg, 'error')
       return
     }
     setTitle('')
     setBody('')
     onCreated?.()
+    onNotify?.('Note created', 'success')
   }
 
   return (
-    <form onSubmit={submit} style={{ display: 'grid', gap: 8, maxWidth: 640, marginBottom: 16 }}>
+    <form onSubmit={submit} className="card form">
       <h2>Create Note</h2>
-      {error && <div style={{ color: 'crimson' }}>{error}</div>}
+      {error && <div className="error-text">{error}</div>}
       <input
         placeholder="Title"
         value={title}
@@ -46,8 +51,8 @@ export default function NoteForm({ onCreated }) {
         value={body}
         onChange={e => setBody(e.target.value)}
       />
-      <div>
-        <button type="submit">Add</button>
+      <div className="actions">
+        <button type="submit" className="btn primary">Add</button>
       </div>
     </form>
   )

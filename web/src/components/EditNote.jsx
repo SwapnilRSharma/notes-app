@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function EditNote({ note, onSaved, onCancel }) {
+export default function EditNote({ note, onSaved, onCancel, onNotify }) {
   const [title, setTitle] = useState(note?.title || '')
   const [body, setBody] = useState(note?.body || '')
   const [error, setError] = useState('')
@@ -15,7 +15,9 @@ export default function EditNote({ note, onSaved, onCancel }) {
     e.preventDefault()
     setError('')
     if (!title.trim()) {
-      setError('Title is required')
+      const msg = 'Title is required'
+      setError(msg)
+      onNotify?.(msg, 'error')
       return
     }
     const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, {
@@ -24,25 +26,31 @@ export default function EditNote({ note, onSaved, onCancel }) {
       body: JSON.stringify({ title: title.trim(), body })
     })
     if (res.status === 404) {
-      setError('Original note no longer exists')
+      const msg = 'Original note no longer exists'
+      setError(msg)
+      onNotify?.(msg, 'error')
       return
     }
     if (res.status === 409) {
       const j = await res.json().catch(() => ({}))
-      setError(j.error || 'Title conflict')
+      const msg = j.error || 'Title conflict'
+      setError(msg)
+      onNotify?.(msg, 'error')
       return
     }
     if (!res.ok) {
-      setError('Failed to save note')
+      const msg = 'Failed to save note'
+      setError(msg)
+      onNotify?.(msg, 'error')
       return
     }
     onSaved?.()
   }
 
   return (
-    <form onSubmit={submit} style={{ display: 'grid', gap: 8, maxWidth: 640, padding: 12, border: '1px solid #ddd', borderRadius: 6, background: '#fafafa', marginTop: 12 }}>
+    <form onSubmit={submit} className="card form">
       <h3>Edit Note</h3>
-      {error && <div style={{ color: 'crimson' }}>{error}</div>}
+      {error && <div className="error-text">{error}</div>}
       <input
         placeholder="Title"
         value={title}
@@ -54,9 +62,9 @@ export default function EditNote({ note, onSaved, onCancel }) {
         value={body}
         onChange={e => setBody(e.target.value)}
       />
-      <div style={{ display: 'flex', gap: 8 }}>
-        <button type="submit">Save</button>
-        <button type="button" onClick={() => onCancel?.()}>Cancel</button>
+      <div className="actions">
+        <button type="submit" className="btn primary">Save</button>
+        <button type="button" className="btn" onClick={() => onCancel?.()}>Cancel</button>
       </div>
     </form>
   )
