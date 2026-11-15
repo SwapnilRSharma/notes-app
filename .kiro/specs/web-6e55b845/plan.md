@@ -18,7 +18,7 @@ Risks/tradeoffs: using `title` as the identifier complicates “rename” (edit 
   - intent: Initialize a React SPA in `web/` using Vite (JS), configure dev proxy to `/api` and add npm scripts to start client and server concurrently during development.
   - files: `web/index.html`, `web/vite.config.js`, `web/package.json`, `package.json`, `.gitignore`
   - acceptance: `npm run dev` (or documented scripts) runs client with proxy to the API, and the root page loads.
-- [ ] `t3` Notes list UI
+- [x] `t3` Notes list UI
   - intent: Build a notes list view that fetches from `GET /api/notes` and renders titles with actions to edit and delete; show bodies collapsed/expanded or in-row.
   - files: `web/src/App.jsx`, `web/src/components/NotesList.jsx`
   - acceptance: Visiting the app shows existing notes from `notes.json` and reflects changes after CRUD operations without reload.
