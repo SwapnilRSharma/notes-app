@@ -32,8 +32,8 @@ export default function NoteForm({ onCreated, onNotify }) {
     }
     setTitle('')
     setBody('')
+    // Let the parent handle success side-effects (reload + toast)
     onCreated?.()
-    onNotify?.('Note created', 'success')
   }
 
   return (
