@@ -14,7 +14,7 @@ Risks/tradeoffs: using `title` as the identifier complicates “rename” (edit 
   - intent: Create an Express server exposing CRUD endpoints over the existing notes store: `GET /api/notes`, `POST /api/notes`, `PUT /api/notes/:title`, `DELETE /api/notes/:title`, reusing and extending `notes.js` to include list, update, and remove helpers.
   - files: `server/index.js`, `notes.js`, `package.json`
   - acceptance: Starting the server enables all endpoints to read/write `notes.json` with proper 4xx on conflicts/missing.
-- [ ] `t2` React app scaffold (Vite)
+- [x] `t2` React app scaffold (Vite)
   - intent: Initialize a React SPA in `web/` using Vite (JS), configure dev proxy to `/api` and add npm scripts to start client and server concurrently during development.
   - files: `web/index.html`, `web/vite.config.js`, `web/package.json`, `package.json`, `.gitignore`
   - acceptance: `npm run dev` (or documented scripts) runs client with proxy to the API, and the root page loads.
