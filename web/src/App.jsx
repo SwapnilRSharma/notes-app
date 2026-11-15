@@ -26,7 +26,18 @@ export default function App() {
       <NotesList
         notes={notes}
         onEdit={(note) => setEditing(note)}
-        onDelete={() => { /* wired in t6 */ }}
+        onDelete={async (note) => {
+          // Simple confirm step before deletion
+          // eslint-disable-next-line no-alert
+          const ok = window.confirm(`Delete note "${note.title}"?`)
+          if (!ok) return
+          const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
+          if (!res.ok && res.status !== 204) {
+            setError('Failed to delete')
+            return
+          }
+          load()
+        }}
       />
       {editing && (
         <EditNote
