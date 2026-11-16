@@ -1,9 +1,13 @@
 const fs = require('fs')
+const path = require('path')
 
-// Load all notes from the local JSON file. Returns [] if the file doesn't exist or is invalid.
+// Path to the JSON store kept at repo root
+const STORE_PATH = path.join(__dirname, 'notes.json')
+
+// Read the persisted notes list; return [] if missing or invalid
 const loadNotes = function () {
     try {
-        const dataBuffer = fs.readFileSync('notes.json')
+        const dataBuffer = fs.readFileSync(STORE_PATH)
         const dataJSON = dataBuffer.toString()
         return JSON.parse(dataJSON)
     } catch (e) {
@@ -11,31 +15,55 @@ const loadNotes = function () {
     }
 }
 
-// Persist notes atomically for the current process.
+// Persist provided notes array
 const saveNotes = function (notes) {
-    const notesJSON = JSON.stringify(notes)
-    fs.writeFileSync('notes.json', notesJSON)
+    const notesJSON = JSON.stringify(notes, null, 2)
+    fs.writeFileSync(STORE_PATH, notesJSON)
 }
 
-// Legacy helper kept for CLI compatibility. Returns the created note on success, or false on duplicate.
-const addNotes = function (title, body) {
+// Create a note if unique by title. Returns { ok: true } on success,
+// or { ok: false, error } on validation conflict.
+const addNote = function (title, body) {
     const notes = loadNotes()
-    const duplicate = notes.find((note) => note.title === title)
-
-    if (!duplicate) {
-        const newNote = { title, body }
-        notes.push(newNote)
-        saveNotes(notes)
-        // Keep original logs for the CLI UX
-        console.log('New Note Added!')
-        return newNote
-    } else {
-        console.log('Note Title Taken.')
-        return false
+    const exists = notes.some(note => note.title === title)
+    if (exists) {
+        return { ok: false, error: 'Note title already exists' }
     }
+    notes.push({ title, body })
+    saveNotes(notes)
+    return { ok: true }
 }
 
-// List all notes
+// Update a note identified by currentTitle; can change title/body.
+// Fails if the current note does not exist or if renaming to a duplicate.
+const updateNote = function (currentTitle, { title: newTitle, body }) {
+    const notes = loadNotes()
+    const idx = notes.findIndex(n => n.title === currentTitle)
+    if (idx === -1) {
+        return { ok: false, error: 'Note not found' }
+    }
+    const finalTitle = newTitle !== undefined ? newTitle : notes[idx].title
+    if (finalTitle !== currentTitle && notes.some(n => n.title === finalTitle)) {
+        return { ok: false, error: 'New title conflicts with existing note' }
+    }
+    const finalBody = body !== undefined ? body : notes[idx].body
+    notes[idx] = { title: finalTitle, body: finalBody }
+    saveNotes(notes)
+    return { ok: true }
+}
+
+// Remove a note by title; returns boolean for existence
+const removeNote = function (title) {
+    const notes = loadNotes()
+    const next = notes.filter(n => n.title !== title)
+    if (next.length === notes.length) {
+        return { ok: false, error: 'Note not found' }
+    }
+    saveNotes(next)
+    return { ok: true }
+}
+
+// Return all notes
 const listNotes = function () {
     return loadNotes()
 }
@@ -46,42 +74,34 @@ const readNote = function (title) {
     return notes.find((n) => n.title === title) || null
 }
 
-// Update a note found by currentTitle. Accepts newTitle/body; returns updated note or false if
-// not found or if the newTitle would collide with another existing note.
-const updateNote = function (currentTitle, { title: newTitle, body: newBody }) {
-    const notes = loadNotes()
-    const idx = notes.findIndex((n) => n.title === currentTitle)
-    if (idx === -1) return false
-
-    const existing = notes[idx]
-    const finalTitle = newTitle !== undefined ? newTitle : existing.title
-    const finalBody = newBody !== undefined ? newBody : existing.body
-
-    // If title is changing, ensure no duplicate with a different note
-    if (finalTitle !== existing.title && notes.some((n, i) => i !== idx && n.title === finalTitle)) {
-        return false
-    }
-
-    notes[idx] = { title: finalTitle, body: finalBody }
-    saveNotes(notes)
-    return notes[idx]
+// Legacy function kept for CLI compatibility
+const getNotes = function () {
+    return 'Your Notes...'
 }
 
-// Remove a note by title. Returns true if removed, false if not found.
-const removeNote = function (title) {
-    const notes = loadNotes()
-    const remaining = notes.filter((n) => n.title !== title)
-    if (remaining.length === notes.length) return false
-    saveNotes(remaining)
-    return true
+// Backwards-compatible export for the CLI that used addNotes(title, body)
+// Returns created note object on success, or false on duplicate (to match existing web/server.js usage)
+const addNotes = function (title, body) {
+    const res = addNote(title, body)
+    if (res.ok) {
+        console.log('New Note Added!')
+        return readNote(title)
+    } else {
+        console.log('Note Title Taken.')
+        return false
+    }
 }
 
 module.exports = {
-    // Kept for compatibility though unused by the web; minimal message producer.
-    getNotes: function () { return 'Your Notes...' },
+    // legacy CLI API
+    getNotes,
     addNotes,
-    listNotes,
-    readNote,
+    // programmatic API used by servers
+    addNote,
     updateNote,
     removeNote,
+    listNotes,
+    loadNotes,
+    readNote
+}
 }
