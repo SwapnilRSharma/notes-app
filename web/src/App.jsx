@@ -9,6 +9,10 @@ export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
   const [toasts, setToasts] = useState([]) // { id, message, kind }
+  const [theme, setTheme] = useState(() => {
+    if (typeof document !== 'undefined') return document.documentElement.dataset.theme || 'dark'
+    return 'dark'
+  })
 
   const load = () => {
     fetch('/api/notes')
@@ -21,6 +25,21 @@ export default function App() {
 
   useEffect(() => { load() }, [])
 
+   // keep root attribute in sync when theme changes
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.dataset.theme = theme
+    }
+  }, [theme])
+
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    setTheme(next)
+    try { localStorage.setItem('theme', next) } catch (_) {}
+    // Persist to cookie as well so initial paint script can prefer it even if localStorage is overridden by tests or other scripts
+    try { document.cookie = `theme=${next}; path=/; max-age=31536000` } catch (_) {}
+  }
+
   const notify = (message, kind = 'info') => {
     const id = Math.random().toString(36).slice(2)
     setToasts(t => [...t, { id, message, kind }])
@@ -30,7 +49,12 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <h1>Notes</h1>
+      <div className="row" style={{ justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+        <h1>Notes</h1>
+        <button className="btn" aria-label="Toggle theme" onClick={toggleTheme}>
+          {theme === 'dark' ? 'Light' : 'Dark'} theme
+        </button>
+      </div>
       {error && <p className="error-text">{error}</p>}
       <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
       <NotesList

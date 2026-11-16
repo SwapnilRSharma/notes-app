@@ -33,7 +33,6 @@ export default function NoteForm({ onCreated, onNotify }) {
     setTitle('')
     setBody('')
     onCreated?.()
-    onNotify?.('Note created', 'success')
   }
 
   return (

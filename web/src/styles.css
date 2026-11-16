@@ -1,18 +1,108 @@
 :root {
-  /* Blue theme palette */
+  /* Default theme (dark) tokens */
+  /* Surfaces */
   --bg: #0b1533;
+  --bg-gradient-top: #08122a; /* for body gradient start */
+  --bg-gradient-bottom: #0a1a3d; /* for body gradient end */
   --panel: #0f1f3d;
+
+  /* Content */
   --text: #e7eaf3;
+  --subtext: #d6d9e5; /* softer body text */
   --muted: #9aa3b2;
+
+  /* Brand & state */
   --accent: #4f8cff; /* primary blue */
   --accent-2: #60a5fa; /* secondary blue */
   --danger: #ef4444;
+
+  /* Controls */
   --border: #243a6b;
+  --input-bg: #0c1836;
+  --input-border: #2a4a84;
+  --focus-ring: rgba(79,140,255,0.15);
+
+  --btn-bg: #1a2f66;
+  --btn-border: #2c4aa0;
+  --btn-hover-bg: #25407f;
+
+  --btn-primary-bg: var(--accent);
+  --btn-primary-border: #3b78ee;
+  --btn-primary-hover-bg: #3b78ee;
+  --btn-primary-text: #ffffff;
+
+  --btn-danger-bg: #2a1a1a;
+  --btn-danger-border: #512222;
+  --btn-danger-hover-bg: #3a2020;
+  --btn-danger-text: #ffb4b4;
+
+  /* Toasts */
+  --toast-info-bg: #132a55;
+  --toast-info-text: var(--text);
+
+  --toast-success-bg: #14321f;
+  --toast-success-border: #164d2a;
+  --toast-success-text: #daf7e3;
+
+  --toast-error-bg: #3a1a1a;
+  --toast-error-border: #5a2424;
+  --toast-error-text: #ffd6d6;
+}
+
+/* Light theme overrides */
+[data-theme="light"] {
+  /* Surfaces */
+  --bg: #f5f7fb;
+  --bg-gradient-top: #f7faff;
+  --bg-gradient-bottom: #eef3fb;
+  --panel: #ffffff;
+
+  /* Content */
+  --text: #0b1533;
+  --subtext: #3b4460;
+  --muted: #5d6a7f;
+
+  /* Brand & state keep same blues/reds but adjust rings for light */
+  --accent: #4f8cff;
+  --accent-2: #3b78ee;
+  --danger: #d92d20;
+
+  /* Controls */
+  --border: #d6deef;
+  --input-bg: #ffffff;
+  --input-border: #c7d3ea;
+  --focus-ring: rgba(79,140,255,0.25);
+
+  --btn-bg: #f2f6ff;
+  --btn-border: #c7d3ea;
+  --btn-hover-bg: #e3ecff;
+
+  --btn-primary-bg: #4f8cff;
+  --btn-primary-border: #3b78ee;
+  --btn-primary-hover-bg: #3b78ee;
+  --btn-primary-text: #ffffff;
+
+  --btn-danger-bg: #ffecec;
+  --btn-danger-border: #ffbaba;
+  --btn-danger-hover-bg: #ffdede;
+  --btn-danger-text: #7a1f1f;
+
+  /* Toasts */
+  --toast-info-bg: #e8f0ff;
+  --toast-info-text: #0b1533;
+
+  --toast-success-bg: #e6f7ee;
+  --toast-success-border: #bfe7cf;
+  --toast-success-text: #194d33;
+
+  --toast-error-bg: #ffecec;
+  --toast-error-border: #ffbaba;
+  --toast-error-text: #6b1f1f;
 }
 
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
-body { margin: 0; background: linear-gradient(180deg, #08122a 0%, #0a1a3d 100%); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+body { margin: 0; background: linear-gradient(180deg, var(--bg-gradient-top) 0%, var(--bg-gradient-bottom) 100%); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
 
 .app-container { max-width: 900px; margin: 0 auto; padding: 24px; }
 h1, h2, h3 { margin: 0 0 12px; font-weight: 650; }
@@ -22,25 +112,38 @@ h1, h2, h3 { margin: 0 0 12px; font-weight: 650; }
 .form { display: grid; gap: 10px; max-width: 720px; margin: 12px 0 20px; }
 .actions { display: flex; gap: 8px; margin-left: auto; }
 
-input, textarea { width: 100%; background: #0c1836; color: var(--text); border: 1px solid #2a4a84; border-radius: 8px; padding: 10px 12px; outline: none; }
-input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,140,255,0.15); }
+input, textarea { width: 100%; background: var(--input-bg); color: var(--text); border: 1px solid var(--input-border); border-radius: 8px; padding: 10px 12px; outline: none; }
+input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--focus-ring); }
 
-.btn { background: #1a2f66; color: var(--text); border: 1px solid #2c4aa0; border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: transform 0.05s ease, background 0.2s ease; }
-.btn:hover { background: #25407f; }
+.btn { background: var(--btn-bg); color: var(--text); border: 1px solid var(--btn-border); border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: transform 0.05s ease, background 0.2s ease; }
+.btn:hover { background: var(--btn-hover-bg); }
 .btn:active { transform: translateY(1px); }
-.btn.primary { background: var(--accent); border-color: #3b78ee; color: white; }
-.btn.primary:hover { background: #3b78ee; }
-.btn.danger { background: #2a1a1a; border-color: #512222; color: #ffb4b4; }
-.btn.danger:hover { background: #3a2020; }
+.btn.primary { background: var(--btn-primary-bg); border-color: var(--btn-primary-border); color: var(--btn-primary-text); }
+.btn.primary:hover { background: var(--btn-primary-hover-bg); }
+.btn.danger { background: var(--btn-danger-bg); border-color: var(--btn-danger-border); color: var(--btn-danger-text); }
+.btn.danger:hover { background: var(--btn-danger-hover-bg); }
 
 .list { list-style: none; padding: 0; margin: 0; }
 .list-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
 .row { display: flex; gap: 10px; align-items: center; }
 .title { min-width: 160px; }
-.body { margin-left: 28px; white-space: pre-wrap; color: #d6d9e5; }
+.body { margin-left: 28px; white-space: pre-wrap; color: var(--subtext); }
+
+/* Style the list expand/collapse control to match theme */
+.row > button[aria-label="Toggle body"] {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+.row > button[aria-label="Toggle body"]:hover {
+  background: var(--btn-hover-bg);
+}
 
 .toasts { position: fixed; right: 18px; top: 18px; display: grid; gap: 8px; z-index: 9999; }
-.toast { padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: #132a55; color: var(--text); box-shadow: 0 8px 24px rgba(0,0,0,0.25); cursor: pointer; }
-.toast.success { background: #14321f; border-color: #164d2a; color: #daf7e3; }
-.toast.error { background: #3a1a1a; border-color: #5a2424; color: #ffd6d6; }
-.toast.info { background: #132a55; }
+.toast { padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--toast-info-bg); color: var(--toast-info-text); box-shadow: 0 8px 24px rgba(0,0,0,0.25); cursor: pointer; }
+.toast.success { background: var(--toast-success-bg); border-color: var(--toast-success-border); color: var(--toast-success-text); }
+.toast.error { background: var(--toast-error-bg); border-color: var(--toast-error-border); color: var(--toast-error-text); }
+.toast.info { background: var(--toast-info-bg); color: var(--toast-info-text); }
