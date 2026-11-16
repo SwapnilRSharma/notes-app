@@ -1,7 +1,7 @@
 const notes = require('./notes.js')
 const yargs = require('yargs')
 
-//Creating Add Command
+// Add command
 yargs.command({
     command: 'add',
     describe: 'Add a note',
@@ -18,12 +18,12 @@ yargs.command({
         }
     },
     handler: function(argv) {
-        // notes.js exports addNote (singular); use it to match README CLI path
+        // Use programmatic addNote API for the CLI entrypoint
         notes.addNote(argv.title, argv.body)
     }
 })
 
-//Create Remove Command
+// Remove command
 yargs.command({
     command: 'remove',
     describe: 'Removing a note',
@@ -32,7 +32,7 @@ yargs.command({
     }
 })
 
-//Create Read command
+// Read command
 yargs.command({
     command: 'read',
     describe: 'Read note',
@@ -41,7 +41,7 @@ yargs.command({
     }
 })
 
-//Create List command
+// List command
 yargs.command({
     command: 'list',
     describe: 'List notes',
