@@ -17,7 +17,7 @@ export default function NotesList({ notes, onEdit, onDelete }) {
       {notes.map(n => (
         <li key={n.title} className="list-item">
           <div className="row">
-            <button onClick={() => toggle(n.title)} aria-label="Toggle body">{expanded.has(n.title) ? '▾' : '▸'}</button>
+            <button className="toggle" onClick={() => toggle(n.title)} aria-label="Toggle body">{expanded.has(n.title) ? '▾' : '▸'}</button>
             <strong className="title">{n.title}</strong>
             <div className="actions">
               <button className="btn" onClick={() => onEdit?.(n)}>Edit</button>
