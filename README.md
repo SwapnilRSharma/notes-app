@@ -4,7 +4,7 @@ Simple CLI Notes application built with Node.js and yargs. Notes are stored loca
 
 ## Requirements
 
-- Node.js 12+ (LTS recommended)
+- Node.js 18+ (LTS recommended)
 
 ## Setup
 
@@ -51,6 +51,40 @@ node app.js remove --title "Shopping"
 ```
 
 Notes are saved to `notes.json`. If the file does not exist, it will be created on first add.
+
+## Web UI
+
+This project also includes a simple web UI and REST API.
+
+Build the frontend:
+
+```bash
+npm run build:web
+```
+
+Start the server (serves API and built UI) on http://localhost:5174:
+
+```bash
+npm start
+```
+
+Open your browser to http://localhost:5174 to use the Notes UI.
+
+## E2E Tests
+
+End-to-end tests are written with Playwright and drive the real app in a browser.
+
+Install Playwright browsers (first run only):
+
+```bash
+npx playwright install --with-deps
+```
+
+Run the tests:
+
+```bash
+npm run test:e2e
+```
 
 ## Examples
 

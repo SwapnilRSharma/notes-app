@@ -1,4 +1,10 @@
 node_modules/
-web/node_modules/
+# Build artifacts
+web/client/dist/
 web/dist/
 dist/
+web/node_modules/
+
+# Playwright test artifacts
+test-results/
+playwright-report/

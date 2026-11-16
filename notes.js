@@ -21,11 +21,6 @@ const saveNotes = function (notes) {
     fs.writeFileSync(STORE_PATH, notesJSON)
 }
 
-// Legacy function kept for CLI compatibility
-const getNotes = function () {
-    return 'Your Notes...'
-}
-
 // Create a note if unique by title. Returns { ok: true } on success,
 // or { ok: false, error } on validation conflict.
 const addNote = function (title, body) {
@@ -73,13 +68,27 @@ const listNotes = function () {
     return loadNotes()
 }
 
+// Read a single note by exact title. Returns the note object or null if missing.
+const readNote = function (title) {
+    const notes = loadNotes()
+    return notes.find((n) => n.title === title) || null
+}
+
+// Legacy function kept for CLI compatibility
+const getNotes = function () {
+    return 'Your Notes...'
+}
+
 // Backwards-compatible export for the CLI that used addNotes(title, body)
+// Returns created note object on success, or false on duplicate (to match existing web/server.js usage)
 const addNotes = function (title, body) {
     const res = addNote(title, body)
     if (res.ok) {
         console.log('New Note Added!')
+        return readNote(title)
     } else {
         console.log('Note Title Taken.')
+        return false
     }
 }
 
@@ -87,10 +96,12 @@ module.exports = {
     // legacy CLI API
     getNotes,
     addNotes,
-    // new programmatic API used by the web server
+    // programmatic API used by servers
     addNote,
     updateNote,
     removeNote,
     listNotes,
-    loadNotes
+    loadNotes,
+    readNote
+}
 }
