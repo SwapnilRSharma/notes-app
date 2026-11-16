@@ -9,6 +9,13 @@ export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
   const [toasts, setToasts] = useState([]) // { id, message, kind }
+  // UI theme: 'light' | 'dark'
+  const [theme, setTheme] = useState(() => {
+    const saved = typeof window !== 'undefined' ? window.localStorage.getItem('theme') : null
+    if (saved === 'light' || saved === 'dark') return saved
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark'
+    return 'light'
+  })
 
   const load = () => {
     fetch('/api/notes')
@@ -21,6 +28,12 @@ export default function App() {
 
   useEffect(() => { load() }, [])
 
+  // Apply theme to the root element so CSS can react via [data-theme]
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    try { window.localStorage.setItem('theme', theme) } catch {}
+  }, [theme])
+
   const notify = (message, kind = 'info') => {
     const id = Math.random().toString(36).slice(2)
     setToasts(t => [...t, { id, message, kind }])
@@ -30,7 +43,19 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <h1>Notes</h1>
+      <div className="row" style={{ marginBottom: 12 }}>
+        <h1 style={{ marginBottom: 0 }}>Notes</h1>
+        <div className="actions">
+          <button
+            className="btn"
+            type="button"
+            aria-label="Toggle theme"
+            onClick={() => setTheme(t => (t === 'dark' ? 'light' : 'dark'))}
+          >
+            {theme === 'dark' ? 'Light mode' : 'Dark mode'}
+          </button>
+        </div>
+      </div>
       {error && <p className="error-text">{error}</p>}
       <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
       <NotesList
