@@ -36,6 +36,8 @@ export default function App() {
     const next = theme === 'dark' ? 'light' : 'dark'
     setTheme(next)
     try { localStorage.setItem('theme', next) } catch (_) {}
+    // Persist to cookie as well so initial paint script can prefer it even if localStorage is overridden by tests or other scripts
+    try { document.cookie = `theme=${next}; path=/; max-age=31536000` } catch (_) {}
   }
 
   const notify = (message, kind = 'info') => {

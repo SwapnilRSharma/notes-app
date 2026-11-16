@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notes</title>
     <script>
-      // Set theme before first paint based on persisted preference or system
+      // Set theme before first paint based on persisted preference or system.
+      // Prefer cookie (set by the app on toggle) over localStorage so that reloads
+      // keep the user's last explicit choice even if localStorage is mutated by scripts.
       (function() {
         try {
+          var cookieTheme = (document.cookie.split('; ').find(function(p){ return p.indexOf('theme=') === 0 }) || '').split('=')[1];
           var stored = localStorage.getItem('theme');
           var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          var theme = stored || (prefersDark ? 'dark' : 'light') || 'dark';
+          var theme = cookieTheme || stored || (prefersDark ? 'dark' : 'light') || 'dark';
           document.documentElement.dataset.theme = theme;
         } catch (_) {
           document.documentElement.dataset.theme = 'dark';
