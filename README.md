@@ -20,6 +20,34 @@ npm install
 node app.js --help
 ```
 
+## Themes (Web UI)
+
+The web UI supports multiple color themes using CSS custom properties.
+
+- Available themes: Default (Blue), Green, Purple
+- Switching: Use the Theme selector in the top-right of the app header. Your choice is saved and applied on reload.
+- Programmatic: Set `document.documentElement.dataset.theme = 'green' | 'purple'` to switch, or remove the attribute for the default theme.
+
+To add a new theme, override the same CSS variables used by the app in `web/src/styles.css`:
+
+```css
+/* Example: teal theme */
+:root[data-theme="teal"] {
+  --bg: #062b2e;
+  --bg-gradient-start: #041f22;
+  --bg-gradient-end: #08343a;
+  --panel: #0b373b;
+  --text: #e6fbfd;
+  --muted: #9ad3d7;
+  --accent: #14b8a6;
+  --accent-2: #2dd4bf;
+  --danger: #ef4444; /* optional */
+  --border: #155e63;
+}
+```
+
+No component markup changes are required; themes work by overriding variables under `:root[data-theme="<name>"]`.
+
 ## Usage
 
 Currently implemented commands:
