@@ -9,6 +9,7 @@ export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
   const [toasts, setToasts] = useState([]) // { id, message, kind }
+  const [theme, setTheme] = useState('') // '' = default (blue), or 'green' | 'purple'
 
   const load = () => {
     fetch('/api/notes')
@@ -21,6 +22,27 @@ export default function App() {
 
   useEffect(() => { load() }, [])
 
+  // Apply saved theme on load with safe fallback
+  useEffect(() => {
+    const saved = localStorage.getItem('theme') || ''
+    const allowed = new Set(['', 'green', 'purple'])
+    const next = allowed.has(saved) ? saved : ''
+    setTheme(next)
+    if (next) document.documentElement.setAttribute('data-theme', next)
+    else document.documentElement.removeAttribute('data-theme')
+  }, [])
+
+  const changeTheme = (next) => {
+    setTheme(next)
+    if (next) {
+      document.documentElement.setAttribute('data-theme', next)
+      localStorage.setItem('theme', next)
+    } else {
+      document.documentElement.removeAttribute('data-theme')
+      localStorage.removeItem('theme')
+    }
+  }
+
   const notify = (message, kind = 'info') => {
     const id = Math.random().toString(36).slice(2)
     setToasts(t => [...t, { id, message, kind }])
@@ -30,7 +52,17 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <h1>Notes</h1>
+      <div className="row" style={{ alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+        <h1>Notes</h1>
+        <label>
+          <span style={{ marginRight: 8 }}>Theme:</span>
+          <select aria-label="Theme" value={theme} onChange={e => changeTheme(e.target.value)}>
+            <option value="">Default (Blue)</option>
+            <option value="green">Green</option>
+            <option value="purple">Purple</option>
+          </select>
+        </label>
+      </div>
       {error && <p className="error-text">{error}</p>}
       <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
       <NotesList
