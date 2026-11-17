@@ -1,6 +1,8 @@
 :root {
-  /* Blue theme palette */
+  /* Default (blue) theme palette */
   --bg: #0b1533;
+  --bg-gradient-start: #08122a;
+  --bg-gradient-end: #0a1a3d;
   --panel: #0f1f3d;
   --text: #e7eaf3;
   --muted: #9aa3b2;
@@ -10,9 +12,38 @@
   --border: #243a6b;
 }
 
+/* Green theme overrides */
+:root[data-theme="green"] {
+  --bg: #0c2a1a;
+  --bg-gradient-start: #071f14;
+  --bg-gradient-end: #0d3b27;
+  --panel: #0f2f22;
+  --text: #e8f6ee;
+  --muted: #9cc7b3;
+  --accent: #22c55e; /* emerald */
+  --accent-2: #34d399;
+  --danger: #ef4444; /* unchanged */
+  --border: #1f4d38;
+}
+
+/* Purple theme overrides */
+:root[data-theme="purple"] {
+  --bg: #1b1030;
+  --bg-gradient-start: #140a26;
+  --bg-gradient-end: #20123a;
+  --panel: #231743;
+  --text: #efe8fb;
+  --muted: #b7a8d9;
+  --accent: #a855f7; /* violet */
+  --accent-2: #c084fc;
+  --danger: #ef4444; /* unchanged */
+  --border: #3a2e66;
+}
+
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
-body { margin: 0; background: linear-gradient(180deg, #08122a 0%, #0a1a3d 100%); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+/* Background colors driven by CSS variables so themes can override without changing markup */
+body { margin: 0; background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
 
 .app-container { max-width: 900px; margin: 0 auto; padding: 24px; }
 h1, h2, h3 { margin: 0 0 12px; font-weight: 650; }
@@ -22,11 +53,12 @@ h1, h2, h3 { margin: 0 0 12px; font-weight: 650; }
 .form { display: grid; gap: 10px; max-width: 720px; margin: 12px 0 20px; }
 .actions { display: flex; gap: 8px; margin-left: auto; }
 
-input, textarea { width: 100%; background: #0c1836; color: var(--text); border: 1px solid #2a4a84; border-radius: 8px; padding: 10px 12px; outline: none; }
-input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,140,255,0.15); }
+/* Inputs pick up theme via variables; fallback colors use current blue values */
+input, textarea { width: 100%; background: var(--input-bg, #0c1836); color: var(--text); border: 1px solid var(--input-border, #2a4a84); border-radius: 8px; padding: 10px 12px; outline: none; }
+input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent); }
 
-.btn { background: #1a2f66; color: var(--text); border: 1px solid #2c4aa0; border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: transform 0.05s ease, background 0.2s ease; }
-.btn:hover { background: #25407f; }
+.btn { background: var(--btn-bg, #1a2f66); color: var(--text); border: 1px solid var(--btn-border, #2c4aa0); border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: transform 0.05s ease, background 0.2s ease; }
+.btn:hover { background: var(--btn-bg-hover, #25407f); }
 .btn:active { transform: translateY(1px); }
 .btn.primary { background: var(--accent); border-color: #3b78ee; color: white; }
 .btn.primary:hover { background: #3b78ee; }
