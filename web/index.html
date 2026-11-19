@@ -9,12 +9,12 @@
         try {
           var saved = localStorage.getItem('theme');
           var root = document.documentElement;
-          if (saved === 'system' || !saved) {
+          if (saved === 'system') {
             var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             root.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-          } else {
+          } else if (saved) {
             root.setAttribute('data-theme', saved);
-          }
+          } // if absent, keep default "blue" set on <html>
         } catch (e) { /* ignore */ }
       })();
     </script>
