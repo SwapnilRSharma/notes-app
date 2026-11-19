@@ -3,6 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Set initial theme before React mounts to avoid a flash of incorrect theme
+      (function() {
+        try {
+          var saved = localStorage.getItem('theme');
+          var root = document.documentElement;
+          if (saved === 'system' || !saved) {
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            root.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+          } else {
+            root.setAttribute('data-theme', saved);
+          }
+        } catch (e) { /* ignore */ }
+      })();
+    </script>
     <title>Notes</title>
   </head>
   <body>
