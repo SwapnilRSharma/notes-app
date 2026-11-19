@@ -9,6 +9,7 @@ export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
   const [toasts, setToasts] = useState([]) // { id, message, kind }
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'blue')
 
   const load = () => {
     fetch('/api/notes')
@@ -21,6 +22,22 @@ export default function App() {
 
   useEffect(() => { load() }, [])
 
+  // Apply theme selection and persist it
+  useEffect(() => {
+    const root = document.documentElement
+    if (theme === 'system') {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      root.dataset.theme = prefersDark ? 'dark' : 'light'
+    } else {
+      root.dataset.theme = theme
+    }
+    try { localStorage.setItem('theme', theme) } catch {}
+  }, [theme])
+
+  const handleThemeChange = (e) => {
+    setTheme(e.target.value)
+  }
+
   const notify = (message, kind = 'info') => {
     const id = Math.random().toString(36).slice(2)
     setToasts(t => [...t, { id, message, kind }])
@@ -30,7 +47,18 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <h1>Notes</h1>
+      <div className="row" style={{ alignItems: 'center' }}>
+        <h1>Notes</h1>
+        <div className="actions" style={{ alignItems: 'center' }}>
+          <label htmlFor="theme-select" style={{ color: 'var(--muted)' }}>Theme:</label>
+          <select id="theme-select" value={theme} onChange={handleThemeChange} style={{ background: 'var(--panel)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 6, padding: '6px 8px' }}>
+            <option value="system">System</option>
+            <option value="blue">Blue</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </div>
       {error && <p className="error-text">{error}</p>}
       <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
       <NotesList
