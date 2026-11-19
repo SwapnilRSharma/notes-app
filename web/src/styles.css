@@ -1,5 +1,5 @@
 :root {
-  /* Blue theme palette */
+  /* Default palette mirrors the current Blue look to avoid regressions */
   --bg: #0b1533;
   --panel: #0f1f3d;
   --text: #e7eaf3;
@@ -8,6 +8,40 @@
   --accent-2: #60a5fa; /* secondary blue */
   --danger: #ef4444;
   --border: #243a6b;
+}
+
+/* Theme-scoped variable sets. The "blue" theme matches the current visuals. */
+:root[data-theme="blue"] {
+  --bg: #0b1533;
+  --panel: #0f1f3d;
+  --text: #e7eaf3;
+  --muted: #9aa3b2;
+  --accent: #4f8cff;
+  --accent-2: #60a5fa;
+  --danger: #ef4444;
+  --border: #243a6b;
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f7fb; /* page background color (used where applicable) */
+  --panel: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #2563eb; /* blue-600 */
+  --accent-2: #3b82f6; /* blue-500 */
+  --danger: #dc2626;
+  --border: #e2e8f0;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b0f1a;
+  --panel: #101625;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #60a5fa; /* lighter blue for dark */
+  --accent-2: #93c5fd;
+  --danger: #f87171;
+  --border: #1f2937;
 }
 
 * { box-sizing: border-box; }
