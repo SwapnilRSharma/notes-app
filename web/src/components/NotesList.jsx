@@ -10,7 +10,14 @@ export default function NotesList({ notes, onEdit, onDelete }) {
     setExpanded(next)
   }
 
-  if (!notes || notes.length === 0) return <p>No notes yet.</p>
+  if (!notes || notes.length === 0) {
+    return (
+      <div className="card" style={{ padding: 20, textAlign: 'center', opacity: 0.9 }}>
+        <h3 style={{ marginBottom: 8 }}>No notes yet</h3>
+        <p style={{ margin: 0, color: 'var(--muted)' }}>Start by adding your first note using the form above.</p>
+      </div>
+    )
+  }
 
   return (
     <ul className="list">

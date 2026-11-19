@@ -19,9 +19,12 @@ export default function App() {
 
   const load = () => {
     fetch('/api/notes')
-      .then(r => r.ok ? r.json() : Promise.reject(new Error('Failed to load')))
+      .then(r => r.ok ? r.json() : Promise.reject(new Error('Failed to load notes')))
       .then(data => { setNotes(data); setError('') })
-      .catch(e => setError(e.message))
+      .catch(e => {
+        setError(e.message)
+        notify(e.message || 'Failed to load notes', 'error')
+      })
   }
 
   const [editing, setEditing] = useState(null) // currently editing note object

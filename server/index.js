@@ -52,6 +52,11 @@ app.delete('/api/notes/:title', (req, res) => {
   res.status(204).end()
 })
 
-app.listen(PORT, () => {
-  console.log(`Notes API listening on http://localhost:${PORT}`)
-})
+// Only start listening when executed directly. When required (e.g. tests), export the app.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Notes API listening on http://localhost:${PORT}`)
+  })
+}
+
+module.exports = app
