@@ -1,4 +1,14 @@
 node_modules/
-web/node_modules/
+# Frontend build outputs
+client/dist/
 web/dist/
 dist/
+
+# Per-project lockfiles we don't want to track in deprecated client
+client/package-lock.json
+
+# Playwright test artifacts
+test-results/
+
+# Nested node_modules in web (root ignore covers most cases, but keep explicit)
+web/node_modules/
