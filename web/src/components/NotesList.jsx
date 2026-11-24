@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Card, CardContent } from './ui/card.jsx'
+import Button from './ui/button.jsx'
 
 export default function NotesList({ notes, onEdit, onDelete }) {
   const [expanded, setExpanded] = useState(() => new Set())
@@ -16,17 +18,23 @@ export default function NotesList({ notes, onEdit, onDelete }) {
     <ul className="list">
       {notes.map(n => (
         <li key={n.title} className="list-item">
-          <div className="row">
-            <button onClick={() => toggle(n.title)} aria-label="Toggle body">{expanded.has(n.title) ? '▾' : '▸'}</button>
-            <strong className="title">{n.title}</strong>
-            <div className="actions">
-              <button className="btn" onClick={() => onEdit?.(n)}>Edit</button>
-              <button className="btn danger" onClick={() => onDelete?.(n)}>Delete</button>
-            </div>
-          </div>
-          {expanded.has(n.title) && (
-            <div className="body">{n.body}</div>
-          )}
+          <Card className="bg-white text-slate-900">
+            <CardContent className="py-3">
+              <div className="flex items-center gap-2">
+                <button onClick={() => toggle(n.title)} aria-label="Toggle body" className="px-1">
+                  {expanded.has(n.title) ? '▾' : '▸'}
+                </button>
+                <strong className="title flex-1">{n.title}</strong>
+                <div className="flex gap-2">
+                  <Button variant="outline" onClick={() => onEdit?.(n)}>Edit</Button>
+                  <Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50" onClick={() => onDelete?.(n)}>Delete</Button>
+                </div>
+              </div>
+              {expanded.has(n.title) && (
+                <div className="body mt-2 text-slate-700">{n.body}</div>
+              )}
+            </CardContent>
+          </Card>
         </li>
       ))}
     </ul>
