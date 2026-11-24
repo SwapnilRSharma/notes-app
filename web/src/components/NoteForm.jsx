@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import Input from './ui/input.jsx'
+import Textarea from './ui/textarea.jsx'
+import Button from './ui/button.jsx'
 
 export default function NoteForm({ onCreated, onNotify }) {
   const [title, setTitle] = useState('')
@@ -40,19 +43,19 @@ export default function NoteForm({ onCreated, onNotify }) {
     <form onSubmit={submit} className="card form">
       <h2>Create Note</h2>
       {error && <div className="error-text">{error}</div>}
-      <input
+      <Input
         placeholder="Title"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
-      <textarea
+      <Textarea
         placeholder="Body"
         rows={4}
         value={body}
         onChange={e => setBody(e.target.value)}
       />
       <div className="actions">
-        <button type="submit" className="btn primary">Add</button>
+        <Button type="submit">Add</Button>
       </div>
     </form>
   )
