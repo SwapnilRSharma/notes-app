@@ -26,13 +26,10 @@ export default function App() {
     toast({ description: message, variant })
   }
 
-  const containerStyle = { maxWidth: 900, margin: '0 auto', padding: 24 }
-  const errorStyle = { color: '#b91c1c', margin: '6px 0' }
-
   return (
-    <div style={containerStyle}>
-      <h1>Notes</h1>
-      {error && <p style={errorStyle}>{error}</p>}
+    <div className="max-w-5xl mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-3">Notes</h1>
+      {error && <p className="text-red-700 mb-2">{error}</p>}
       <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
       <NotesList
         notes={notes}

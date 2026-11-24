@@ -1,9 +1,16 @@
-import { useToast as useToastFromProvider } from './toaster.jsx'
+import { toast as sonnerToast } from 'sonner'
 
-// Re-export a hook named useToast to align with Shadcn usage patterns
+// Shadcn-compatible useToast wrapper backed by Sonner
 // Usage: const { toast } = useToast(); toast({ description: '...', variant: 'success' })
 export function useToast() {
-  return useToastFromProvider()
+  return {
+    toast: ({ description, variant } = {}) => {
+      // Map variants to sonner styles
+      if (variant === 'success') return sonnerToast.success(description)
+      if (variant === 'error' || variant === 'destructive') return sonnerToast.error(description)
+      return sonnerToast(description)
+    }
+  }
 }
 
 export default useToast

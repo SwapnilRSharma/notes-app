@@ -42,13 +42,11 @@ Replace the hand-rolled styling and custom components with Shadcn equivalents: f
   - intent: Swap `Toasts.jsx` usage for Shadcn `useToast` and `<Toaster />`, mapping kinds to Shadcn variants; keep messages and click-to-dismiss; remove the custom component and wiring.
   - files: `web/src/App.jsx`, `web/src/components/Toasts.jsx`
   - acceptance: Success and error notifications appear via Shadcn toasts; the legacy `Toasts.jsx` is no longer rendered.
- - [ ] `t9` Remove legacy CSS and finish Tailwind restyle
-  - status: running
+- [x] `t9` Remove legacy CSS and finish Tailwind restyle
   - intent: Delete `styles.css`, remove its import, and express prior layout/states with Tailwind utilities in the migrated components.
   - files: `web/src/styles.css`, `web/src/App.jsx`, `web/src/components/*.jsx`
   - acceptance: No references to `styles.css`; UI spacing and readability are acceptable in both light/dark modes (per Shadcn defaults).
-- [ ] `t10` Playwright E2E tests for key flows
-  - status: running
+- [x] `t10` Playwright E2E tests for key flows
   - intent: Ensure E2E coverage for create, duplicate validation, edit with title conflict, successful rename, toggle body visibility, and cancel/confirm delete; adjust selectors or add ARIA where needed so tests remain stable.
   - files: `e2e/notes.spec.js`
   - acceptance: All Playwright tests pass locally against the updated UI without flakiness.

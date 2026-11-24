@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Button } from './ui/button.jsx'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible.jsx'
 
 export default function NotesList({ notes, onEdit, onDelete }) {
   const [expanded, setExpanded] = useState(() => new Set())
@@ -12,28 +14,29 @@ export default function NotesList({ notes, onEdit, onDelete }) {
 
   if (!notes || notes.length === 0) return <p>No notes yet.</p>
 
-  const listStyle = { listStyle: 'none', padding: 0, margin: 0 }
-  const itemStyle = { padding: '10px 0', borderBottom: '1px solid #e2e8f0' }
-  const rowStyle = { display: 'flex', gap: 10, alignItems: 'center' }
-  const titleStyle = { minWidth: 160, fontWeight: 600 }
-  const bodyStyle = { marginLeft: 28, whiteSpace: 'pre-wrap' }
-  const actionsStyle = { display: 'flex', gap: 8, marginLeft: 'auto' }
-
   return (
-    <ul style={listStyle}>
+    <ul className="list-none p-0 m-0">
       {notes.map(n => (
-        <li key={n.title} style={itemStyle}>
-          <div style={rowStyle}>
-            <button onClick={() => toggle(n.title)} aria-label="Toggle body">{expanded.has(n.title) ? '▾' : '▸'}</button>
-            <strong style={titleStyle}>{n.title}</strong>
-            <div style={actionsStyle}>
-              <button onClick={() => onEdit?.(n)}>Edit</button>
-              <button onClick={() => onDelete?.(n)}>Delete</button>
+        <li key={n.title} className="py-2 border-b border-slate-200">
+          <Collapsible open={expanded.has(n.title)} onOpenChange={() => toggle(n.title)}>
+            <div className="flex items-center gap-2">
+              <CollapsibleTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label="Toggle body">
+                  <span aria-hidden>{expanded.has(n.title) ? '▾' : '▸'}</span>
+                </Button>
+              </CollapsibleTrigger>
+              <strong className="min-w-40 font-semibold">{n.title}</strong>
+              <div className="ml-auto flex gap-2">
+                <Button variant="outline" onClick={() => onEdit?.(n)}>Edit</Button>
+                <Button variant="destructive" onClick={() => onDelete?.(n)}>Delete</Button>
+              </div>
             </div>
-          </div>
-          {expanded.has(n.title) && (
-            <div style={bodyStyle}>{n.body}</div>
-          )}
+            <CollapsibleContent>
+              {expanded.has(n.title) && (
+                <div className="ml-8 whitespace-pre-wrap mt-1">{n.body}</div>
+              )}
+            </CollapsibleContent>
+          </Collapsible>
         </li>
       ))}
     </ul>

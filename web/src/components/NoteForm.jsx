@@ -1,4 +1,8 @@
 import { useState } from 'react'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card.jsx'
+import { Input } from './ui/input.jsx'
+import { Textarea } from './ui/textarea.jsx'
+import { Button } from './ui/button.jsx'
 
 export default function NoteForm({ onCreated, onNotify }) {
   const [title, setTitle] = useState('')
@@ -36,28 +40,30 @@ export default function NoteForm({ onCreated, onNotify }) {
     onNotify?.('Note created', 'success')
   }
 
-  const formStyle = { display: 'grid', gap: 10, maxWidth: 720, margin: '12px 0 20px' }
-  const actionsStyle = { display: 'flex', gap: 8, marginLeft: 'auto' }
-  const errorStyle = { color: '#b91c1c', margin: '6px 0' }
-
   return (
-    <form onSubmit={submit} style={formStyle}>
-      <h2>Create Note</h2>
-      {error && <div style={errorStyle}>{error}</div>}
-      <input
-        placeholder="Title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-      />
-      <textarea
-        placeholder="Body"
-        rows={4}
-        value={body}
-        onChange={e => setBody(e.target.value)}
-      />
-      <div style={actionsStyle}>
-        <button type="submit">Add</button>
-      </div>
+    <form onSubmit={submit} className="max-w-2xl my-3">
+      <Card>
+        <CardHeader>
+          <CardTitle>Create Note</CardTitle>
+        </CardHeader>
+        <CardContent className="grid gap-3">
+          {error && <div className="text-red-700 text-sm">{error}</div>}
+          <Input
+            placeholder="Title"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+          />
+          <Textarea
+            placeholder="Body"
+            rows={4}
+            value={body}
+            onChange={e => setBody(e.target.value)}
+          />
+        </CardContent>
+        <CardFooter className="justify-end">
+          <Button type="submit">Add</Button>
+        </CardFooter>
+      </Card>
     </form>
   )
 }
