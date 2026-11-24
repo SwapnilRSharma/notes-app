@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 import NotesList from './components/NotesList.jsx'
 import NoteForm from './components/NoteForm.jsx'
 import EditNote from './components/EditNote.jsx'
-import Toasts from './components/Toasts.jsx'
+import { ToasterProvider, useToast } from './components/ui/toast.jsx'
 import './styles.css'
 
 export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
-  const [toasts, setToasts] = useState([]) // { id, message, kind }
+  // toast API from shadcn-like provider
+  const toastApi = useToast?.()
 
   const load = () => {
     fetch('/api/notes')
@@ -22,13 +23,14 @@ export default function App() {
   useEffect(() => { load() }, [])
 
   const notify = (message, kind = 'info') => {
-    const id = Math.random().toString(36).slice(2)
-    setToasts(t => [...t, { id, message, kind }])
-    // auto dismiss after 2.5s
-    setTimeout(() => setToasts(t => t.filter(x => x.id !== id)), 2500)
+    if (!toastApi) return
+    if (kind === 'success') toastApi.success(message)
+    else if (kind === 'error') toastApi.destructive(message)
+    else toastApi.info?.(message) || toastApi(message)
   }
 
   return (
+    <ToasterProvider>
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur">
         <div className="container mx-auto max-w-screen-lg px-4 md:px-6 py-4 flex items-center justify-between">
@@ -62,7 +64,7 @@ export default function App() {
           />
         )}
       </main>
-      <Toasts toasts={toasts} onDismiss={(id) => setToasts(t => t.filter(x => x.id !== id))} />
     </div>
+    </ToasterProvider>
   )
 }
