@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import NotesList from './components/NotesList.jsx'
 import NoteForm from './components/NoteForm.jsx'
 import EditNote from './components/EditNote.jsx'
-import Toasts from './components/Toasts.jsx'
+import { ToasterProvider, toast } from './components/ui/toast.jsx'
 import './styles.css'
 
 export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
-  const [toasts, setToasts] = useState([]) // { id, message, kind }
+  // toast API from shadcn-like provider (global helpers wired by ToasterProvider)
 
   const load = () => {
     fetch('/api/notes')
@@ -22,45 +22,47 @@ export default function App() {
   useEffect(() => { load() }, [])
 
   const notify = (message, kind = 'info') => {
-    const id = Math.random().toString(36).slice(2)
-    setToasts(t => [...t, { id, message, kind }])
-    // auto dismiss after 2.5s
-    setTimeout(() => setToasts(t => t.filter(x => x.id !== id)), 2500)
+    if (kind === 'success') toast.success(message)
+    else if (kind === 'error') toast.destructive(message)
+    else toast.info(message)
   }
 
   return (
-    <div className="app-container">
-      <h1>Notes</h1>
-      {error && <p className="error-text">{error}</p>}
-      <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
-      <NotesList
-        notes={notes}
-        onEdit={(note) => setEditing(note)}
-        onDelete={async (note) => {
-          // Simple confirm step before deletion
-          // eslint-disable-next-line no-alert
-          const ok = window.confirm(`Delete note "${note.title}"?`)
-          if (!ok) return
-          const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
-          if (!res.ok && res.status !== 204) {
-            const msg = 'Failed to delete'
-            setError(msg)
-            notify(msg, 'error')
-            return
-          }
-          load()
-          notify('Note deleted', 'success')
-        }}
-      />
-      {editing && (
-        <EditNote
-          note={editing}
-          onSaved={() => { setEditing(null); load(); notify('Note updated', 'success') }}
-          onCancel={() => setEditing(null)}
-          onNotify={notify}
+    <ToasterProvider>
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur">
+        <div className="container mx-auto max-w-screen-lg px-4 md:px-6 py-4 flex items-center justify-between">
+          <h1 className="text-xl md:text-2xl font-semibold">Notes</h1>
+        </div>
+      </header>
+      <main className="container mx-auto max-w-screen-lg px-4 md:px-6 py-6 space-y-6">
+        {error && <p className="error-text">{error}</p>}
+        <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
+        <NotesList
+          notes={notes}
+          onEdit={(note) => setEditing(note)}
+          onDelete={async (note) => {
+            const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
+            if (!res.ok && res.status !== 204) {
+              const msg = 'Failed to delete'
+              setError(msg)
+              notify(msg, 'error')
+              return
+            }
+            load()
+            notify('Note deleted', 'success')
+          }}
         />
-      )}
-      <Toasts toasts={toasts} onDismiss={(id) => setToasts(t => t.filter(x => x.id !== id))} />
+        {editing && (
+          <EditNote
+            note={editing}
+            onSaved={() => { setEditing(null); load(); notify('Note updated', 'success') }}
+            onCancel={() => setEditing(null)}
+            onNotify={notify}
+          />
+        )}
+      </main>
     </div>
+    </ToasterProvider>
   )
 }
