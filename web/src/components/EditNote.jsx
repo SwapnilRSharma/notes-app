@@ -47,10 +47,14 @@ export default function EditNote({ note, onSaved, onCancel, onNotify }) {
     onSaved?.()
   }
 
+  const formStyle = { display: 'grid', gap: 10, maxWidth: 720, margin: '12px 0 20px' }
+  const actionsStyle = { display: 'flex', gap: 8, marginLeft: 'auto' }
+  const errorStyle = { color: '#b91c1c', margin: '6px 0' }
+
   return (
-    <form onSubmit={submit} className="card form">
+    <form onSubmit={submit} style={formStyle}>
       <h3>Edit Note</h3>
-      {error && <div className="error-text">{error}</div>}
+      {error && <div style={errorStyle}>{error}</div>}
       <input
         placeholder="Title"
         value={title}
@@ -62,9 +66,9 @@ export default function EditNote({ note, onSaved, onCancel, onNotify }) {
         value={body}
         onChange={e => setBody(e.target.value)}
       />
-      <div className="actions">
-        <button type="submit" className="btn primary">Save</button>
-        <button type="button" className="btn" onClick={() => onCancel?.()}>Cancel</button>
+      <div style={actionsStyle}>
+        <button type="submit">Save</button>
+        <button type="button" onClick={() => onCancel?.()}>Cancel</button>
       </div>
     </form>
   )

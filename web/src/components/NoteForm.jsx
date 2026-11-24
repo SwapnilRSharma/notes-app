@@ -36,10 +36,14 @@ export default function NoteForm({ onCreated, onNotify }) {
     onNotify?.('Note created', 'success')
   }
 
+  const formStyle = { display: 'grid', gap: 10, maxWidth: 720, margin: '12px 0 20px' }
+  const actionsStyle = { display: 'flex', gap: 8, marginLeft: 'auto' }
+  const errorStyle = { color: '#b91c1c', margin: '6px 0' }
+
   return (
-    <form onSubmit={submit} className="card form">
+    <form onSubmit={submit} style={formStyle}>
       <h2>Create Note</h2>
-      {error && <div className="error-text">{error}</div>}
+      {error && <div style={errorStyle}>{error}</div>}
       <input
         placeholder="Title"
         value={title}
@@ -51,8 +55,8 @@ export default function NoteForm({ onCreated, onNotify }) {
         value={body}
         onChange={e => setBody(e.target.value)}
       />
-      <div className="actions">
-        <button type="submit" className="btn primary">Add</button>
+      <div style={actionsStyle}>
+        <button type="submit">Add</button>
       </div>
     </form>
   )
