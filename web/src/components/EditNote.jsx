@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react'
+import Input from './ui/input.jsx'
+import Textarea from './ui/textarea.jsx'
+import Button from './ui/button.jsx'
 
 export default function EditNote({ note, onSaved, onCancel, onNotify }) {
   const [title, setTitle] = useState(note?.title || '')
@@ -51,20 +54,20 @@ export default function EditNote({ note, onSaved, onCancel, onNotify }) {
     <form onSubmit={submit} className="card form">
       <h3>Edit Note</h3>
       {error && <div className="error-text">{error}</div>}
-      <input
+      <Input
         placeholder="Title"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
-      <textarea
+      <Textarea
         placeholder="Body"
         rows={4}
         value={body}
         onChange={e => setBody(e.target.value)}
       />
       <div className="actions">
-        <button type="submit" className="btn primary">Save</button>
-        <button type="button" className="btn" onClick={() => onCancel?.()}>Cancel</button>
+        <Button type="submit">Save</Button>
+        <Button type="button" variant="outline" onClick={() => onCancel?.()}>Cancel</Button>
       </div>
     </form>
   )
