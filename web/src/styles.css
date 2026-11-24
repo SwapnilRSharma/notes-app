@@ -1,3 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* shadcn/ui token baseline mapped to existing blue/dark palette */
+:root {
+  --background: 222 63% 6%; /* ~#0b1533 */
+  --foreground: 220 27% 92%; /* ~#e7eaf3 */
+  --card: 220 58% 15%; /* ~panel */
+  --card-foreground: 220 27% 92%;
+  --popover: 222 63% 6%;
+  --popover-foreground: 220 27% 92%;
+  --primary: 217 100% 63%; /* ~#4f8cff */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 213 94% 68%; /* ~#60a5fa */
+  --secondary-foreground: 222 63% 6%;
+  --muted: 216 14% 64%; /* ~#9aa3b2 */
+  --muted-foreground: 216 14% 80%;
+  --accent: 217 100% 63%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%; /* ~#ef4444 */
+  --destructive-foreground: 0 0% 100%;
+  --border: 221 49% 28%; /* ~#243a6b */
+  --input: 221 49% 28%;
+  --ring: 217 100% 63%;
+  --radius: 0.625rem; /* 10px */
+}
+
+.dark {
+  /* Same as root since we ship a dark-first UI */
+  --background: 222 63% 6%;
+  --foreground: 220 27% 92%;
+  --card: 220 58% 15%;
+  --card-foreground: 220 27% 92%;
+  --popover: 222 63% 6%;
+  --popover-foreground: 220 27% 92%;
+  --primary: 217 100% 63%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 213 94% 68%;
+  --secondary-foreground: 222 63% 6%;
+  --muted: 216 14% 64%;
+  --muted-foreground: 216 14% 80%;
+  --accent: 217 100% 63%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 221 49% 28%;
+  --input: 221 49% 28%;
+  --ring: 217 100% 63%;
+  --radius: 0.625rem;
+}
+
+/* Existing theme variables kept for legacy classes during migration */
 :root {
   /* Blue theme palette */
   --bg: #0b1533;
