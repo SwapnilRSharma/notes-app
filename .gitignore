@@ -2,3 +2,5 @@ node_modules/
 web/node_modules/
 web/dist/
 dist/
+test-results/
+artifacts/

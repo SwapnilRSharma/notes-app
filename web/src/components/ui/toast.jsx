@@ -23,7 +23,8 @@ export function ToasterProvider({ children }) {
   }, [push])
 
   return (
-    <ToastPrimitive.Provider swipeDirection="right">
+    // Add a finite auto-dismiss duration to prevent accumulation in long sessions
+    <ToastPrimitive.Provider swipeDirection="right" duration={5000}>
       {children}
       <div className="fixed right-4 top-4 z-[100] grid gap-2">
         {items.map(t => (
@@ -33,7 +34,16 @@ export function ToasterProvider({ children }) {
             onOpenChange={(open) => { if (!open) setItems(list => list.filter(i => i.id !== t.id)) }}
             open
           >
-            <ToastPrimitive.Title>{t.message}</ToastPrimitive.Title>
+            <div className="flex items-start justify-between gap-3">
+              <ToastPrimitive.Title className="leading-snug">{t.message}</ToastPrimitive.Title>
+              {/* Explicit close control to let users dismiss toasts immediately */}
+              <ToastPrimitive.Close
+                aria-label="Close"
+                className="shrink-0 rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              >
+                ×
+              </ToastPrimitive.Close>
+            </div>
           </ToastPrimitive.Root>
         ))}
         <ToastPrimitive.Viewport />
