@@ -42,10 +42,6 @@ export default function App() {
           notes={notes}
           onEdit={(note) => setEditing(note)}
           onDelete={async (note) => {
-            // Simple confirm step before deletion
-            // eslint-disable-next-line no-alert
-            const ok = window.confirm(`Delete note "${note.title}"?`)
-            if (!ok) return
             const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
             if (!res.ok && res.status !== 204) {
               const msg = 'Failed to delete'
