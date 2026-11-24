@@ -34,7 +34,9 @@ export default function NotesList({ notes, onEdit, onDelete }) {
           }}>
             <div className="row">
               <CollapsibleTrigger asChild>
-                <button onClick={() => toggle(n.title)} aria-label="Toggle body">{expanded.has(n.title) ? '▾' : '▸'}</button>
+                <button onClick={() => toggle(n.title)} aria-label="Toggle body" className="h-11 w-11 md:h-8 md:w-8 rounded-md border border-input bg-transparent text-foreground">
+                  {expanded.has(n.title) ? '▾' : '▸'}
+                </button>
               </CollapsibleTrigger>
               <strong className="title">{n.title}</strong>
               <div className="actions">

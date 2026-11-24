@@ -57,7 +57,7 @@ export default function NoteForm({ onCreated, onNotify }) {
           onChange={e => setBody(e.target.value)}
         />
         <div className="actions">
-          <Button type="submit" variant="default">Add</Button>
+          <Button type="submit" variant="default" size="lg">Add</Button>
         </div>
       </form>
     </Card>

@@ -68,8 +68,8 @@ export default function EditNote({ note, onSaved, onCancel, onNotify }) {
           onChange={e => setBody(e.target.value)}
         />
         <div className="actions">
-          <Button type="submit" variant="default">Save</Button>
-          <Button type="button" variant="secondary" onClick={() => onCancel?.()}>Cancel</Button>
+          <Button type="submit" variant="default" size="lg">Save</Button>
+          <Button type="button" variant="secondary" size="lg" onClick={() => onCancel?.()}>Cancel</Button>
         </div>
       </form>
     </Card>
