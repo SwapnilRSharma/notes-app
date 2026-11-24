@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import NotesList from './components/NotesList.jsx'
 import NoteForm from './components/NoteForm.jsx'
 import EditNote from './components/EditNote.jsx'
-import Toasts from './components/Toasts.jsx'
 import './styles.css'
 import Button from './components/ui/button.jsx'
 import Separator from './components/ui/separator.jsx'
+import Toaster from './components/ui/toaster.jsx'
+import { toast } from './components/ui/use-toast.js'
 
 export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
-  const [toasts, setToasts] = useState([]) // { id, message, kind }
 
   const load = () => {
     fetch('/api/notes')
@@ -24,10 +24,7 @@ export default function App() {
   useEffect(() => { load() }, [])
 
   const notify = (message, kind = 'info') => {
-    const id = Math.random().toString(36).slice(2)
-    setToasts(t => [...t, { id, message, kind }])
-    // auto dismiss after 2.5s
-    setTimeout(() => setToasts(t => t.filter(x => x.id !== id)), 2500)
+    toast(message, kind)
   }
 
   return (
@@ -72,7 +69,7 @@ export default function App() {
           />
         )}
       </main>
-      <Toasts toasts={toasts} onDismiss={(id) => setToasts(t => t.filter(x => x.id !== id))} />
+      <Toaster />
     </div>
   )
 }
