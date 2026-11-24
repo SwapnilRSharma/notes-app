@@ -29,37 +29,43 @@ export default function App() {
   }
 
   return (
-    <div className="app-container">
-      <h1>Notes</h1>
-      {error && <p className="error-text">{error}</p>}
-      <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
-      <NotesList
-        notes={notes}
-        onEdit={(note) => setEditing(note)}
-        onDelete={async (note) => {
-          // Simple confirm step before deletion
-          // eslint-disable-next-line no-alert
-          const ok = window.confirm(`Delete note "${note.title}"?`)
-          if (!ok) return
-          const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
-          if (!res.ok && res.status !== 204) {
-            const msg = 'Failed to delete'
-            setError(msg)
-            notify(msg, 'error')
-            return
-          }
-          load()
-          notify('Note deleted', 'success')
-        }}
-      />
-      {editing && (
-        <EditNote
-          note={editing}
-          onSaved={() => { setEditing(null); load(); notify('Note updated', 'success') }}
-          onCancel={() => setEditing(null)}
-          onNotify={notify}
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur">
+        <div className="container mx-auto max-w-screen-lg px-4 md:px-6 py-4 flex items-center justify-between">
+          <h1 className="text-xl md:text-2xl font-semibold">Notes</h1>
+        </div>
+      </header>
+      <main className="container mx-auto max-w-screen-lg px-4 md:px-6 py-6 space-y-6">
+        {error && <p className="error-text">{error}</p>}
+        <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
+        <NotesList
+          notes={notes}
+          onEdit={(note) => setEditing(note)}
+          onDelete={async (note) => {
+            // Simple confirm step before deletion
+            // eslint-disable-next-line no-alert
+            const ok = window.confirm(`Delete note "${note.title}"?`)
+            if (!ok) return
+            const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
+            if (!res.ok && res.status !== 204) {
+              const msg = 'Failed to delete'
+              setError(msg)
+              notify(msg, 'error')
+              return
+            }
+            load()
+            notify('Note deleted', 'success')
+          }}
         />
-      )}
+        {editing && (
+          <EditNote
+            note={editing}
+            onSaved={() => { setEditing(null); load(); notify('Note updated', 'success') }}
+            onCancel={() => setEditing(null)}
+            onNotify={notify}
+          />
+        )}
+      </main>
       <Toasts toasts={toasts} onDismiss={(id) => setToasts(t => t.filter(x => x.id !== id))} />
     </div>
   )
