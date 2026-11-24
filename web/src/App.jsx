@@ -5,6 +5,7 @@ import EditNote from './components/EditNote.jsx'
 import Toasts from './components/Toasts.jsx'
 import './styles.css'
 import Button from './components/ui/button.jsx'
+import Separator from './components/ui/separator.jsx'
 
 export default function App() {
   const [notes, setNotes] = useState([])
@@ -37,6 +38,7 @@ export default function App() {
         <div className="mt-2">
           <Button onClick={() => notify('UI ready', 'info')}>Sample Button</Button>
         </div>
+        <Separator className="mt-3" />
       </header>
       {error && <p className="error-text">{error}</p>}
       <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
