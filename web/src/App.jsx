@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react'
 import NotesList from './components/NotesList.jsx'
 import NoteForm from './components/NoteForm.jsx'
 import EditNote from './components/EditNote.jsx'
-import Toasts from './components/Toasts.jsx'
-import './styles.css'
+import { useToast } from './components/ui/use-toast.js'
 
 export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
-  const [toasts, setToasts] = useState([]) // { id, message, kind }
+  const { toast } = useToast()
 
   const load = () => {
     fetch('/api/notes')
@@ -22,16 +21,18 @@ export default function App() {
   useEffect(() => { load() }, [])
 
   const notify = (message, kind = 'info') => {
-    const id = Math.random().toString(36).slice(2)
-    setToasts(t => [...t, { id, message, kind }])
-    // auto dismiss after 2.5s
-    setTimeout(() => setToasts(t => t.filter(x => x.id !== id)), 2500)
+    // map kind -> variant per Shadcn conventions
+    const variant = kind === 'success' ? 'success' : kind === 'error' ? 'error' : 'default'
+    toast({ description: message, variant })
   }
 
+  const containerStyle = { maxWidth: 900, margin: '0 auto', padding: 24 }
+  const errorStyle = { color: '#b91c1c', margin: '6px 0' }
+
   return (
-    <div className="app-container">
+    <div style={containerStyle}>
       <h1>Notes</h1>
-      {error && <p className="error-text">{error}</p>}
+      {error && <p style={errorStyle}>{error}</p>}
       <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
       <NotesList
         notes={notes}
@@ -60,7 +61,6 @@ export default function App() {
           onNotify={notify}
         />
       )}
-      <Toasts toasts={toasts} onDismiss={(id) => setToasts(t => t.filter(x => x.id !== id))} />
     </div>
   )
 }
