@@ -4,6 +4,7 @@ import NoteForm from './components/NoteForm.jsx'
 import EditNote from './components/EditNote.jsx'
 import Toasts from './components/Toasts.jsx'
 import './styles.css'
+import Button from './components/ui/button.jsx'
 
 export default function App() {
   const [notes, setNotes] = useState([])
@@ -30,7 +31,13 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <h1>Notes</h1>
+      <header className="mb-4">
+        <h1>Notes</h1>
+        {/* Sample shadcn-style button to verify Tailwind integration */}
+        <div className="mt-2">
+          <Button onClick={() => notify('UI ready', 'info')}>Sample Button</Button>
+        </div>
+      </header>
       {error && <p className="error-text">{error}</p>}
       <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
       <NotesList
