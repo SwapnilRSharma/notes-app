@@ -16,12 +16,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from './ui/collap
 export default function NotesList({ notes, onEdit, onDelete }) {
   const [expanded, setExpanded] = useState(() => new Set())
 
-  const toggle = (title) => {
-    const next = new Set(expanded)
-    if (next.has(title)) next.delete(title)
-    else next.add(title)
-    setExpanded(next)
-  }
+  // Collapsible state is controlled via onOpenChange; no separate toggle helper needed
 
   if (!notes || notes.length === 0) return <p>No notes yet.</p>
 
@@ -34,7 +29,8 @@ export default function NotesList({ notes, onEdit, onDelete }) {
           }}>
             <div className="row">
               <CollapsibleTrigger asChild>
-                <button onClick={() => toggle(n.title)} aria-label="Toggle body" className="h-11 w-11 md:h-8 md:w-8 rounded-md border border-input bg-transparent text-foreground">
+                {/* Rely on Collapsible's trigger to toggle; avoid manual onClick double-toggle */}
+                <button aria-label="Toggle body" className="h-11 w-11 md:h-8 md:w-8 rounded-md border border-input bg-transparent text-foreground">
                   {expanded.has(n.title) ? '▾' : '▸'}
                 </button>
               </CollapsibleTrigger>

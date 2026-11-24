@@ -2,8 +2,17 @@ import React from 'react'
 
 function cn(...classes) { return classes.filter(Boolean).join(' ') }
 
-export function Card({ className, ...props }) {
-  return <div className={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className)} {...props} />
+export function Card({ className, asChild = false, children, ...props }) {
+  const base = 'rounded-lg border bg-card text-card-foreground shadow-sm'
+  if (asChild && React.isValidElement(children)) {
+    // Slot-style behavior: pass styles/props to child instead of rendering a wrapper
+    const onlyChild = React.Children.only(children)
+    return React.cloneElement(onlyChild, {
+      ...props,
+      className: cn(base, className, onlyChild.props.className)
+    })
+  }
+  return <div className={cn(base, className)} {...props}>{children}</div>
 }
 
 export function CardHeader({ className, ...props }) {
