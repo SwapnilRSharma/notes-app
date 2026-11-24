@@ -35,8 +35,8 @@ export default function NoteForm({ onCreated, onNotify }) {
     }
     setTitle('')
     setBody('')
+    // Defer success notification to the parent (App) to avoid duplicate toasts
     onCreated?.()
-    onNotify?.('Note created', 'success')
   }
 
   return (

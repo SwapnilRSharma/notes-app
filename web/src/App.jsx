@@ -3,8 +3,6 @@ import NotesList from './components/NotesList.jsx'
 import NoteForm from './components/NoteForm.jsx'
 import EditNote from './components/EditNote.jsx'
 import './styles.css'
-import Button from './components/ui/button.jsx'
-import Separator from './components/ui/separator.jsx'
 import Toaster from './components/ui/toaster.jsx'
 import { toast } from './components/ui/use-toast.js'
 
@@ -32,10 +30,7 @@ export default function App() {
       <header className="sticky top-0 z-10 border-b bg-white/80 backdrop-blur">
         <div className="mx-auto max-w-3xl px-4 py-3">
           <h1 className="text-2xl font-semibold">Notes</h1>
-          {/* Sample shadcn-style button to verify Tailwind integration */}
-          <div className="mt-2">
-            <Button onClick={() => notify('UI ready', 'info')}>Sample Button</Button>
-          </div>
+          
         </div>
       </header>
       <main className="mx-auto max-w-3xl px-4 py-4">
