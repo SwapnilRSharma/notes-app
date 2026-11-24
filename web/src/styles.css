@@ -23,29 +23,13 @@ body { margin: 0; background: linear-gradient(180deg, #08122a 0%, #0a1a3d 100%);
 h1, h2, h3 { margin: 0 0 12px; font-weight: 650; }
 .error-text { color: var(--danger); margin: 6px 0; }
 
-.card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+/* Minimal legacy overrides kept for forms and lists */
+.card { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); color: inherit; }
 .form { display: grid; gap: 10px; max-width: 720px; margin: 12px 0 20px; }
 .actions { display: flex; gap: 8px; margin-left: auto; }
 
-input, textarea { width: 100%; background: #0c1836; color: var(--text); border: 1px solid #2a4a84; border-radius: 8px; padding: 10px 12px; outline: none; }
-input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,140,255,0.15); }
-
-.btn { background: #1a2f66; color: var(--text); border: 1px solid #2c4aa0; border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: transform 0.05s ease, background 0.2s ease; }
-.btn:hover { background: #25407f; }
-.btn:active { transform: translateY(1px); }
-.btn.primary { background: var(--accent); border-color: #3b78ee; color: white; }
-.btn.primary:hover { background: #3b78ee; }
-.btn.danger { background: #2a1a1a; border-color: #512222; color: #ffb4b4; }
-.btn.danger:hover { background: #3a2020; }
-
 .list { list-style: none; padding: 0; margin: 0; }
-.list-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+.list-item { padding: 10px 0; }
 .row { display: flex; gap: 10px; align-items: center; }
 .title { min-width: 160px; }
-.body { margin-left: 28px; white-space: pre-wrap; color: #d6d9e5; }
-
-.toasts { position: fixed; right: 18px; top: 18px; display: grid; gap: 8px; z-index: 9999; }
-.toast { padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: #132a55; color: var(--text); box-shadow: 0 8px 24px rgba(0,0,0,0.25); cursor: pointer; }
-.toast.success { background: #14321f; border-color: #164d2a; color: #daf7e3; }
-.toast.error { background: #3a1a1a; border-color: #5a2424; color: #ffd6d6; }
-.toast.info { background: #132a55; }
+.body { margin-left: 28px; white-space: pre-wrap; }
