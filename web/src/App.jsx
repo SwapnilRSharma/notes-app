@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react'
 import NotesList from './components/NotesList.jsx'
 import NoteForm from './components/NoteForm.jsx'
 import EditNote from './components/EditNote.jsx'
-import { ToasterProvider, useToast } from './components/ui/toast.jsx'
+import { ToasterProvider, toast } from './components/ui/toast.jsx'
 import './styles.css'
 
 export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
-  // toast API from shadcn-like provider
-  const toastApi = useToast?.()
+  // toast API from shadcn-like provider (global helpers wired by ToasterProvider)
 
   const load = () => {
     fetch('/api/notes')
@@ -23,10 +22,9 @@ export default function App() {
   useEffect(() => { load() }, [])
 
   const notify = (message, kind = 'info') => {
-    if (!toastApi) return
-    if (kind === 'success') toastApi.success(message)
-    else if (kind === 'error') toastApi.destructive(message)
-    else toastApi.info?.(message) || toastApi(message)
+    if (kind === 'success') toast.success(message)
+    else if (kind === 'error') toast.destructive(message)
+    else toast.info(message)
   }
 
   return (
