@@ -31,44 +31,47 @@ export default function App() {
   }
 
   return (
-    <div className="app-container">
-      <header className="mb-4">
-        <h1>Notes</h1>
-        {/* Sample shadcn-style button to verify Tailwind integration */}
-        <div className="mt-2">
-          <Button onClick={() => notify('UI ready', 'info')}>Sample Button</Button>
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      <header className="sticky top-0 z-10 border-b bg-white/80 backdrop-blur">
+        <div className="mx-auto max-w-3xl px-4 py-3">
+          <h1 className="text-2xl font-semibold">Notes</h1>
+          {/* Sample shadcn-style button to verify Tailwind integration */}
+          <div className="mt-2">
+            <Button onClick={() => notify('UI ready', 'info')}>Sample Button</Button>
+          </div>
         </div>
-        <Separator className="mt-3" />
       </header>
-      {error && <p className="error-text">{error}</p>}
-      <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
-      <NotesList
-        notes={notes}
-        onEdit={(note) => setEditing(note)}
-        onDelete={async (note) => {
-          // Simple confirm step before deletion
-          // eslint-disable-next-line no-alert
-          const ok = window.confirm(`Delete note "${note.title}"?`)
-          if (!ok) return
-          const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
-          if (!res.ok && res.status !== 204) {
-            const msg = 'Failed to delete'
-            setError(msg)
-            notify(msg, 'error')
-            return
-          }
-          load()
-          notify('Note deleted', 'success')
-        }}
-      />
-      {editing && (
-        <EditNote
-          note={editing}
-          onSaved={() => { setEditing(null); load(); notify('Note updated', 'success') }}
-          onCancel={() => setEditing(null)}
-          onNotify={notify}
+      <main className="mx-auto max-w-3xl px-4 py-4">
+        {error && <p className="error-text">{error}</p>}
+        <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
+        <NotesList
+          notes={notes}
+          onEdit={(note) => setEditing(note)}
+          onDelete={async (note) => {
+            // Simple confirm step before deletion
+            // eslint-disable-next-line no-alert
+            const ok = window.confirm(`Delete note "${note.title}"?`)
+            if (!ok) return
+            const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
+            if (!res.ok && res.status !== 204) {
+              const msg = 'Failed to delete'
+              setError(msg)
+              notify(msg, 'error')
+              return
+            }
+            load()
+            notify('Note deleted', 'success')
+          }}
         />
-      )}
+        {editing && (
+          <EditNote
+            note={editing}
+            onSaved={() => { setEditing(null); load(); notify('Note updated', 'success') }}
+            onCancel={() => setEditing(null)}
+            onNotify={notify}
+          />
+        )}
+      </main>
       <Toasts toasts={toasts} onDismiss={(id) => setToasts(t => t.filter(x => x.id !== id))} />
     </div>
   )
