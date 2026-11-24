@@ -17,6 +17,8 @@ test('create, list, edit (rename + conflict), and delete notes', async ({ page }
   await page.waitForTimeout(1000)
   await page.getByRole('button', { name: 'Add' }).click()
   await page.waitForTimeout(1000)
+  await expect(page.getByText('Note created')).toBeVisible()
+  await page.waitForTimeout(1000)
   await expect(page.getByText('alpha')).toBeVisible()
   await page.waitForTimeout(1000)
 
@@ -63,9 +65,12 @@ test('create, list, edit (rename + conflict), and delete notes', async ({ page }
   await expect(page.getByText('gamma')).toBeVisible()
   await page.waitForTimeout(1000)
 
-  // Delete beta with confirm dialog
-  page.once('dialog', d => d.accept())
+  // Delete beta via in-app alert dialog
   await page.getByText('beta').first().locator('xpath=ancestor::li').getByRole('button', { name: 'Delete' }).click()
+  await page.waitForTimeout(1000)
+  const confirmDlg = page.getByRole('alertdialog')
+  await expect(confirmDlg).toBeVisible()
+  await confirmDlg.getByRole('button', { name: 'Delete' }).click()
   await page.waitForTimeout(1000)
   await expect(page.getByText('beta')).toHaveCount(0)
   await page.waitForTimeout(1000)
@@ -97,15 +102,45 @@ test('additional behaviors: toggle body, validation, and cancel delete', async (
   await page.waitForTimeout(400)
   await expect(page.locator('form').first().getByText(/Title is required/i)).toBeVisible()
 
-  // Cancel delete
-  page.once('dialog', d => d.dismiss())
+  // Cancel delete via in-app alert dialog
   await deltaRow.getByRole('button', { name: 'Delete' }).click()
+  await page.waitForTimeout(400)
+  const cancelDlg = page.getByRole('alertdialog')
+  await expect(cancelDlg).toBeVisible()
+  await cancelDlg.getByRole('button', { name: 'Cancel' }).click()
   await page.waitForTimeout(400)
   await expect(page.getByText('delta', { exact: true })).toBeVisible()
 
   // Cleanup: actually delete
-  page.once('dialog', d => d.accept())
   await deltaRow.getByRole('button', { name: 'Delete' }).click()
+  await page.waitForTimeout(400)
+  const finalDlg = page.getByRole('alertdialog')
+  await finalDlg.getByRole('button', { name: 'Delete' }).click()
   await page.waitForTimeout(600)
   await expect(page.getByText('delta', { exact: true })).toHaveCount(0)
+})
+
+// Mobile viewport smoke test to ensure UI remains usable
+test.describe('mobile', () => {
+  test.use({ viewport: { width: 375, height: 812 } })
+  test('core flow on mobile', async ({ page }) => {
+    await page.goto('/')
+    await page.waitForTimeout(800)
+    await expect(page.getByRole('heading', { name: 'Notes' })).toBeVisible()
+    await page.waitForTimeout(800)
+    await page.getByPlaceholder('Title').fill('mobile')
+    await page.waitForTimeout(800)
+    await page.getByRole('button', { name: 'Add' }).click()
+    await page.waitForTimeout(800)
+    await expect(page.getByText('Note created')).toBeVisible()
+    await page.waitForTimeout(800)
+    // Delete via dialog
+    const row = page.getByText('mobile').first().locator('xpath=ancestor::li')
+    await row.getByRole('button', { name: 'Delete' }).click()
+    await page.waitForTimeout(800)
+    const dlg = page.getByRole('alertdialog')
+    await dlg.getByRole('button', { name: 'Delete' }).click()
+    await page.waitForTimeout(800)
+    await expect(page.getByText('mobile')).toHaveCount(0)
+  })
 })
