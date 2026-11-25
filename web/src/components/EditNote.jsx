@@ -52,7 +52,7 @@ export default function EditNote({ note, onSaved, onCancel, onNotify }) {
 
   return (
     <form onSubmit={submit} className="card form">
-      <h3>Edit Note</h3>
+      <h3 className="text-lg font-semibold">Edit Note</h3>
       {error && <div className="error-text">{error}</div>}
       <Input
         placeholder="Title"

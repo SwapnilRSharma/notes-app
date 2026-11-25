@@ -41,7 +41,7 @@ export default function NoteForm({ onCreated, onNotify }) {
 
   return (
     <form onSubmit={submit} className="card form">
-      <h2>Create Note</h2>
+      <h2 className="text-xl font-semibold">Create Note</h2>
       {error && <div className="error-text">{error}</div>}
       <Input
         placeholder="Title"
