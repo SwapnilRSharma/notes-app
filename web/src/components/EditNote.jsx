@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import Input from './ui/input.jsx'
-import Textarea from './ui/textarea.jsx'
-import Button from './ui/button.jsx'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card.jsx'
+import { Input } from './ui/input.jsx'
+import { Textarea } from './ui/textarea.jsx'
+import { Button } from './ui/button.jsx'
 
 export default function EditNote({ note, onSaved, onCancel, onNotify }) {
   const [title, setTitle] = useState(note?.title || '')
@@ -51,24 +52,30 @@ export default function EditNote({ note, onSaved, onCancel, onNotify }) {
   }
 
   return (
-    <form onSubmit={submit} className="card form">
-      <h3>Edit Note</h3>
-      {error && <div className="error-text">{error}</div>}
-      <Input
-        placeholder="Title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-      />
-      <Textarea
-        placeholder="Body"
-        rows={4}
-        value={body}
-        onChange={e => setBody(e.target.value)}
-      />
-      <div className="actions">
-        <Button type="submit">Save</Button>
-        <Button type="button" variant="outline" onClick={() => onCancel?.()}>Cancel</Button>
-      </div>
+    <form onSubmit={submit} className="max-w-2xl my-3">
+      <Card>
+        <CardHeader>
+          <CardTitle>Edit Note</CardTitle>
+        </CardHeader>
+        <CardContent className="grid gap-3">
+          {error && <div className="text-red-700 text-sm">{error}</div>}
+          <Input
+            placeholder="Title"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+          />
+          <Textarea
+            placeholder="Body"
+            rows={4}
+            value={body}
+            onChange={e => setBody(e.target.value)}
+          />
+        </CardContent>
+        <CardFooter className="justify-end gap-2">
+          <Button type="submit">Save</Button>
+          <Button type="button" variant="outline" onClick={() => onCancel?.()}>Cancel</Button>
+        </CardFooter>
+      </Card>
     </form>
   )
 }

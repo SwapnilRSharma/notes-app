@@ -1,37 +1,16 @@
-import { useEffect, useState } from 'react'
+import { toast as sonnerToast } from 'sonner'
 
-// Simple global toast store (no external deps)
-const listeners = new Set()
-let toasts = [] // { id, message, kind }
-
-function notifyAll() {
-  listeners.forEach(l => l(toasts))
-}
-
-export function toast(message, kind = 'info') {
-  const id = Math.random().toString(36).slice(2)
-  toasts = [...toasts, { id, message, kind }]
-  notifyAll()
-  // auto dismiss after 2.5s (same timing as previous implementation)
-  setTimeout(() => {
-    dismiss(id)
-  }, 2500)
-  return id
-}
-
-export function dismiss(id) {
-  toasts = toasts.filter(t => t.id !== id)
-  notifyAll()
-}
-
+// Shadcn-compatible useToast wrapper backed by Sonner
+// Usage: const { toast } = useToast(); toast({ description: '...', variant: 'success' })
 export function useToast() {
-  const [state, setState] = useState(toasts)
-  useEffect(() => {
-    listeners.add(setState)
-    return () => listeners.delete(setState)
-  }, [])
   return {
-    toasts: state,
-    dismiss,
+    toast: ({ description, variant } = {}) => {
+      // Map variants to sonner styles
+      if (variant === 'success') return sonnerToast.success(description)
+      if (variant === 'error' || variant === 'destructive') return sonnerToast.error(description)
+      return sonnerToast(description)
+    }
   }
 }
+
+export default useToast
