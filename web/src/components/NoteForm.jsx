@@ -8,6 +8,15 @@ export default function NoteForm({ onCreated, onNotify }) {
   const [body, setBody] = useState('')
   const [error, setError] = useState('')
 
+  // Simple count logic: words counted by whitespace-separated tokens, characters by raw length
+  const countWordChar = (text) => {
+    const t = (text || '')
+    const trimmed = t.trim()
+    const words = trimmed ? trimmed.split(/\s+/).filter(Boolean).length : 0
+    const characters = t.length
+    return { words, characters }
+  }
+
   const submit = async (e) => {
     e.preventDefault()
     setError('')
@@ -54,6 +63,15 @@ export default function NoteForm({ onCreated, onNotify }) {
         value={body}
         onChange={e => setBody(e.target.value)}
       />
+      {/* Live counter under the editor */}
+      {(() => {
+        const { words, characters } = countWordChar(body)
+        return (
+          <div className="text-slate-500 text-sm mt-1" aria-label="note-counter">
+            {words} words · {characters} characters
+          </div>
+        )
+      })()}
       <div className="actions">
         <Button type="submit">Add</Button>
       </div>

@@ -5,6 +5,15 @@ import Button from './ui/button.jsx'
 export default function NotesList({ notes, onEdit, onDelete }) {
   const [expanded, setExpanded] = useState(() => new Set())
 
+  // Count helper for view mode; keeps logic consistent with editors
+  const countWordChar = (text) => {
+    const t = (text || '')
+    const trimmed = t.trim()
+    const words = trimmed ? trimmed.split(/\s+/).filter(Boolean).length : 0
+    const characters = t.length
+    return { words, characters }
+  }
+
   const toggle = (title) => {
     const next = new Set(expanded)
     if (next.has(title)) next.delete(title)
@@ -31,7 +40,17 @@ export default function NotesList({ notes, onEdit, onDelete }) {
                 </div>
               </div>
               {expanded.has(n.title) && (
-                <div className="body mt-2 text-slate-700">{n.body}</div>
+                <div className="mt-2">
+                  <div className="body text-slate-700">{n.body}</div>
+                  {(() => {
+                    const { words, characters } = countWordChar(n.body)
+                    return (
+                      <div className="text-slate-500 text-sm mt-1" aria-label="note-counter">
+                        {words} words · {characters} characters
+                      </div>
+                    )
+                  })()}
+                </div>
               )}
             </CardContent>
           </Card>
