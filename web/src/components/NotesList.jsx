@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Card, CardContent } from './ui/card.jsx'
 import Button from './ui/button.jsx'
+import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogClose } from './ui/dialog.jsx'
 
 export default function NotesList({ notes, onEdit, onDelete }) {
   const [expanded, setExpanded] = useState(() => new Set())
@@ -27,7 +28,25 @@ export default function NotesList({ notes, onEdit, onDelete }) {
                 <strong className="title flex-1">{n.title}</strong>
                 <div className="flex gap-2">
                   <Button variant="outline" onClick={() => onEdit?.(n)}>Edit</Button>
-                  <Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50" onClick={() => onDelete?.(n)}>Delete</Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50">Delete</Button>
+                    </DialogTrigger>
+                    <DialogContent aria-label={`Confirm delete ${n.title}`}>
+                      <DialogHeader>
+                        <DialogTitle>Delete Note</DialogTitle>
+                        <DialogDescription>Are you sure you want to delete "{n.title}"?</DialogDescription>
+                      </DialogHeader>
+                      <div className="mt-3 flex justify-end gap-2">
+                        <DialogClose asChild>
+                          <Button variant="outline">Cancel</Button>
+                        </DialogClose>
+                        <DialogClose asChild>
+                          <Button className="bg-red-600 text-white hover:bg-red-700" onClick={() => onDelete?.(n)}>Confirm</Button>
+                        </DialogClose>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </div>
               {expanded.has(n.title) && (
