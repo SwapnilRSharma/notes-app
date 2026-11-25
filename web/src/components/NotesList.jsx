@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Card, CardContent } from './ui/card.jsx'
 import Button from './ui/button.jsx'
+import { countWordsAndChars, formatCount } from '../lib/textCount.js'
 
 export default function NotesList({ notes, onEdit, onDelete }) {
   const [expanded, setExpanded] = useState(() => new Set())
@@ -31,7 +32,12 @@ export default function NotesList({ notes, onEdit, onDelete }) {
                 </div>
               </div>
               {expanded.has(n.title) && (
-                <div className="body mt-2 text-slate-700">{n.body}</div>
+                <div className="body mt-2 text-slate-700">
+                  {n.body}
+                  <div className="mt-1 text-xs text-slate-500" data-testid="view-body-counter">
+                    {formatCount(countWordsAndChars(n.body))}
+                  </div>
+                </div>
               )}
             </CardContent>
           </Card>
