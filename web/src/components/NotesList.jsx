@@ -19,7 +19,7 @@ export default function NotesList({ notes, onEdit, onDelete }) {
     <ul className="list">
       {notes.map(n => (
         <li key={n.title} className="list-item">
-          <Card className="bg-white text-slate-900">
+          <Card>
             <CardContent className="py-3">
               <div className="flex items-center gap-2">
                 <button onClick={() => toggle(n.title)} aria-label="Toggle body" className="px-1">
@@ -30,7 +30,7 @@ export default function NotesList({ notes, onEdit, onDelete }) {
                   <Button variant="outline" onClick={() => onEdit?.(n)}>Edit</Button>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50">Delete</Button>
+                      <Button variant="destructive">Delete</Button>
                     </DialogTrigger>
                     <DialogContent aria-label={`Confirm delete ${n.title}`}>
                       <DialogHeader>
@@ -42,7 +42,7 @@ export default function NotesList({ notes, onEdit, onDelete }) {
                           <Button variant="outline">Cancel</Button>
                         </DialogClose>
                         <DialogClose asChild>
-                          <Button className="bg-red-600 text-white hover:bg-red-700" onClick={() => onDelete?.(n)}>Confirm</Button>
+                          <Button variant="destructive" onClick={() => onDelete?.(n)}>Confirm</Button>
                         </DialogClose>
                       </div>
                     </DialogContent>

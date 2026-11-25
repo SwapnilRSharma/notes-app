@@ -64,7 +64,7 @@ export default function App() {
           onEdit={(note) => setEditing(note)}
           onDelete={async (note) => {
             const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
-            if (!res.ok && res.status !== 204) {
+            if (!res.ok) {
               const msg = 'Failed to delete'
               setError(msg)
               notify(msg, 'error')
