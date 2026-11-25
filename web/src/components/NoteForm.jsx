@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Input from './ui/input.jsx'
 import Textarea from './ui/textarea.jsx'
 import Button from './ui/button.jsx'
+import Label from './ui/label.jsx'
 
 export default function NoteForm({ onCreated, onNotify }) {
   const [title, setTitle] = useState('')
@@ -40,20 +41,28 @@ export default function NoteForm({ onCreated, onNotify }) {
   }
 
   return (
-    <form onSubmit={submit} className="card form">
+    <form onSubmit={submit} className="card form" id="new">
       <h2>Create Note</h2>
       {error && <div className="error-text">{error}</div>}
-      <Input
-        placeholder="Title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-      />
-      <Textarea
-        placeholder="Body"
-        rows={4}
-        value={body}
-        onChange={e => setBody(e.target.value)}
-      />
+      <div className="grid gap-1">
+        <Label htmlFor="new-title">Title</Label>
+        <Input
+          id="new-title"
+          placeholder="Title"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        />
+      </div>
+      <div className="grid gap-1">
+        <Label htmlFor="new-body">Body</Label>
+        <Textarea
+          id="new-body"
+          placeholder="Body"
+          rows={4}
+          value={body}
+          onChange={e => setBody(e.target.value)}
+        />
+      </div>
       <div className="actions">
         <Button type="submit">Add</Button>
       </div>

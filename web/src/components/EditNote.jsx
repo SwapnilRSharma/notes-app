@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Input from './ui/input.jsx'
 import Textarea from './ui/textarea.jsx'
 import Button from './ui/button.jsx'
+import Label from './ui/label.jsx'
 
 export default function EditNote({ note, onSaved, onCancel, onNotify }) {
   const [title, setTitle] = useState(note?.title || '')
@@ -54,17 +55,25 @@ export default function EditNote({ note, onSaved, onCancel, onNotify }) {
     <form onSubmit={submit} className="card form">
       <h3>Edit Note</h3>
       {error && <div className="error-text">{error}</div>}
-      <Input
-        placeholder="Title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-      />
-      <Textarea
-        placeholder="Body"
-        rows={4}
-        value={body}
-        onChange={e => setBody(e.target.value)}
-      />
+      <div className="grid gap-1">
+        <Label htmlFor="edit-title">Title</Label>
+        <Input
+          id="edit-title"
+          placeholder="Title"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        />
+      </div>
+      <div className="grid gap-1">
+        <Label htmlFor="edit-body">Body</Label>
+        <Textarea
+          id="edit-body"
+          placeholder="Body"
+          rows={4}
+          value={body}
+          onChange={e => setBody(e.target.value)}
+        />
+      </div>
       <div className="actions">
         <Button type="submit">Save</Button>
         <Button type="button" variant="outline" onClick={() => onCancel?.()}>Cancel</Button>

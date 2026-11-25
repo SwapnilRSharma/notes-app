@@ -4,7 +4,7 @@ export default function Toaster() {
   const { toasts } = useToast()
   if (!toasts || toasts.length === 0) return null
   return (
-    <div className="fixed right-5 top-5 z-[9999] grid gap-2">
+    <div className="fixed right-5 top-5 z-[9999] grid gap-2" aria-live="polite">
       {toasts.map(t => (
         <div
           key={t.id}

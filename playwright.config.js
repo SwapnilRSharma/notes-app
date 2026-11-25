@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from '@playwright/test'
+import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
   testDir: './e2e',
@@ -9,6 +9,16 @@ export default defineConfig({
     video: 'on',
     trace: 'on'
   },
+  projects: [
+    {
+      name: 'chromium-desktop',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'iphone12-mobile',
+      use: { ...devices['iPhone 12'] },
+    },
+  ],
   webServer: [
     {
       command: 'npm run server',
