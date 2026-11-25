@@ -2,17 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-* { box-sizing: border-box; }
-html, body, #root { height: 100%; }
-/* Light app shell: let Tailwind control backgrounds and text colors */
-body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+/* shadcn base: set background/foreground via CSS variables */
+@layer base {
+  * { @apply border-border; box-sizing: border-box; }
+  html, body, #root { height: 100%; }
+  body { @apply bg-background text-foreground; margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+}
 
-.app-container { max-width: 900px; margin: 0 auto; padding: 24px; }
-h1, h2, h3 { margin: 0 0 12px; font-weight: 650; }
-.error-text { color: #ef4444; margin: 6px 0; }
+/* Utility text helpers */
+.error-text { @apply text-red-500 my-1.5; }
 
-/* Minimal legacy overrides kept for forms and lists */
-.card { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); color: inherit; }
+/* Minimal legacy layout kept for forms and lists (will be replaced gradually) */
+.card { @apply bg-white border border-slate-200 rounded-xl p-4 shadow; color: inherit; }
 .form { display: grid; gap: 10px; max-width: 720px; margin: 12px 0 20px; }
 .actions { display: flex; gap: 8px; margin-left: auto; }
 

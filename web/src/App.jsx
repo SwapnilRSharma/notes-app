@@ -5,6 +5,10 @@ import EditNote from './components/EditNote.jsx'
 import './styles.css'
 import Toaster from './components/ui/toaster.jsx'
 import { toast } from './components/ui/use-toast.js'
+import { Sheet, SheetContent, SheetTrigger } from './components/ui/sheet.jsx'
+import Separator from './components/ui/separator.jsx'
+import Button from './components/ui/button.jsx'
+import { Menu } from 'lucide-react'
 
 export default function App() {
   const [notes, setNotes] = useState([])
@@ -26,26 +30,41 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-10 border-b bg-white/80 backdrop-blur">
-        <div className="mx-auto max-w-3xl px-4 py-3">
+        <div className="mx-auto max-w-3xl px-4 py-3 flex items-center gap-3">
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" aria-label="Open navigation">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="bg-white">
+                <div className="flex flex-col h-full">
+                  <div className="pb-2">
+                    <h2 className="text-xl font-semibold">Navigation</h2>
+                  </div>
+                  <Separator />
+                  <nav className="py-3 space-y-2">
+                    <a className="block text-slate-700 hover:underline" href="#">All Notes</a>
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
           <h1 className="text-2xl font-semibold">Notes</h1>
-          
         </div>
       </header>
-      <main className="mx-auto max-w-3xl px-4 py-4">
+      <main className="mx-auto max-w-3xl px-4 py-4 space-y-4">
         {error && <p className="error-text">{error}</p>}
         <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
         <NotesList
           notes={notes}
           onEdit={(note) => setEditing(note)}
           onDelete={async (note) => {
-            // Simple confirm step before deletion
-            // eslint-disable-next-line no-alert
-            const ok = window.confirm(`Delete note "${note.title}"?`)
-            if (!ok) return
             const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
-            if (!res.ok && res.status !== 204) {
+            if (!res.ok) {
               const msg = 'Failed to delete'
               setError(msg)
               notify(msg, 'error')
