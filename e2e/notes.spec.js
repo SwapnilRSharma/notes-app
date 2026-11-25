@@ -63,9 +63,12 @@ test('create, list, edit (rename + conflict), and delete notes', async ({ page }
   await expect(page.getByText('gamma')).toBeVisible()
   await page.waitForTimeout(1000)
 
-  // Delete beta with confirm dialog
-  page.once('dialog', d => d.accept())
+  // Delete beta via in-app confirmation dialog
   await page.getByText('beta').first().locator('xpath=ancestor::li').getByRole('button', { name: 'Delete' }).click()
+  await page.waitForTimeout(1000)
+  await expect(page.getByRole('heading', { name: 'Delete Note' })).toBeVisible()
+  await page.waitForTimeout(1000)
+  await page.getByRole('button', { name: 'Confirm' }).click()
   await page.waitForTimeout(1000)
   await expect(page.getByText('beta')).toHaveCount(0)
   await page.waitForTimeout(1000)
@@ -97,15 +100,17 @@ test('additional behaviors: toggle body, validation, and cancel delete', async (
   await page.waitForTimeout(400)
   await expect(page.locator('form').first().getByText(/Title is required/i)).toBeVisible()
 
-  // Cancel delete
-  page.once('dialog', d => d.dismiss())
+  // Cancel delete via dialog Cancel
   await deltaRow.getByRole('button', { name: 'Delete' }).click()
-  await page.waitForTimeout(400)
+  await page.waitForTimeout(1000)
+  await page.getByRole('button', { name: 'Cancel' }).click()
+  await page.waitForTimeout(1000)
   await expect(page.getByText('delta', { exact: true })).toBeVisible()
 
-  // Cleanup: actually delete
-  page.once('dialog', d => d.accept())
+  // Cleanup: actually delete via Confirm
   await deltaRow.getByRole('button', { name: 'Delete' }).click()
-  await page.waitForTimeout(600)
+  await page.waitForTimeout(1000)
+  await page.getByRole('button', { name: 'Confirm' }).click()
+  await page.waitForTimeout(1000)
   await expect(page.getByText('delta', { exact: true })).toHaveCount(0)
 })
