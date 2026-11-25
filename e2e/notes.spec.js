@@ -64,8 +64,11 @@ test('create, list, edit (rename + conflict), and delete notes', async ({ page }
   await page.waitForTimeout(1000)
 
   // Delete beta with confirm dialog
-  page.once('dialog', d => d.accept())
-  await page.getByText('beta').first().locator('xpath=ancestor::li').getByRole('button', { name: 'Delete' }).click()
+  const betaRow = page.getByText('beta').first().locator('xpath=ancestor::li')
+  await betaRow.getByRole('button', { name: 'Delete' }).click()
+  await page.waitForTimeout(1000)
+  // Confirm via AlertDialog
+  await page.getByRole('button', { name: /^Delete$/ }).click()
   await page.waitForTimeout(1000)
   await expect(page.getByText('beta')).toHaveCount(0)
   await page.waitForTimeout(1000)
@@ -73,39 +76,52 @@ test('create, list, edit (rename + conflict), and delete notes', async ({ page }
 
 test('additional behaviors: toggle body, validation, and cancel delete', async ({ page }) => {
   await page.goto('/')
-  await page.waitForTimeout(500)
+  await page.waitForTimeout(1000)
+
+  // Mobile menu: open/close if available (mobile project)
+  const menuBtn = page.getByRole('button', { name: 'Open menu' })
+  if (await menuBtn.isVisible()) {
+    await menuBtn.click()
+    await page.waitForTimeout(1000)
+    await expect(page.getByText('Menu')).toBeVisible()
+    await page.waitForTimeout(1000)
+    await page.getByRole('link', { name: 'New Note' }).click()
+    await page.waitForTimeout(1000)
+  }
 
   // Create a distinct note
   await page.getByPlaceholder('Title').fill('delta')
-  await page.waitForTimeout(300)
+  await page.waitForTimeout(1000)
   await page.locator('textarea[placeholder="Body"]').fill('delta body content')
-  await page.waitForTimeout(300)
+  await page.waitForTimeout(1000)
   await page.getByRole('button', { name: 'Add' }).click()
-  await page.waitForTimeout(800)
+  await page.waitForTimeout(1000)
   await expect(page.getByText('delta', { exact: true })).toBeVisible()
 
   // Toggle body visibility
   const deltaRow = page.getByText('delta', { exact: true }).first().locator('xpath=ancestor::li')
   await deltaRow.getByRole('button', { name: 'Toggle body' }).click()
-  await page.waitForTimeout(500)
+  await page.waitForTimeout(1000)
   await expect(deltaRow.getByText('delta body content')).toBeVisible()
 
   // Try to submit empty title
   await page.getByPlaceholder('Title').fill('')
-  await page.waitForTimeout(200)
+  await page.waitForTimeout(1000)
   await page.getByRole('button', { name: 'Add' }).click()
-  await page.waitForTimeout(400)
+  await page.waitForTimeout(1000)
   await expect(page.locator('form').first().getByText(/Title is required/i)).toBeVisible()
 
   // Cancel delete
-  page.once('dialog', d => d.dismiss())
   await deltaRow.getByRole('button', { name: 'Delete' }).click()
-  await page.waitForTimeout(400)
+  await page.waitForTimeout(1000)
+  await page.getByRole('button', { name: 'Cancel' }).click()
+  await page.waitForTimeout(1000)
   await expect(page.getByText('delta', { exact: true })).toBeVisible()
 
   // Cleanup: actually delete
-  page.once('dialog', d => d.accept())
   await deltaRow.getByRole('button', { name: 'Delete' }).click()
-  await page.waitForTimeout(600)
+  await page.waitForTimeout(1000)
+  await page.getByRole('button', { name: /^Delete$/ }).click()
+  await page.waitForTimeout(1000)
   await expect(page.getByText('delta', { exact: true })).toHaveCount(0)
 })
