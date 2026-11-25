@@ -48,9 +48,9 @@ export default function NotesList({ notes, onEdit, onDelete }) {
       ))}
     </ul>
     <AlertDialog open={confirmOpen} onOpenChange={setConfirmOpen}>
-      <AlertDialogContent>
+      <AlertDialogContent ariaLabelledBy="delete-title">
         <AlertDialogHeader>
-          <AlertDialogTitle>Delete note?</AlertDialogTitle>
+          <AlertDialogTitle id="delete-title">Delete note?</AlertDialogTitle>
           <AlertDialogDescription>
             {targetNote ? `Delete note "${targetNote.title}". This action cannot be undone.` : 'Delete this note?'}
           </AlertDialogDescription>

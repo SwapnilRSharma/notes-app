@@ -19,7 +19,7 @@ export function AlertDialog({ open, onOpenChange, children }) {
   )
 }
 
-export function AlertDialogContent({ className = '', children, ...props }) {
+export function AlertDialogContent({ className = '', children, ariaLabelledBy, ...props }) {
   const firstActionRef = useRef(null)
   useEffect(() => {
     // focus first action button for keyboard users
@@ -29,6 +29,7 @@ export function AlertDialogContent({ className = '', children, ...props }) {
     <div
       role="alertdialog"
       aria-modal="true"
+      aria-labelledby={ariaLabelledBy}
       className={`w-full max-w-sm rounded-lg border border-slate-200 bg-white p-4 shadow-lg ${className}`}
       {...props}
     >
