@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Input from './ui/input.jsx'
 import Textarea from './ui/textarea.jsx'
 import Button from './ui/button.jsx'
+import { countWordsAndChars, formatCount } from '../lib/textCount.js'
 
 export default function NoteForm({ onCreated, onNotify }) {
   const [title, setTitle] = useState('')
@@ -54,6 +55,9 @@ export default function NoteForm({ onCreated, onNotify }) {
         value={body}
         onChange={e => setBody(e.target.value)}
       />
+      <div className="text-xs text-slate-500" data-testid="body-counter">
+        {formatCount(countWordsAndChars(body))}
+      </div>
       <div className="actions">
         <Button type="submit">Add</Button>
       </div>
