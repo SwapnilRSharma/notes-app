@@ -3,10 +3,12 @@ import NotesList from './components/NotesList.jsx'
 import NoteForm from './components/NoteForm.jsx'
 import EditNote from './components/EditNote.jsx'
 import { useToast } from './components/ui/use-toast.js'
+import { useToast } from './components/ui/use-toast.js'
 
 export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
+  const { toast } = useToast()
   const { toast } = useToast()
 
   const load = () => {
