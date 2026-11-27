@@ -63,9 +63,17 @@ test('create, list, edit (rename + conflict), and delete notes', async ({ page }
   await expect(page.getByText('gamma')).toBeVisible()
   await page.waitForTimeout(1000)
 
-  // Delete beta with confirm dialog
-  page.once('dialog', d => d.accept())
-  await page.getByText('beta').first().locator('xpath=ancestor::li').getByRole('button', { name: 'Delete' }).click()
+  // Delete beta with confirm: dialog on desktop, sheet on mobile
+  const vp1 = page.viewportSize()
+  const betaRow = page.getByText('beta').first().locator('xpath=ancestor::li')
+  if (vp1 && vp1.width < 768) {
+    await betaRow.getByRole('button', { name: 'Delete' }).click()
+    await page.waitForTimeout(1000)
+    await page.getByRole('button', { name: 'Delete' }).click()
+  } else {
+    page.once('dialog', d => d.accept())
+    await betaRow.getByRole('button', { name: 'Delete' }).click()
+  }
   await page.waitForTimeout(1000)
   await expect(page.getByText('beta')).toHaveCount(0)
   await page.waitForTimeout(1000)
@@ -97,17 +105,31 @@ test('additional behaviors: toggle body, validation, and cancel delete', async (
   await page.waitForTimeout(400)
   await expect(page.locator('form').first().getByText(/Title is required/i)).toBeVisible()
 
-  // Cancel delete
-  page.once('dialog', d => d.dismiss())
-  await deltaRow.getByRole('button', { name: 'Delete' }).click()
-  await page.waitForTimeout(400)
-  await expect(page.getByText('delta', { exact: true })).toBeVisible()
-
-  // Cleanup: actually delete
-  page.once('dialog', d => d.accept())
-  await deltaRow.getByRole('button', { name: 'Delete' }).click()
-  await page.waitForTimeout(600)
-  await expect(page.getByText('delta', { exact: true })).toHaveCount(0)
+  // Cancel delete: dialog on desktop, sheet on mobile
+  const vp2 = page.viewportSize()
+  if (vp2 && vp2.width < 768) {
+    await deltaRow.getByRole('button', { name: 'Delete' }).click()
+    await page.waitForTimeout(400)
+    await page.getByRole('button', { name: 'Cancel' }).click()
+    await page.waitForTimeout(400)
+    await expect(page.getByText('delta', { exact: true })).toBeVisible()
+    // Cleanup
+    await deltaRow.getByRole('button', { name: 'Delete' }).click()
+    await page.waitForTimeout(400)
+    await page.getByRole('button', { name: 'Delete' }).click()
+    await page.waitForTimeout(600)
+    await expect(page.getByText('delta', { exact: true })).toHaveCount(0)
+  } else {
+    page.once('dialog', d => d.dismiss())
+    await deltaRow.getByRole('button', { name: 'Delete' }).click()
+    await page.waitForTimeout(400)
+    await expect(page.getByText('delta', { exact: true })).toBeVisible()
+    // Cleanup: actually delete
+    page.once('dialog', d => d.accept())
+    await deltaRow.getByRole('button', { name: 'Delete' }).click()
+    await page.waitForTimeout(600)
+    await expect(page.getByText('delta', { exact: true })).toHaveCount(0)
+  }
 })
 
 test('mobile: edit in sheet and delete via sheet confirm', async ({ page }) => {
