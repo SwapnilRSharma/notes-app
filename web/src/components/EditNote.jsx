@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Input from './ui/input.jsx'
 import Textarea from './ui/textarea.jsx'
 import Button from './ui/button.jsx'
+import { Card, CardContent } from './ui/card.jsx'
 
 export default function EditNote({ note, onSaved, onCancel, onNotify }) {
   const [title, setTitle] = useState(note?.title || '')
@@ -51,24 +52,28 @@ export default function EditNote({ note, onSaved, onCancel, onNotify }) {
   }
 
   return (
-    <form onSubmit={submit} className="card form">
-      <h3>Edit Note</h3>
-      {error && <div className="error-text">{error}</div>}
-      <Input
-        placeholder="Title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-      />
-      <Textarea
-        placeholder="Body"
-        rows={4}
-        value={body}
-        onChange={e => setBody(e.target.value)}
-      />
-      <div className="actions">
-        <Button type="submit">Save</Button>
-        <Button type="button" variant="outline" onClick={() => onCancel?.()}>Cancel</Button>
-      </div>
-    </form>
+    <Card>
+      <CardContent className="pt-4">
+        <form onSubmit={submit} className="form">
+          <h3 className="text-lg font-semibold">Edit Note</h3>
+          {error && <div className="error-text">{error}</div>}
+          <Input
+            placeholder="Title"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+          />
+          <Textarea
+            placeholder="Body"
+            rows={4}
+            value={body}
+            onChange={e => setBody(e.target.value)}
+          />
+          <div className="actions">
+            <Button type="submit">Save</Button>
+            <Button type="button" variant="outline" onClick={() => onCancel?.()}>Cancel</Button>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
   )
 }
