@@ -12,12 +12,15 @@ import Sheet from './components/ui/sheet.jsx'
 export default function App() {
   const [notes, setNotes] = useState([])
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(true)
 
   const load = () => {
+    setLoading(true)
     fetch('/api/notes')
       .then(r => r.ok ? r.json() : Promise.reject(new Error('Failed to load')))
       .then(data => { setNotes(data); setError('') })
       .catch(e => setError(e.message))
+      .finally(() => setLoading(false))
   }
 
   const [editing, setEditing] = useState(null) // currently editing note object
@@ -80,6 +83,7 @@ export default function App() {
           <NoteForm onCreated={() => { load(); notify('Note created', 'success') }} onNotify={notify} />
           <NotesList
             notes={notes}
+            loading={loading}
             onEdit={(note) => setEditing(note)}
             onDelete={async (note) => {
               if (isMobile) {
