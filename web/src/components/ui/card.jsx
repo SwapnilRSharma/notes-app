@@ -2,7 +2,10 @@ import React from 'react'
 
 export function Card({ className = '', ...props }) {
   return (
-    <div className={`rounded-xl border border-slate-200 bg-white text-slate-900 shadow ${className}`} {...props} />
+    <div
+      className={`rounded-xl border border-border bg-card text-card-foreground shadow ${className}`}
+      {...props}
+    />
   )
 }
 

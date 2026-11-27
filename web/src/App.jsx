@@ -36,9 +36,9 @@ export default function App() {
   }
 
   // Prefer mobile sheets for secondary flows
-  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 1024 : false)
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false)
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 1024)
+    const onResize = () => setIsMobile(window.innerWidth < 768)
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
@@ -95,7 +95,7 @@ export default function App() {
               const ok = window.confirm(`Delete note "${note.title}"?`)
               if (!ok) return
               const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
-              if (!res.ok && res.status !== 204) {
+              if (!res.ok) {
                 const msg = 'Failed to delete'
                 setError(msg)
                 notify(msg, 'error')
@@ -151,7 +151,7 @@ export default function App() {
                 const note = pendingDelete
                 if (!note) return
                 const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
-                if (!res.ok && res.status !== 204) {
+                if (!res.ok) {
                   const msg = 'Failed to delete'
                   setError(msg)
                   notify(msg, 'error')
