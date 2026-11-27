@@ -5,6 +5,7 @@ import EditNote from './components/EditNote.jsx'
 import './styles.css'
 import Toaster from './components/ui/toaster.jsx'
 import { toast } from './components/ui/use-toast.js'
+import Button from './components/ui/button.jsx'
 
 export default function App() {
   const [notes, setNotes] = useState([])
@@ -18,6 +19,9 @@ export default function App() {
   }
 
   const [editing, setEditing] = useState(null) // currently editing note object
+  const [theme, setTheme] = useState(() => (
+    document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+  ))
 
   useEffect(() => { load() }, [])
 
@@ -25,12 +29,27 @@ export default function App() {
     toast(message, kind)
   }
 
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    document.documentElement.classList.toggle('dark', next === 'dark')
+    setTheme(next)
+  }
+
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-10 border-b bg-white/80 backdrop-blur">
-        <div className="mx-auto max-w-3xl px-4 py-3">
+        <div className="mx-auto max-w-3xl px-4 py-3 flex items-center gap-3">
           <h1 className="text-2xl font-semibold">Notes</h1>
-          
+          <div className="ml-auto">
+            <Button
+              data-testid="theme-toggle"
+              variant="outline"
+              aria-label="Toggle theme"
+              onClick={toggleTheme}
+            >
+              {theme === 'dark' ? 'Light' : 'Dark'} mode
+            </Button>
+          </div>
         </div>
       </header>
       <main className="mx-auto max-w-3xl px-4 py-4">
