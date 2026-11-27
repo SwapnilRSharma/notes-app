@@ -7,6 +7,7 @@ import Toaster from './components/ui/toaster.jsx'
 import { toast } from './components/ui/use-toast.js'
 import Button from './components/ui/button.jsx'
 import Separator from './components/ui/separator.jsx'
+import Sheet from './components/ui/sheet.jsx'
 
 export default function App() {
   const [notes, setNotes] = useState([])
@@ -23,12 +24,21 @@ export default function App() {
   const [theme, setTheme] = useState(() => (
     document.documentElement.classList.contains('dark') ? 'dark' : 'light'
   ))
+  const [pendingDelete, setPendingDelete] = useState(null)
 
   useEffect(() => { load() }, [])
 
   const notify = (message, kind = 'info') => {
     toast(message, kind)
   }
+
+  // Prefer mobile sheets for secondary flows
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 1024 : false)
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 1024)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark'
@@ -72,7 +82,11 @@ export default function App() {
             notes={notes}
             onEdit={(note) => setEditing(note)}
             onDelete={async (note) => {
-              // Simple confirm step before deletion
+              if (isMobile) {
+                setPendingDelete(note)
+                return
+              }
+              // Desktop confirm dialog
               // eslint-disable-next-line no-alert
               const ok = window.confirm(`Delete note "${note.title}"?`)
               if (!ok) return
@@ -87,7 +101,8 @@ export default function App() {
               notify('Note deleted', 'success')
             }}
           />
-          {editing && (
+          {/* Edit flow: dialog on desktop (inline), sheet on mobile */}
+          {editing && !isMobile && (
             <EditNote
               note={editing}
               onSaved={() => { setEditing(null); load(); notify('Note updated', 'success') }}
@@ -97,12 +112,65 @@ export default function App() {
           )}
         </main>
       </div>
+      {/* Mobile edit sheet */}
+      <Sheet
+        open={Boolean(editing) && isMobile}
+        onOpenChange={(o) => { if (!o) setEditing(null) }}
+        title={editing ? `Edit: ${editing.title}` : ''}
+        footer={
+          <div className="flex justify-end gap-2">
+            <Button variant="outline" onClick={() => setEditing(null)}>Close</Button>
+          </div>
+        }
+      >
+        {editing && (
+          <EditNote
+            note={editing}
+            onSaved={() => { setEditing(null); load(); notify('Note updated', 'success') }}
+            onCancel={() => setEditing(null)}
+            onNotify={notify}
+          />
+        )}
+      </Sheet>
+
+      {/* Mobile delete confirm sheet */}
+      <Sheet
+        open={Boolean(pendingDelete)}
+        onOpenChange={(o) => { if (!o) setPendingDelete(null) }}
+        title={pendingDelete ? `Delete "${pendingDelete.title}"?` : ''}
+        footer={
+          <div className="flex justify-end gap-2">
+            <Button variant="outline" onClick={() => setPendingDelete(null)}>Cancel</Button>
+            <Button
+              className="text-red-600"
+              onClick={async () => {
+                const note = pendingDelete
+                if (!note) return
+                const res = await fetch(`/api/notes/${encodeURIComponent(note.title)}`, { method: 'DELETE' })
+                if (!res.ok && res.status !== 204) {
+                  const msg = 'Failed to delete'
+                  setError(msg)
+                  notify(msg, 'error')
+                  return
+                }
+                setPendingDelete(null)
+                load()
+                notify('Note deleted', 'success')
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        }
+      >
+        <p className="text-sm text-muted-foreground">This action cannot be undone.</p>
+      </Sheet>
       {/* Mobile bottom nav */}
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-20 border-t bg-white/90 backdrop-blur dark:bg-neutral-900/80">
         <div className="max-w-screen-lg mx-auto px-4 py-2 flex items-center justify-around">
-          <button className="px-3 py-2 rounded-md hover:bg-muted" aria-label="All notes">All</button>
+          <button className="px-3 py-2 rounded-md hover:bg-muted min-h-[40px]" aria-label="All notes">All</button>
           <Separator className="w-px h-6 bg-slate-200" />
-          <button className="px-3 py-2 rounded-md hover:bg-muted" aria-label="Create note">Create</button>
+          <button className="px-3 py-2 rounded-md hover:bg-muted min-h-[40px]" aria-label="Create note">Create</button>
         </div>
       </div>
       <Toaster />
