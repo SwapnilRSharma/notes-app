@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useId } from 'react'
 
 // Accessible Sheet: dialog semantics, modal behavior, initial focus, Esc to close, and a minimal focus trap
 export default function Sheet({ open, onOpenChange, title, children, footer }) {
   const panelRef = useRef(null)
   const previouslyFocusedRef = useRef(null)
+  const titleId = useId() // ensure unique id per instance
 
   // Lock scroll when open
   useEffect(() => {
@@ -62,7 +63,6 @@ export default function Sheet({ open, onOpenChange, title, children, footer }) {
   }, [open, onOpenChange])
 
   if (!open) return null
-  const titleId = 'sheet-title'
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-stretch justify-end">
       <div

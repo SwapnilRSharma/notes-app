@@ -36,10 +36,10 @@ export default function NotesList({ notes, loading = false, onEdit, onDelete }) 
     <ul className="list-none p-0 m-0">
       {notes.map(n => (
         <li key={n.title} className="py-2.5">
-          <Card className="bg-white text-slate-900">
+          <Card className="bg-card text-card-foreground">
             <CardContent className="py-3">
               <div className="flex items-center gap-2">
-                <button onClick={() => toggle(n.title)} aria-label="Toggle body" aria-pressed={expanded.has(n.title)} className="px-1 focus-visible:ring-2 focus-visible:ring-ring rounded">
+                <button onClick={() => toggle(n.title)} aria-label="Toggle body" aria-expanded={expanded.has(n.title)} className="px-1 focus-visible:ring-2 focus-visible:ring-ring rounded">
                   {expanded.has(n.title) ? '▾' : '▸'}
                 </button>
                 <strong className="min-w-[160px] flex-1">{n.title}</strong>
@@ -49,7 +49,7 @@ export default function NotesList({ notes, loading = false, onEdit, onDelete }) 
                 </div>
               </div>
               {expanded.has(n.title) && (
-                <div className="ml-7 whitespace-pre-wrap mt-2 text-slate-700">{n.body}</div>
+                <div className="ml-7 whitespace-pre-wrap mt-2 text-foreground">{n.body}</div>
               )}
             </CardContent>
           </Card>

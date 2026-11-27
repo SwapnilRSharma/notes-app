@@ -14,7 +14,7 @@ export default function Toaster() {
             'cursor-pointer rounded-md border px-3 py-2 shadow',
             t.kind === 'success' ? 'border-green-200 bg-green-50 text-green-900' :
             t.kind === 'error' ? 'border-red-200 bg-red-50 text-red-900' :
-            'border-slate-200 bg-white text-slate-900',
+            'border-border bg-card text-card-foreground',
           ].join(' ')}
         >
           {t.message}

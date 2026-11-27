@@ -51,7 +51,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-20 border-b bg-white/80 backdrop-blur dark:bg-neutral-900/70">
+      <header className="sticky top-0 z-20 border-b bg-background/80 backdrop-blur">
         <div className="mx-auto max-w-screen-lg px-4 py-3 flex items-center gap-3">
           <h1 className="text-2xl font-semibold">Notes</h1>
           <div className="ml-auto flex items-center gap-2">
@@ -170,7 +170,7 @@ export default function App() {
         <p className="text-sm text-muted-foreground">This action cannot be undone.</p>
       </Sheet>
       {/* Mobile bottom nav */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-20 border-t bg-white/90 backdrop-blur dark:bg-neutral-900/80">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-20 border-t bg-background/90 backdrop-blur">
         <div className="max-w-screen-lg mx-auto px-4 py-2 flex items-center justify-around">
           <button className="px-3 py-2 rounded-md hover:bg-muted min-h-[40px]" aria-label="All notes">All</button>
           <Separator className="w-px h-6 bg-slate-200" />
