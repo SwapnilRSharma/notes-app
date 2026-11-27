@@ -109,3 +109,42 @@ test('additional behaviors: toggle body, validation, and cancel delete', async (
   await page.waitForTimeout(600)
   await expect(page.getByText('delta', { exact: true })).toHaveCount(0)
 })
+
+test('mobile: edit in sheet and delete via sheet confirm', async ({ page }) => {
+  const vp = page.viewportSize()
+  if (!vp || vp.width >= 768) test.skip()
+
+  await page.goto('/');
+  await page.waitForTimeout(1000)
+
+  // Create a note to edit/delete
+  await page.getByPlaceholder('Title').fill('mobile-one')
+  await page.waitForTimeout(1000)
+  await page.locator('textarea[placeholder="Body"]').fill('m-body')
+  await page.waitForTimeout(1000)
+  await page.getByRole('button', { name: 'Add' }).click()
+  await page.waitForTimeout(1000)
+  await expect(page.getByText('mobile-one')).toBeVisible()
+  await page.waitForTimeout(1000)
+
+  // Open editor (on mobile this renders in a Sheet)
+  const row = page.getByText('mobile-one').first().locator('xpath=ancestor::li')
+  await row.getByRole('button', { name: 'Edit' }).click()
+  await page.waitForTimeout(1000)
+  await expect(page.getByText(/Edit:\s*mobile-one/)).toBeVisible()
+  await page.waitForTimeout(1000)
+
+  // Save without changes
+  await page.getByRole('button', { name: 'Save' }).click()
+  await page.waitForTimeout(1000)
+
+  // Delete using sheet confirm
+  await row.getByRole('button', { name: 'Delete' }).click()
+  await page.waitForTimeout(1000)
+  await expect(page.getByText(/Delete\s+"mobile-one"\?/)).toBeVisible()
+  await page.waitForTimeout(1000)
+  await page.getByRole('button', { name: 'Delete' }).click()
+  await page.waitForTimeout(1000)
+  await expect(page.getByText('mobile-one')).toHaveCount(0)
+  await page.waitForTimeout(1000)
+})

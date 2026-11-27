@@ -9,6 +9,16 @@ export default defineConfig({
     video: 'on',
     trace: 'on'
   },
+  projects: [
+    {
+      name: 'Desktop Chromium',
+      use: { browserName: 'chromium' }
+    },
+    {
+      name: 'Mobile Chrome',
+      use: { browserName: 'chromium', viewport: { width: 390, height: 844 } }
+    }
+  ],
   webServer: [
     {
       command: 'npm run server',
