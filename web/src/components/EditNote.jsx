@@ -54,8 +54,8 @@ export default function EditNote({ note, onSaved, onCancel, onNotify }) {
   return (
     <Card>
       <CardContent className="pt-4">
-        <form onSubmit={submit} className="form">
-          <h3 className="text-lg font-semibold">Edit Note</h3>
+        <form onSubmit={submit} className="grid gap-3 max-w-[720px] my-3 mb-5">
+          <h3 className="text-lg font-semibold m-0">Edit Note</h3>
           {error && <div className="error-text">{error}</div>}
           <Input
             placeholder="Title"
@@ -68,7 +68,7 @@ export default function EditNote({ note, onSaved, onCancel, onNotify }) {
             value={body}
             onChange={e => setBody(e.target.value)}
           />
-          <div className="actions">
+          <div className="flex gap-2 ml-auto">
             <Button type="submit">Save</Button>
             <Button type="button" variant="outline" onClick={() => onCancel?.()}>Cancel</Button>
           </div>

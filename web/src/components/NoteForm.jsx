@@ -43,8 +43,8 @@ export default function NoteForm({ onCreated, onNotify }) {
   return (
     <Card>
       <CardContent className="pt-4">
-        <form onSubmit={submit} className="form">
-          <h2 className="text-xl font-semibold">Create Note</h2>
+        <form onSubmit={submit} className="grid gap-3 max-w-[720px] my-3 mb-5">
+          <h2 className="text-xl font-semibold m-0">Create Note</h2>
           {error && <div className="error-text">{error}</div>}
           <Input
             placeholder="Title"
@@ -57,7 +57,7 @@ export default function NoteForm({ onCreated, onNotify }) {
             value={body}
             onChange={e => setBody(e.target.value)}
           />
-          <div className="actions">
+          <div className="flex gap-2 ml-auto">
             <Button type="submit">Add</Button>
           </div>
         </form>
